@@ -92,6 +92,7 @@ analyze/
 
 # Docker e infraestrutura (não necessários dentro do container)
 Dockerfile*
+!Dockerfile
 docker-compose*.yml
 docker/
 .dockerignore
