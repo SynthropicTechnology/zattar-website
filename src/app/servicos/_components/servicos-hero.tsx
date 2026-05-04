@@ -38,7 +38,7 @@ export function ServicosHero({
       {/* Ambient radial glow */}
       <div
         aria-hidden
-        className="absolute -top-32 -left-32 w-[28rem] h-[28rem] bg-[radial-gradient(circle_at_center,rgb(var(--color-primary)/0.08)_0%,transparent_70%)] pointer-events-none"
+        className="absolute -top-32 -left-32 w-md h-112 bg-[radial-gradient(circle_at_center,rgb(var(--color-primary)/0.08)_0%,transparent_70%)] pointer-events-none"
       />
 
       <div className="relative z-10 max-w-4xl">
