@@ -1,19 +1,19 @@
 "use server";
 
-/**
- * Server Action para retornar a configuração pública do widget Chatwoot.
- * Não requer autenticação pois é usado no site público.
- * Retorna apenas os campos públicos (websiteToken e widgetBaseUrl).
- */
-
-
-import type { WidgetConfig } from './action-types';
+export interface WidgetConfig {
+  websiteToken: string;
+  baseUrl: string;
+}
 
 export async function actionObterChatwootWidgetConfig(): Promise<WidgetConfig | null> {
   try {
-    const db = (await import("@/lib/supabase")).createDbClient();
+    const { createClient } = await import("@supabase/supabase-js");
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!
+    );
 
-    const { data, error } = await db
+    const { data, error } = await supabase
       .from("integracoes")
       .select("configuracao")
       .eq("tipo", "chatwoot")
@@ -33,8 +33,7 @@ export async function actionObterChatwootWidgetConfig(): Promise<WidgetConfig | 
       websiteToken,
       baseUrl: (widgetBaseUrl as string).replace(/\/$/, ""),
     };
-  } catch (error) {
-    console.error("[Chatwoot Widget Config] Erro:", error);
+  } catch {
     return null;
   }
 }
