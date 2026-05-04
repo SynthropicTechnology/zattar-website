@@ -2,6 +2,30 @@
 applyTo: "**"
 ---
 
+# Projeto: Zattar Advogados — Website
+
+Website institucional e marketing do escritório Zattar Advogados. Este repositório é um fork limpo do ZattarOS — **contém apenas as rotas públicas**. Não há área autenticada, portal do cliente ou sistema de gestão jurídica.
+
+## Estrutura do Projeto
+
+- `src/app/website/` — páginas públicas: expertise, contato, faq, insights, solucoes
+- `src/app/servicos/` — calculadoras e ferramentas públicas (sem autenticação)
+- `src/app/api/` — rotas de API: formulário de contato (`/api/contato`), CSP report, health check
+- `src/app/offline/` — página offline do PWA
+- `src/lib/` — infra: Supabase (leads), Strapi (CMS blog), Redis (rate-limit), Chatwoot (widget)
+- `src/middleware/` — CSP, rate-limiting, security headers
+- `src/components/` — UI compartilhada: shadcn/ui, shared/
+
+## Padrões
+
+- Server Actions públicas via `publicAction` / `publicFormAction` em `src/lib/safe-action.ts`
+- Sem `authenticatedAction` — não há sessão de usuário neste repositório
+- Conteúdo do blog carregado via Strapi REST API (`src/lib/strapi/`)
+- Leads/contato salvos no Supabase (`src/lib/supabase/`)
+- Rate-limiting de formulários via Redis (`src/lib/redis/`)
+
+---
+
 # Instructions for Using the shadcn/studio MCP SERVER
 
 To ensure accurate and helpful responses when interacting with the shadcn/studio MCP SERVER, it is essential to follow these guidelines. Adhering strictly to these instructions will ensure the best results.

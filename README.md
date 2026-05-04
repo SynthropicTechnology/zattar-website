@@ -1,11 +1,15 @@
-# ZattarOS — Sistema de Gestão Jurídica (by Synthropic)
+# Zattar Advogados — Website
 
-Sistema de gestão jurídica corporativa focado em automação e IA.
+Website institucional e marketing do escritório Zattar Advogados, construído com Next.js e hospedado como PWA standalone.
 
-**Stack Técnico**:
+**Stack**:
 - **Core**: Next.js 16 (App Router), React 19, TypeScript 5
-- **Dados**: Supabase (PostgreSQL + RLS + pgvector), Redis (cache)
 - **UI**: Tailwind CSS 4, shadcn/ui (estilo new-york)
+- **CMS**: Strapi (conteúdo do blog/insights via API REST)
+- **Banco**: Supabase (formulário de contato / leads)
+- **Cache / Rate-limit**: Redis (ioredis)
+- **Chat**: Chatwoot (widget configurado via Supabase)
+- **PWA**: Serwist / Service Worker
 
 ## Pré-requisitos
 
@@ -13,72 +17,55 @@ Sistema de gestão jurídica corporativa focado em automação e IA.
 - npm `>= 10`
 - (Opcional) Docker para execução conteinerizada
 
-## Instalação e Execução
+## Instalação
 
-Instale as dependências:
 ```bash
 npm install
-```
-
-Configure as variáveis de ambiente base:
-```bash
 cp .env.example .env.local
+# edite .env.local com suas credenciais
 ```
 
-Inicie o servidor de desenvolvimento (via Turbopack):
+## Desenvolvimento
+
 ```bash
-npm run dev
+npm run dev        # Turbopack — http://localhost:3000
+npm run build      # Build de produção (standalone)
+npm run start      # Serve o build de produção
+npm run type-check # Verificação de tipos sem emitir
+npm run lint       # ESLint
 ```
 
-Acesse a aplicação: `http://localhost:3000`
+## Variáveis de Ambiente
 
-## Variáveis de Ambiente (Principais)
+Consulte `.env.example` para a lista completa e anotada.
 
-Verifique `.env.example` para a lista completa.
+| Variável | Obrigatória | Descrição |
+|---|---|---|
+| `NEXT_PUBLIC_SUPABASE_URL` | Sim | URL pública do projeto Supabase |
+| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_OR_ANON_KEY` | Sim | Chave anon pública |
+| `SUPABASE_SERVICE_ROLE_KEY` | Sim | Chave de serviço (server-only) |
+| `REDIS_URL` | Sim | URL de conexão Redis |
+| `STRAPI_URL` | Não | URL base do Strapi CMS |
+| `STRAPI_API_TOKEN` | Não | Token de leitura do Strapi |
+| `NEXT_PUBLIC_WEBSITE_URL` | Não | URL canônica do site |
 
-* **Obrigatórias**: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_OR_ANON_KEY`, `SUPABASE_SECRET_KEY`, `SERVICE_API_KEY`, `CRON_SECRET`
-* **Inteligência Artificial**: `OPENAI_API_KEY`, `AI_GATEWAY_API_KEY`, `OPENAI_EMBEDDING_MODEL`
-* **Banco/Infraestrutura**: `ENABLE_REDIS_CACHE`, `REDIS_URL`, `REDIS_PASSWORD`
+## Estrutura
 
-## Arquitetura: Feature-Sliced Design (Colocated)
-
-O projeto usa **Feature-Sliced Design**. Em vez de uma pasta separada para a lógica, os módulos da aplicação estão intrinsecamente amarrados às rotas dentro de `src/app/(authenticated)`.
-
-```text
-zattar-os/
-└── src/
-    ├── app/
-    │   └── (authenticated)/      # Ambiente logado da aplicação
-    │       ├── processos/        # Módulo local e Rota /processos
-    │       │   ├── actions/      # Server Actions encapsuladas
-    │       │   ├── components/   # UI React específica do domínio
-    │       │   ├── domain.ts     # Zod Schemas, tipos, constantes e regras lógicas
-    │       │   ├── service.ts    # Casos de uso
-    │       │   ├── repository.ts # Integração externa / Banco de Dados
-    │       │   ├── index.ts      # Ponto obrigatório de exportação do módulo (Barrel)
-    │       │   └── RULES.md      # Instruções de negócio anexas para agentes cognitivos
-    │       └── partes/           # Outro módulo
-    ├── components/               # UI global (shadcn, shells estruturais)
-    └── lib/                      # Infra (auth, redis, MCP, etc.)
+```
+src/
+├── app/
+│   ├── website/          # Páginas públicas (expertise, contato, faq, insights…)
+│   ├── servicos/         # Calculadoras e ferramentas públicas
+│   ├── api/              # Rotas de API (formulário de contato, CSP report, health)
+│   └── offline/          # Página offline (PWA)
+├── components/           # Componentes UI compartilhados (shadcn/ui, shared/)
+├── lib/                  # Infra: Supabase, Strapi, Redis, Chatwoot
+└── middleware/           # Segurança: CSP, rate-limit, headers
 ```
 
-**Regra Principal**: É estritamente proibido realizar "deep imports" (importar arquivos diretamente das pastas internas de um módulo). Use sempre os arquivos de barreira `index.ts`.
+## Deploy com Docker
 
-*Certo*: `import { actionListarClientes } from "@/app/(authenticated)/partes"`
-*Errado*: `import { actionListarClientes } from "@/app/(authenticated)/partes/actions/listar-action"`
-
-## Model Context Protocol (MCP) e IA
-
-O ZattarOS está equipado para funcionar via controle automatizado de agentes.
-A raiz do conector expõe o endpoint `/api/mcp`. As ferramentas controlam os *Server Actions* cadastrados em `src/lib/mcp/registry.ts`.
-
-- Testes de integridade de MCP: `npm run mcp:check`
-- Base de refatoração para RAG: `npm run ai:reindex`
-
-## Documentação & Instruções de Automação
-
-Este repositório possui uma base documental limpa e direta paras as IAs mapearem e alterarem o código-fonte de maneira segura:
-
-* [**AGENTS.md**](./AGENTS.md) — Referência concisa e inter-plataforma.
-* [**ARCHITECTURE.md**](./docs/architecture/ARCHITECTURE.md) — Macro-estrutura.
-* [**CLAUDE.md**](./CLAUDE.md) — Instruções nativas direcionadas a interfaces de CLI.
+```bash
+docker build -t zattar-website .
+docker run -p 3000:3000 --env-file .env.production zattar-website
+```
