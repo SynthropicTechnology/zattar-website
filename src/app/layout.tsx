@@ -39,12 +39,6 @@ export const metadata: Metadata = {
     template: "%s | Zattar Advogados",
   },
   description: "Gestão Jurídica Inteligente",
-  manifest: "/manifest.json",
-  appleWebApp: {
-    capable: true,
-    title: "Zattar",
-    statusBarStyle: "default",
-  },
   icons: {
     icon: [
       { url: "/logos/Sem%20Fundo%20PNG/logo-z-light.png", media: "(prefers-color-scheme: light)", type: "image/png" },

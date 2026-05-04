@@ -90,10 +90,6 @@ analyze/
 .env*
 !.env.example
 
-# Service worker (gerado no build)
-public/sw*
-public/swe-worker*
-
 # Docker e infraestrutura (não necessários dentro do container)
 Dockerfile*
 docker-compose*.yml

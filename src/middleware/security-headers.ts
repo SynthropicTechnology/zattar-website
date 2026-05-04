@@ -59,19 +59,15 @@ const TRUSTED_DOMAINS = {
  * Assets públicos que não precisam de headers de segurança
  */
 const PUBLIC_ASSETS = [
-  "/sw.js",
-  "/manifest.json",
   "/robots.txt",
   "/favicon.ico",
   "/sitemap.xml",
-  "/browserconfig.xml",
 ] as const;
 
 /**
  * Prefixos de assets públicos
  */
 const PUBLIC_ASSET_PREFIXES = [
-  "/workbox-",
   "/android-chrome-",
   "/apple-touch-icon",
   "/_next/static/",
