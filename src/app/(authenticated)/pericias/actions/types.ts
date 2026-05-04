@@ -1,9 +1,0 @@
-/**
- * Pericias Actions — Tipos compartilhados (sem "use server").
- */
-
-export type ActionResult<T = unknown> =
-  | { success: true; data: T; message: string }
-  | { success: false; error: string; message: string };
-
-export type { PericiasPulseStats } from "../service";
