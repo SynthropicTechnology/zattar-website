@@ -6,11 +6,11 @@
  */
 
 /**
- * URL do Strapi. Em produção, é obrigatório; em dev/test cai pra localhost
- * apenas como conveniência (o erro aparece na primeira chamada se o serviço
- * não estiver subido).
+ * URL do Strapi. Resolvida lazy: só falha quando uma chamada é feita sem env
+ * configurada em produção. Falhar em import-time quebraria o `next build`,
+ * que importa este módulo sem ter acesso a envs de runtime.
  */
-const STRAPI_URL = (() => {
+function resolveStrapiUrl(): string {
   const url = process.env.STRAPI_URL;
   if (url) return url;
   if (process.env.NODE_ENV === 'production') {
@@ -19,9 +19,7 @@ const STRAPI_URL = (() => {
     );
   }
   return 'http://localhost:1337';
-})();
-
-const STRAPI_TOKEN = process.env.STRAPI_API_TOKEN ?? '';
+}
 
 interface StrapiListResponse<T> {
   data: T[];
@@ -64,9 +62,10 @@ export interface StrapiBlogPost {
 // ============================================================
 
 function strapiHeaders(): HeadersInit {
+  const token = process.env.STRAPI_API_TOKEN ?? '';
   return {
     'Content-Type': 'application/json',
-    ...(STRAPI_TOKEN && { Authorization: `Bearer ${STRAPI_TOKEN}` }),
+    ...(token && { Authorization: `Bearer ${token}` }),
   };
 }
 
@@ -74,7 +73,7 @@ async function strapiGet<T>(
   endpoint: string,
   params?: Record<string, string | number | boolean>
 ): Promise<T> {
-  const url = new URL(`${STRAPI_URL}/api/${endpoint}`);
+  const url = new URL(`${resolveStrapiUrl()}/api/${endpoint}`);
 
   if (params) {
     Object.entries(params).forEach(([key, value]) => {
