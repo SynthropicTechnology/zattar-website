@@ -47,6 +47,8 @@ const TRUSTED_DOMAINS = {
   chatwoot: ["https://chat.sinesys.app", "wss://chat.sinesys.app"],
   // Cloudflare Stream — vídeo do hero da home
   cloudflareStream: ["https://customer-lvnfk43x7eec1csc.cloudflarestream.com"],
+  // Google Maps — iframe embed do mapa do escritório em /contato
+  googleMaps: ["https://www.google.com", "https://maps.google.com"],
 } as const;
 
 /**
@@ -87,7 +89,10 @@ export function shouldApplySecurityHeaders(pathname: string): boolean {
 /**
  * Constrói as diretivas CSP
  */
-export function buildCSPDirectives(nonce?: string): string {
+export function buildCSPDirectives(
+  nonce?: string,
+  reportOnly: boolean = REPORT_ONLY_MODE,
+): string {
   const isProduction = process.env.NODE_ENV === "production";
 
   // script-src: nonce + strict-dynamic (sem unsafe-eval). Chatwoot SDK é
@@ -117,7 +122,7 @@ export function buildCSPDirectives(nonce?: string): string {
     "font-src": `'self' ${TRUSTED_DOMAINS.fonts[1]} data: ${TRUSTED_DOMAINS.chatwoot[0]}`,
     "img-src": `'self' data: blob: ${TRUSTED_DOMAINS.supabase[0]} ${TRUSTED_DOMAINS.chatwoot[0]} ${TRUSTED_DOMAINS.cloudflareStream[0]}`,
     "connect-src": `'self' ${TRUSTED_DOMAINS.supabase.join(" ")} ${TRUSTED_DOMAINS.chatwoot.join(" ")}`,
-    "frame-src": `'self' ${TRUSTED_DOMAINS.chatwoot[0]} ${TRUSTED_DOMAINS.cloudflareStream[0]}`,
+    "frame-src": `'self' ${TRUSTED_DOMAINS.chatwoot[0]} ${TRUSTED_DOMAINS.cloudflareStream[0]} ${TRUSTED_DOMAINS.googleMaps.join(" ")}`,
     "media-src": `'self' blob: ${TRUSTED_DOMAINS.supabase[0]} ${TRUSTED_DOMAINS.cloudflareStream[0]}`,
     "worker-src": "'self' blob:",
     "object-src": "'none'",
@@ -128,7 +133,9 @@ export function buildCSPDirectives(nonce?: string): string {
     "report-to": "csp-endpoint",
   };
 
-  if (isProduction) {
+  // upgrade-insecure-requests é ignorado em report-only (warning ruidoso no
+  // console). Aplicar apenas em enforcement.
+  if (isProduction && !reportOnly) {
     directives["upgrade-insecure-requests"] = "";
   }
 
@@ -194,7 +201,7 @@ export function buildSecurityHeaders(
   reportOnly: boolean = REPORT_ONLY_MODE
 ): SecurityHeaders {
   const isProduction = process.env.NODE_ENV === "production";
-  const cspDirectives = buildCSPDirectives(nonce);
+  const cspDirectives = buildCSPDirectives(nonce, reportOnly);
 
   const headers: SecurityHeaders = {
     // HSTS — força HTTPS (apenas em produção)

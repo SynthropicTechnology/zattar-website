@@ -21,10 +21,14 @@ const siteLinks = [
   { href: "/faq", label: "Perguntas Frequentes" },
 ];
 
+// Os 2 primeiros pertencem a outro app (ZattarOS, em domínio externo). Como
+// não existem como rotas neste site, marcamos `external: true` para evitar
+// prefetch RSC (que estava gerando 404 no console). TODO: trocar `href` para
+// a URL absoluta correta do portal quando definida.
 const portalLinks = [
-  { href: "/portal", label: "Acesso ao Portal" },
-  { href: "/login", label: "ZattarOS" },
-  { href: "/contato", label: "Fale Conosco" },
+  { href: "/portal", label: "Acesso ao Portal", external: true },
+  { href: "/login", label: "ZattarOS", external: true },
+  { href: "/contato", label: "Fale Conosco", external: false },
 ];
 
 const socialLinks = [
@@ -177,6 +181,7 @@ export function Footer({ hideClosingCta = false }: FooterProps = {}) {
                     <li key={link.href}>
                       <Link
                         href={link.href}
+                        prefetch={link.external ? false : undefined}
                         className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm block w-fit"
                       >
                         {link.label}
