@@ -1,18 +1,17 @@
 /**
  * Supabase Database Types — Zattar Website
  *
- * Escopo deliberadamente reduzido: este site público só toca duas tabelas
- * (public_leads e integracoes) no projeto Supabase compartilhado com o
- * sistema de gestão jurídica. As demais ~80 tabelas, RPCs e enums do schema
- * existem no banco mas estão omitidos aqui por princípio de menor exposição.
+ * Escopo deliberadamente reduzido: este site público só toca uma tabela
+ * (public_leads) no projeto Supabase compartilhado com o sistema de gestão
+ * jurídica. As demais ~80 tabelas, RPCs e enums do schema existem no banco
+ * mas estão omitidos aqui por princípio de menor exposição.
  *
  * Para regenerar e revalidar: `supabase gen types typescript --project-id $ID
- * --schema public` filtrando para as tabelas listadas acima.
+ * --schema public` filtrando para a tabela listada acima.
  *
  * Consumidores diretos: src/lib/supabase/client.ts (createBrowserClient).
- * Indiretos via .from('public_leads' | 'integracoes'):
+ * Indiretos via .from('public_leads'):
  *   - src/shared/public-leads/repository.ts
- *   - src/lib/chatwoot/widget-config-action.ts
  */
 
 export type Json =
@@ -29,48 +28,6 @@ export type Database = {
   }
   public: {
     Tables: {
-      integracoes: {
-        Row: {
-          ativo: boolean
-          configuracao: Json
-          created_at: string
-          created_by_auth_id: string | null
-          descricao: string | null
-          id: string
-          metadata: Json | null
-          nome: string
-          tipo: string
-          updated_at: string
-          updated_by_auth_id: string | null
-        }
-        Insert: {
-          ativo?: boolean
-          configuracao?: Json
-          created_at?: string
-          created_by_auth_id?: string | null
-          descricao?: string | null
-          id?: string
-          metadata?: Json | null
-          nome: string
-          tipo: string
-          updated_at?: string
-          updated_by_auth_id?: string | null
-        }
-        Update: {
-          ativo?: boolean
-          configuracao?: Json
-          created_at?: string
-          created_by_auth_id?: string | null
-          descricao?: string | null
-          id?: string
-          metadata?: Json | null
-          nome?: string
-          tipo?: string
-          updated_at?: string
-          updated_by_auth_id?: string | null
-        }
-        Relationships: []
-      }
       public_leads: {
         Row: {
           assunto: string | null
