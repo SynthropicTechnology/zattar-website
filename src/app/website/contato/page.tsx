@@ -17,10 +17,10 @@ export default function ContatoPage() {
     <WebsiteShell hideClosingCta>
       <div className="pt-32 pb-24 overflow-hidden">
         {/* Hero Section */}
-        <section className="max-w-7xl mx-auto px-8 mb-24 mt-12">
+        <section className="max-w-352 mx-auto px-5 sm:px-6 md:px-10 mb-24 mt-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
             <div className="lg:col-span-8">
-              <Text variant="overline" className="text-primary mb-4 block">
+              <Text variant="marketing-overline" className="mb-4 block">
                 Contato
               </Text>
               <Heading level="marketing-hero">
@@ -39,7 +39,7 @@ export default function ContatoPage() {
         </section>
 
         {/* Bento Contact Layout */}
-        <section className="max-w-7xl mx-auto px-8">
+        <section className="max-w-352 mx-auto px-5 sm:px-6 md:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Contact Form Card */}
             <MarketingCard variant="solid" padding="lg" className="lg:col-span-2">
@@ -55,7 +55,7 @@ export default function ContatoPage() {
               {/* Contact Info Card */}
               <MarketingCard variant="solid" padding="lg" className="space-y-8">
                 <div>
-                  <Text variant="overline" className="text-primary mb-6 block">
+                  <Text variant="marketing-overline" className="mb-6 block">
                     Informações
                   </Text>
                   <div className="space-y-6">
@@ -90,7 +90,7 @@ export default function ContatoPage() {
                 </div>
 
                 <div className="pt-6 border-t border-outline-variant/20">
-                  <Text variant="overline" className="text-primary mb-4 block">
+                  <Text variant="marketing-overline" className="mb-4 block">
                     Conectar
                   </Text>
                   <div className="flex gap-4">
@@ -99,7 +99,7 @@ export default function ContatoPage() {
                       href="https://instagram.com/zattaradvogados"
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label="Instagram"
+                      aria-label="Instagram Zattar Advogados"
                     >
                       <Instagram className="w-5 h-5" />
                     </a>
@@ -108,7 +108,7 @@ export default function ContatoPage() {
                       href="https://wa.me/5531984382217"
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label="WhatsApp"
+                      aria-label="WhatsApp Zattar Advogados"
                     >
                       <MessageCircle className="w-5 h-5" />
                     </a>
@@ -117,7 +117,7 @@ export default function ContatoPage() {
                       href="https://linkedin.com/company/zattaradvogados"
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label="LinkedIn"
+                      aria-label="LinkedIn Zattar Advogados"
                     >
                       <Linkedin className="w-5 h-5" />
                     </a>

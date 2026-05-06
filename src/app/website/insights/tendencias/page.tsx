@@ -1,4 +1,6 @@
 import { WebsiteShell } from "@/app/website/components/layout/website-shell";
+import { MarketingCard } from "@/app/website/components/shared/marketing-card";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Search, ArrowRight } from "lucide-react";
 import { buildWebsiteMetadata } from "../../_metadata/build-metadata";
@@ -12,26 +14,25 @@ export const metadata = buildWebsiteMetadata({
 
 export default function InsightsTendenciasPage() {
   return (
-    <WebsiteShell>
-      <div className="pt-32">
-
-      <div className="pt-16 pb-24 px-6 md:px-12 max-w-7xl mx-auto mt-6">
+    <WebsiteShell hideClosingCta>
+      <div className="pt-32 pb-24 max-w-352 mx-auto px-5 sm:px-6 md:px-10">
         {/* Hero Featured Section */}
         <section className="relative mb-24 rounded-[2.5rem] overflow-hidden group shadow-2xl">
           <div className="aspect-16/7 md:aspect-21/9 w-full bg-surface-container overflow-hidden">
-            <img 
-              alt="Tribunal futurista com interfaces holográficas" 
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-60 mix-blend-luminosity hover:mix-blend-normal" 
+            <img
+              alt="Tribunal futurista com interfaces holográficas"
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-60 mix-blend-luminosity hover:mix-blend-normal"
               src="/website/insights/tendencias/hero.jpg"
             />
           </div>
           <div className="absolute inset-0 bg-linear-to-t from-surface via-surface/60 to-transparent flex flex-col justify-end p-8 md:p-16">
-            <span className="text-primary font-label text-sm uppercase tracking-[0.2em] mb-4 flex items-center gap-2 drop-shadow-md">
-              <span className="w-8 h-px bg-primary shadow-[0_0_10px_rgb(var(--color-primary)/0.8)]"></span> Artigo em Destaque
+            <span className="text-marketing-overline text-primary mb-4 flex items-center gap-2 drop-shadow-md">
+              <span className="w-8 h-px bg-primary shadow-[0_0_10px_rgb(var(--color-primary)/0.8)]"></span>
+              Artigo em Destaque
             </span>
             <div className="max-w-3xl">
               <h1 className="text-4xl md:text-6xl font-headline font-extrabold tracking-tighter mb-6 leading-tight text-on-surface drop-shadow-lg">
-                A Ascensão da IA Generativa na <br className="hidden md:block"/>
+                A Ascensão da IA Generativa na <br className="hidden md:block" />
                 <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-primary-dim drop-shadow-[0_0_15px_rgb(var(--color-primary)/0.4)]">
                   Análise Jurisprudencial
                 </span>
@@ -67,9 +68,9 @@ export default function InsightsTendenciasPage() {
           </div>
           <div className="relative w-full md:w-80 group">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors w-5 h-5" />
-            <input 
-              className="w-full bg-surface-container-high border border-foreground/5 focus:border-primary/50 grow rounded-2xl py-4 pl-12 pr-4 text-on-surface placeholder:text-outline focus:ring-1 focus:ring-primary/50 transition-all outline-none shadow-inner" 
-              placeholder="Pesquisar insights..." 
+            <input
+              className="w-full bg-surface-container-high border border-outline-variant/20 rounded-2xl py-4 pl-12 pr-4 text-on-surface placeholder:text-on-surface-variant/60 focus:border-primary/40 focus:ring-1 focus:ring-primary/50 transition-all outline-none shadow-inner"
+              placeholder="Pesquisar insights..."
               type="text"
             />
           </div>
@@ -78,11 +79,15 @@ export default function InsightsTendenciasPage() {
         {/* Bento Grid Articles */}
         <div id="artigos" className="grid grid-cols-1 md:grid-cols-12 gap-6">
           {/* Big Card 1 */}
-          <article className="md:col-span-8 group bg-surface-container rounded-4xl overflow-hidden border border-foreground/5 hover:border-primary/30 transition-all duration-500 shadow-lg hover:shadow-[0_0_30px_rgb(var(--color-primary)/0.1)] flex flex-col md:flex-row h-full">
+          <MarketingCard
+            variant="solid"
+            padding="sm"
+            className="md:col-span-8 group overflow-hidden hover:border-primary/30 flex flex-col md:flex-row h-full !p-0"
+          >
             <div className="md:w-1/2 overflow-hidden bg-surface-container-highest">
-              <img 
-                alt="Direito Digital" 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 mix-blend-luminosity hover:mix-blend-normal" 
+              <img
+                alt="Direito Digital"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 mix-blend-luminosity hover:mix-blend-normal"
                 src="/website/insights/tendencias/chart.jpg"
               />
             </div>
@@ -97,16 +102,20 @@ export default function InsightsTendenciasPage() {
                 </p>
               </div>
               <div className="flex justify-between items-center mt-4">
-                <span className="text-xs text-outline font-label uppercase tracking-widest font-bold">5 min de leitura</span>
+                <span className="text-xs text-on-surface-variant font-label uppercase tracking-widest font-bold">5 min de leitura</span>
                 <Link href="/contato" className="text-primary text-sm font-bold flex items-center gap-2 group/btn">
                   Ler Mais <ArrowRight className="group-hover/btn:translate-x-1 transition-transform w-4 h-4" />
                 </Link>
               </div>
             </div>
-          </article>
+          </MarketingCard>
 
           {/* Small Card 1 */}
-          <article className="md:col-span-4 group bg-surface-container rounded-4xl p-8 border border-foreground/5 hover:border-primary/30 transition-all duration-500 shadow-lg hover:shadow-[0_0_30px_rgb(var(--color-primary)/0.1)] flex flex-col justify-between">
+          <MarketingCard
+            variant="solid"
+            padding="lg"
+            className="md:col-span-4 group hover:border-primary/30 flex flex-col justify-between"
+          >
             <div>
               <span className="bg-primary/10 border border-primary/20 text-primary px-4 py-1.5 rounded-full text-xs font-bold mb-6 inline-block uppercase tracking-wider">IA Jurídica</span>
               <h3 className="text-xl font-headline font-bold text-on-surface mb-4 group-hover:text-primary transition-colors leading-tight">
@@ -117,15 +126,19 @@ export default function InsightsTendenciasPage() {
               </p>
             </div>
             <div className="flex justify-between items-center mt-auto">
-              <span className="text-xs text-outline font-label uppercase tracking-widest font-bold">3 min de leitura</span>
+              <span className="text-xs text-on-surface-variant font-label uppercase tracking-widest font-bold">3 min de leitura</span>
               <Link href="/contato" className="text-primary text-sm font-bold flex items-center gap-2 group/btn">
                 Ler Mais <ArrowRight className="group-hover/btn:translate-x-1 transition-transform w-4 h-4" />
               </Link>
             </div>
-          </article>
+          </MarketingCard>
 
           {/* Small Card 2 */}
-          <article className="md:col-span-4 group bg-surface-container rounded-4xl p-8 border border-foreground/5 hover:border-primary/30 transition-all duration-500 shadow-lg hover:shadow-[0_0_30px_rgb(var(--color-primary)/0.1)] flex flex-col justify-between">
+          <MarketingCard
+            variant="solid"
+            padding="lg"
+            className="md:col-span-4 group hover:border-primary/30 flex flex-col justify-between"
+          >
             <div>
               <span className="bg-primary/10 border border-primary/20 text-primary px-4 py-1.5 rounded-full text-xs font-bold mb-6 inline-block uppercase tracking-wider">Trabalhista</span>
               <h3 className="text-xl font-headline font-bold text-on-surface mb-4 group-hover:text-primary transition-colors leading-tight">
@@ -136,15 +149,19 @@ export default function InsightsTendenciasPage() {
               </p>
             </div>
             <div className="flex justify-between items-center mt-auto">
-              <span className="text-xs text-outline font-label uppercase tracking-widest font-bold">8 min de leitura</span>
+              <span className="text-xs text-on-surface-variant font-label uppercase tracking-widest font-bold">8 min de leitura</span>
               <Link href="/contato" className="text-primary text-sm font-bold flex items-center gap-2 group/btn">
                 Ler Mais <ArrowRight className="group-hover/btn:translate-x-1 transition-transform w-4 h-4" />
               </Link>
             </div>
-          </article>
+          </MarketingCard>
 
           {/* Big Card 2 */}
-          <article className="md:col-span-8 group bg-surface-container rounded-4xl overflow-hidden border border-foreground/5 hover:border-primary/30 transition-all duration-500 shadow-lg hover:shadow-[0_0_30px_rgb(var(--color-primary)/0.1)] flex flex-col md:flex-row h-full">
+          <MarketingCard
+            variant="solid"
+            padding="sm"
+            className="md:col-span-8 group overflow-hidden hover:border-primary/30 flex flex-col md:flex-row h-full !p-0"
+          >
             <div className="md:w-1/2 p-8 lg:p-10 flex flex-col justify-between order-2 md:order-1">
               <div>
                 <span className="bg-primary/10 border border-primary/20 text-primary px-4 py-1.5 rounded-full text-xs font-bold mb-6 inline-block uppercase tracking-wider">Case Study</span>
@@ -156,27 +173,27 @@ export default function InsightsTendenciasPage() {
                 </p>
               </div>
               <div className="flex justify-between items-center mt-4">
-                <span className="text-xs text-outline font-label uppercase tracking-widest font-bold">12 min de leitura</span>
+                <span className="text-xs text-on-surface-variant font-label uppercase tracking-widest font-bold">12 min de leitura</span>
                 <Link href="/contato" className="text-primary text-sm font-bold flex items-center gap-2 group/btn">
                   Ler Mais <ArrowRight className="group-hover/btn:translate-x-1 transition-transform w-4 h-4" />
                 </Link>
               </div>
             </div>
             <div className="md:w-1/2 overflow-hidden bg-surface-container-high relative order-1 md:order-2">
-              <img 
-                alt="Ambiente corporativo de tecnologia minimalista" 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 mix-blend-luminosity hover:mix-blend-normal" 
+              <img
+                alt="Ambiente corporativo de tecnologia minimalista"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 mix-blend-luminosity hover:mix-blend-normal"
                 src="/website/insights/tendencias/trend.jpg"
               />
             </div>
-          </article>
+          </MarketingCard>
         </div>
 
         {/* Newsletter Section */}
-        <section className="mt-32 bg-linear-to-br from-surface-container-high to-surface-container p-12 md:p-16 rounded-[2.5rem] border border-foreground/5 flex flex-col md:flex-row items-center justify-between gap-12 relative overflow-hidden shadow-2xl">
+        <section className="mt-32 bg-linear-to-br from-surface-container-high to-surface-container p-12 md:p-16 rounded-[2.5rem] border border-outline-variant/20 flex flex-col md:flex-row items-center justify-between gap-12 relative overflow-hidden shadow-2xl">
           <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[80px] pointer-events-none"></div>
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary-dim/10 rounded-full blur-[80px] pointer-events-none"></div>
-          
+
           <div className="max-w-xl relative z-10">
             <h2 className="text-3xl md:text-5xl font-headline font-extrabold mb-6 tracking-tight text-on-surface leading-tight">
               Assine nossa <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-primary-dim">Curadoria Jurídica</span>
@@ -187,23 +204,20 @@ export default function InsightsTendenciasPage() {
           </div>
           <div className="flex flex-col gap-4 w-full md:w-auto relative z-10">
             <div className="flex flex-col sm:flex-row gap-4 w-full">
-              <input 
-                className="bg-surface border border-foreground/5 focus:border-primary/50 text-on-surface rounded-xl px-6 py-5 focus:ring-1 focus:ring-primary/50 w-full sm:w-72 outline-none transition-all shadow-inner" 
-                placeholder="seu@email.com" 
+              <input
+                className="bg-surface border border-outline-variant/20 focus:border-primary/50 text-on-surface rounded-xl px-6 py-5 focus:ring-1 focus:ring-primary/50 placeholder:text-on-surface-variant/60 w-full sm:w-72 outline-none transition-all shadow-inner"
+                placeholder="seu@email.com"
                 type="email"
               />
-              <a
-                href="mailto:contato@zattaradvogados.com?subject=Assinar Curadoria Jur%C3%ADdica"
-                className="bg-primary text-on-primary-fixed font-bold font-headline text-lg px-8 py-5 rounded-xl hover:bg-primary-container transition-all whitespace-nowrap active:scale-95 shadow-lg shadow-primary/20"
-              >
-                Assinar Agora
-              </a>
+              <Button asChild size="2xl" className="font-headline shadow-lg shadow-primary/20">
+                <a href="mailto:contato@zattaradvogados.com?subject=Assinar Curadoria Jur%C3%ADdica">
+                  Assinar Agora
+                </a>
+              </Button>
             </div>
           </div>
         </section>
       </div>
-
-            </div>
     </WebsiteShell>
   );
 }
