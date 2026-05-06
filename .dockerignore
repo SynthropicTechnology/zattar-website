@@ -109,3 +109,5 @@ supabase/
 *.pem
 .mcp.json
 eslint.config.mjs
+eslint-rules/
+scripts/

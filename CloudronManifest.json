@@ -6,6 +6,8 @@
   "description": "Website público do escritório Zattar Advogados, construído com Next.js 16.",
   "author": "Sinesys",
   "contactEmail": "jordan.medeiros@sinesys.com.br",
+  "website": "https://zattaradvogados.com.br",
+  "icon": "file://icon.png",
   "httpPort": 3000,
   "healthCheckPath": "/api/health",
   "memoryLimit": 536870912,
