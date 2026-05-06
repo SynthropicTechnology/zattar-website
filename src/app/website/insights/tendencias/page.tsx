@@ -1,6 +1,7 @@
 import { WebsiteShell } from "@/app/website/components/layout/website-shell";
 import { MarketingCard } from "@/app/website/components/shared/marketing-card";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import Link from "next/link";
 import { Search, ArrowRight } from "lucide-react";
 import { buildWebsiteMetadata } from "../../_metadata/build-metadata";
@@ -18,11 +19,14 @@ export default function InsightsTendenciasPage() {
       <div className="pt-32 pb-24 max-w-352 mx-auto px-5 sm:px-6 md:px-10">
         {/* Hero Featured Section */}
         <section className="relative mb-24 rounded-[2.5rem] overflow-hidden group shadow-2xl">
-          <div className="aspect-16/7 md:aspect-21/9 w-full bg-surface-container overflow-hidden">
-            <img
+          <div className="aspect-16/7 md:aspect-21/9 w-full bg-surface-container overflow-hidden relative">
+            <Image
               alt="Tribunal futurista com interfaces holográficas"
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-60 mix-blend-luminosity hover:mix-blend-normal"
-              src="/website/insights/tendencias/hero.jpg"
+              src="/website/insights/tendencias/hero.webp"
+              fill
+              priority
+              sizes="(max-width: 1408px) 100vw, 1408px"
+              className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-60 mix-blend-luminosity hover:mix-blend-normal"
             />
           </div>
           <div className="absolute inset-0 bg-linear-to-t from-surface via-surface/60 to-transparent flex flex-col justify-end p-8 md:p-16">
@@ -84,11 +88,13 @@ export default function InsightsTendenciasPage() {
             padding="sm"
             className="md:col-span-8 group overflow-hidden hover:border-primary/30 flex flex-col md:flex-row h-full p-0!"
           >
-            <div className="md:w-1/2 overflow-hidden bg-surface-container-highest">
-              <img
+            <div className="md:w-1/2 overflow-hidden bg-surface-container-highest relative min-h-64">
+              <Image
                 alt="Direito Digital"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 mix-blend-luminosity hover:mix-blend-normal"
-                src="/website/insights/tendencias/chart.jpg"
+                src="/website/insights/tendencias/chart.webp"
+                fill
+                sizes="(max-width: 768px) 100vw, 470px"
+                className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 mix-blend-luminosity hover:mix-blend-normal"
               />
             </div>
             <div className="md:w-1/2 p-8 lg:p-10 flex flex-col justify-between">
@@ -179,11 +185,13 @@ export default function InsightsTendenciasPage() {
                 </Link>
               </div>
             </div>
-            <div className="md:w-1/2 overflow-hidden bg-surface-container-high relative order-1 md:order-2">
-              <img
+            <div className="md:w-1/2 overflow-hidden bg-surface-container-high relative order-1 md:order-2 min-h-64">
+              <Image
                 alt="Ambiente corporativo de tecnologia minimalista"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 mix-blend-luminosity hover:mix-blend-normal"
-                src="/website/insights/tendencias/trend.jpg"
+                src="/website/insights/tendencias/trend.webp"
+                fill
+                sizes="(max-width: 768px) 100vw, 470px"
+                className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 mix-blend-luminosity hover:mix-blend-normal"
               />
             </div>
           </MarketingCard>

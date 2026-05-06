@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -142,11 +143,14 @@ export default async function InsightsArtigoPage({ params }: Props) {
         {/* Cover */}
         {post.coverUrl && (
           <div className="max-w-5xl mx-auto px-6 md:px-12 mb-12">
-            <div className="aspect-video rounded-3xl overflow-hidden bg-surface-container-highest border border-foreground/5">
-              <img
+            <div className="aspect-video rounded-3xl overflow-hidden bg-surface-container-highest border border-foreground/5 relative">
+              <Image
                 src={post.coverUrl}
                 alt={post.title}
-                className="w-full h-full object-cover"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 1024px"
+                className="object-cover"
               />
             </div>
           </div>
