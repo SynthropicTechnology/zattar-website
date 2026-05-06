@@ -1,4 +1,5 @@
 {
+  "id": "br.com.zattaradvogados.website",
   "manifestVersion": 2,
   "version": "1.0.0",
   "title": "Zattar Advogados Website",
@@ -11,5 +12,9 @@
   "httpPort": 3000,
   "healthCheckPath": "/api/health",
   "memoryLimit": 536870912,
-  "tags": ["website", "nextjs", "juridico"]
+  "addons": {
+    "localstorage": {}
+  },
+  "tags": ["website", "nextjs", "juridico"],
+  "mediaLinks": []
 }
