@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { Search, ArrowUpRight, Gavel, ArrowRight, Headset } from "lucide-react";
 
-import { WebsiteShell, MarketingCard, TrustTicker } from "@/app/website";
+import { WebsiteShell } from "@/app/website/components/layout/website-shell";
+import { MarketingCard } from "@/app/website/components/shared/marketing-card";
+import { TrustTicker } from "@/app/website/components/shared/trust-ticker";
 import { Heading, Text } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
 import { buildWebsiteMetadata } from "../_metadata/build-metadata";

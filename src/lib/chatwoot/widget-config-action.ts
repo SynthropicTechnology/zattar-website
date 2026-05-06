@@ -1,5 +1,7 @@
 "use server";
 
+import { createServiceClient } from "@/lib/supabase/service-client";
+
 export interface WidgetConfig {
   websiteToken: string;
   baseUrl: string;
@@ -7,11 +9,7 @@ export interface WidgetConfig {
 
 export async function actionObterChatwootWidgetConfig(): Promise<WidgetConfig | null> {
   try {
-    const { createClient } = await import("@supabase/supabase-js");
-    const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
-    );
+    const supabase = createServiceClient();
 
     const { data, error } = await supabase
       .from("integracoes")
@@ -31,7 +29,7 @@ export async function actionObterChatwootWidgetConfig(): Promise<WidgetConfig | 
 
     return {
       websiteToken,
-      baseUrl: (widgetBaseUrl as string).replace(/\/$/, ""),
+      baseUrl: widgetBaseUrl.replace(/\/$/, ""),
     };
   } catch {
     return null;

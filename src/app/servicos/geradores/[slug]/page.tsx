@@ -1,4 +1,4 @@
-import { WebsiteShell } from "@/app/website";
+import { WebsiteShell } from "@/app/website/components/layout/website-shell";
 
 export default function Page() {
   return (

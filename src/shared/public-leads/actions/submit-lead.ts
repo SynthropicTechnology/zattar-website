@@ -13,21 +13,17 @@
 import { headers } from 'next/headers';
 
 import { publicFormAction } from '@/lib/safe-action';
+import { getClientIpFromHeaders } from '@/lib/utils/get-client-ip';
 
 import { PublicLeadInputSchema } from '../domain';
 import { submitLead } from '../service';
 
 async function extractMetadata() {
   const h = await headers();
-  const xff = h.get('x-forwarded-for');
-  const realIp = h.get('x-real-ip');
-  const cfIp = h.get('cf-connecting-ip');
-
-  // Primeiro valor de x-forwarded-for é o IP do cliente original
-  const ip = cfIp ?? realIp ?? xff?.split(',')[0]?.trim() ?? null;
+  const ip = getClientIpFromHeaders(h);
   const userAgent = h.get('user-agent') ?? null;
 
-  return { ip, userAgent };
+  return { ip: ip === 'unknown' ? null : ip, userAgent };
 }
 
 export const submitLeadAction = publicFormAction(

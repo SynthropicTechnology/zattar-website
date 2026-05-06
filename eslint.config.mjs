@@ -29,9 +29,7 @@ const eslintConfig = defineConfig([
       "unused-imports": unusedImports,
     },
     settings: {
-      react: {
-        version: "detect",
-      },
+      react: { version: "detect" },
       "react-runtime": "automatic",
     },
     rules: {
@@ -44,34 +42,21 @@ const eslintConfig = defineConfig([
       "@next/next/no-html-link-for-pages": "error",
     },
   },
-  // Override default ignores of eslint-config-next.
   globalIgnores([
-    // Claude Code harness directory (worktrees, skills, local settings).
-    // Worktrees here pin older commits and would otherwise flood lint with
-    // stale errors from code already fixed on master.
+    // Worktrees do harness do Claude Code: pinam commits antigos e
+    // inundariam o lint com erros já corrigidos no master.
     ".claude/**",
-    // Default ignores of eslint-config-next:
+    // Build artifacts e arquivos auto-gerados.
     ".next/**",
     "out/**",
     "build/**",
     "next-env.d.ts",
-    // Auto-generated service worker files (next-pwa)
-    "public/sw.js",
-    "public/workbox-*.js",
-    "public/fallback-*.js",
-    // Third-party libraries in public folder (pre-built, not our code)
-    "public/pdfjs/**",
-    // Library folder (component library, not part of main app)
-    "library/**",
-    // ESLint custom rules definitions: não fazem parte do bundle e contêm
-    // strings literais que descrevem anti-padrões detectados pelas próprias regras
-    // (ex.: no-hsl-var-tokens.js usa "hsl(var(--token))" na mensagem de erro).
-    "eslint-rules/**",
-    // Coverage reports (auto-generated)
     "coverage/**",
-    // Non-code files (avoid parser errors)
+    // Regras ESLint customizadas: contêm strings literais que descrevem
+    // anti-padrões detectados pelas próprias regras (auto-referência).
+    "eslint-rules/**",
+    // .env.example tem placeholders que não devem ser parseados como código.
     ".env.example",
-    "docs/**",
   ]),
   {
     plugins: {
@@ -84,15 +69,11 @@ const eslintConfig = defineConfig([
     },
     rules: {
       "custom/no-hardcoded-secrets": "error",
-      // ERROR — quebra build. CSS inválido detectado em produção em 36 arquivos
-      // antes desta sessão. Não é estilo, é bug visual confirmado.
-      // Aplica em TODO o codebase, sem exclusões.
       "custom/no-hsl-var-tokens": "error",
     },
   },
-  // Exceções para arquivos de exemplo e documentação
   {
-    files: [".env.example", "src/app/(ajuda)/**/*.tsx", "docs/**/*.md"],
+    files: [".env.example"],
     rules: {
       "custom/no-hardcoded-secrets": "off",
     },
@@ -100,7 +81,6 @@ const eslintConfig = defineConfig([
   {
     rules: {
       "unused-imports/no-unused-imports": "error",
-      // Permitir variáveis não utilizadas com prefixo underscore (ex: _description, _program)
       "@typescript-eslint/no-unused-vars": [
         "error",
         {
@@ -109,160 +89,45 @@ const eslintConfig = defineConfig([
           caughtErrorsIgnorePattern: "^_",
         },
       ],
-      // Prevenir imports diretos de caminhos internos de módulos
-      // NOTA: Imports relativos dentro do mesmo módulo são permitidos (ex: ../hooks/use-x)
-      // Mas imports absolutos de caminhos internos de outros módulos são bloqueados
-      "no-restricted-imports": [
-        "error",
-        {
-          patterns: [
-            {
-              // Bloqueia imports absolutos de caminhos internos de módulos colocados
-              // Exemplo proibido: import { X } from '@/app/(authenticated)/partes/components/...'
-              // Exemplo permitido: import { X } from '@/app/(authenticated)/partes'
-              // Exemplo permitido (dentro do módulo): import { X } from '../hooks/...'
-              group: [
-                "@/app/(authenticated)/*/components/**",
-                "@/app/(authenticated)/*/hooks/**",
-                "@/app/(authenticated)/*/actions/**",
-                "@/app/(authenticated)/*/utils/**",
-                "@/app/(authenticated)/*/types/**",
-                "@/app/(authenticated)/*/domain.ts",
-                "@/app/(authenticated)/*/service.ts",
-                "@/app/(authenticated)/*/repository.ts",
-              ],
-              message:
-                "Use barrel exports (@/app/(authenticated)/{modulo}) instead of direct internal paths. For imports within the same module, use relative paths (../hooks/...). Example: import { Component } from '@/app/(authenticated)/partes'",
-            },
-            {
-              // Bloqueia imports de pastas legadas em src/
-              group: ["**/backend/**", "@/core/**", "@/app/_lib/**", "@/features/**"],
-              message:
-                "Legacy imports are not allowed. Use modules from @/app/(authenticated)/{modulo}, @/lib/{service}, or @/components/{type} instead.",
-            },
-          ],
-        },
-      ],
     },
   },
-  // Scripts utilitários (não fazem parte do bundle do app) — permitir usos pragmáticos de `any` e padrões Node.
-  {
-    files: ["scripts/**/*.ts", "scripts/**/*.js"],
-    rules: {
-      "@typescript-eslint/no-explicit-any": "off",
-      "@typescript-eslint/no-require-imports": "off",
-      "@next/next/no-assign-module-variable": "off",
-      "prefer-const": "off",
-    },
-  },
-  // Testes (unit/integration/e2e): permitir `any` e flexibilizar regras de hooks que são muito restritivas em cenários de teste.
+  // Testes: permitem `any` em mocks e fixtures.
   {
     files: [
       "src/**/__tests__/**/*.{ts,tsx}",
       "src/**/*.test.{ts,tsx}",
       "src/**/*.spec.{ts,tsx}",
-      "src/testing/**/*.{ts,tsx}",
     ],
     rules: {
       "@typescript-eslint/no-explicit-any": "off",
-      "react-hooks/immutability": "off",
     },
   },
-  // Endpoints de recovery (debug/diagnóstico) — permitem parsing flexível de JSON.
-  {
-    files: ["src/app/api/captura/recovery/**/*.ts"],
-    rules: {
-      "@typescript-eslint/no-explicit-any": "off",
-    },
-  },
-  // Serviços de recovery/análise (internos) — permitir `any` para lidar com payloads heterogêneos.
-  {
-    files: ["src/app/(authenticated)/captura/services/recovery/**/*.ts"],
-    rules: {
-      "@typescript-eslint/no-explicit-any": "off",
-    },
-  },
-  // Governança do Design System: impedir uso direto do Badge em módulos de feature.
-  // Use SemanticBadge / wrappers semânticos para manter consistência.
-  // Exceção: a página interna de showcase do Design System exibe o Badge bruto
-  // como demonstração de variantes — uso legítimo, não é feature code.
-  {
-    files: ["src/app/(authenticated)/**"],
-    ignores: ["src/app/(authenticated)/design-system/**"],
-    rules: {
-      "no-restricted-imports": [
-        "error",
-        {
-          paths: [
-            {
-              name: "@/components/ui/badge",
-              message:
-                "Do not import Badge directly in feature code. Use SemanticBadge (or specialized semantic wrappers) so badge styles remain consistent across the app.",
-            },
-          ],
-        },
-      ],
-    },
-  },
-  // Governança do Design System (Tokens de Cor):
-  // Bloqueia padrões que ignoram os tokens semânticos definidos em globals.css.
-  //
-  // Exclusões legítimas (com justificativa):
-  //   - editor/**: color pickers, syntax highlighting, equation editor — cores
-  //     são DOMÍNIO desses componentes, não decoração
-  //   - charts/**: wrappers Recharts que recebem cores via props (var(--chart-*))
-  //   - lib/domain/tags/domain.ts: SINGLE SOURCE OF TRUTH dos hex de tags
-  //     (banco armazena hex, este arquivo é a tabela de mapeamento canônica)
-  //   - **/mock/**: dados de mock/seed para playgrounds visuais — não vão
-  //     pra produção, mas precisam de cores literais para visualização
-  //   - (dev)/library/**: páginas de documentação que MOSTRAM os tokens
-  //     visualmente, podem precisar de literals para demos
-  //   - testes: fixtures
+  // Governança de Design Tokens: bloqueia cores Tailwind cruas e OKLCH literais.
+  // A regra hsl(var(--)) vive em custom/no-hsl-var-tokens (CSS inválido em runtime).
   {
     files: ["src/**/*.{ts,tsx,js,jsx}"],
     ignores: [
-      "src/components/editor/**",
-      "src/components/ui/chart.tsx",
-      "src/components/ui/charts/**",
-      "src/lib/domain/tags/domain.ts",
-      "src/app/(authenticated)/notas/label-colors.ts",
       "src/app/globals.css",
-      "**/mock/**",
-      "**/mocks/**",
       "**/demo/**",
       "**/*.test.{ts,tsx}",
       "**/*.spec.{ts,tsx}",
-      "src/app/(dev)/**",
-      // Página interna de showcase do Design System — exibe tokens e
-      // paletas OKLCH como demonstração visual (mesmo papel de (dev)/library/**).
-      "src/app/(authenticated)/design-system/**",
     ],
     rules: {
-      // ERROR — bloqueia build. Promovido de `warn` após refatoração
-      // completa: todos os repositories agora retornam SemanticTone,
-      // widgets consomem via tokenForTone(), e ~500 classes Tailwind cruas
-      // foram migradas para tokens semânticos. Manter como warn permitiria
-      // regressão silenciosa.
-      //
-      // A regra hsl(var(--)) vive em custom/no-hsl-var-tokens (error) pois
-      // detecta bug visual real (hsl(oklch(...)) é CSS inválido).
       "no-restricted-syntax": [
         "error",
         {
-          // Cores Tailwind cruas (text-red-500, bg-blue-200, etc.) — use tokens semânticos
-          // text-success, text-destructive, text-warning, text-info, text-muted-foreground
+          // Cores Tailwind cruas (text-red-500, bg-blue-200, etc.) — use tokens semânticos.
           selector:
             "Literal[value=/(?:^|\\s)(?:text|bg|border|ring|fill|stroke|from|to|via)-(?:red|green|blue|yellow|orange|amber|lime|emerald|teal|cyan|sky|indigo|violet|purple|fuchsia|pink|rose)-\\d/]",
           message:
-            "Não use cores Tailwind cruas (ex: text-red-500). Use tokens semânticos: text-success, text-destructive, text-warning, text-info, text-muted-foreground, text-primary. Para casos decorativos use bg-palette-1..18, bg-chart-1..5, bg-event-*, ou bg-portal-*-soft.",
+            "Não use cores Tailwind cruas (ex: text-red-500). Use tokens semânticos: text-success, text-destructive, text-warning, text-info, text-muted-foreground, text-primary.",
         },
         {
-          // OKLCH literal (sem `from var(--`) — provável valor cru
-          // Permitido: oklch(from var(--token) ...) — relative color syntax
-          selector:
-            "Literal[value=/oklch\\(\\s*\\d/]",
+          // OKLCH literal sem `from var(--`) — provável valor cru.
+          // Permitido: oklch(from var(--token) l c h / alpha) — relative color syntax.
+          selector: "Literal[value=/oklch\\(\\s*\\d/]",
           message:
-            "Literal OKLCH detectado. Use tokens (--primary, --success, etc.) ou oklch(from var(--token) l c h / alpha) para opacidade. Veja globals.css para a lista de tokens.",
+            "Literal OKLCH detectado. Use tokens (--primary, --success, etc.) ou oklch(from var(--token) l c h / alpha) para opacidade. Veja globals.css.",
         },
       ],
     },

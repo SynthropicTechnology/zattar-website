@@ -62,6 +62,27 @@ export function isValidIp(ip: string): boolean {
 // =============================================================================
 
 /**
+ * Remove porta do IP (se presente) preservando IPv6.
+ *
+ *  - IPv6 entre colchetes:    `[::1]:3000`        → `::1`
+ *  - IPv6 entre colchetes s/p: `[2001:db8::1]`    → `2001:db8::1`
+ *  - IPv6 puro (2+ colons):    `2001:db8::1`      → mantém
+ *  - IPv4 com porta:           `192.168.1.1:3000` → `192.168.1.1`
+ *  - IPv4 puro:                `192.168.1.1`      → mantém
+ */
+function stripPort(ip: string): string {
+  const bracketed = ip.match(/^\[(.+)\](?::\d+)?$/);
+  if (bracketed) return bracketed[1];
+
+  // Mais de 1 ":": IPv6 puro — não tocar (split quebraria endereços como `2001:db8::1`).
+  if ((ip.match(/:/g) ?? []).length > 1) return ip;
+
+  // Exatamente 1 ":": IPv4 com porta (ex: 192.168.1.1:3000).
+  const colonIdx = ip.indexOf(':');
+  return colonIdx > -1 ? ip.slice(0, colonIdx) : ip;
+}
+
+/**
  * Limpa e extrai o primeiro IP válido de uma string de IPs
  * (x-forwarded-for pode conter múltiplos IPs separados por vírgula)
  */
@@ -73,17 +94,13 @@ function extractFirstValidIp(headerValue: string | null): string | null {
 
   for (const ip of ips) {
     const trimmedIp = ip.trim();
-    // Remove porta se presente (ex: "192.168.1.1:3000")
-    const ipWithoutPort = trimmedIp.split(':')[0];
+    if (!trimmedIp) continue;
 
-    if (isValidIp(ipWithoutPort)) {
-      return ipWithoutPort;
-    }
+    const candidate = stripPort(trimmedIp);
+    if (isValidIp(candidate)) return candidate;
 
-    // Tentar como IPv6 (pode ter colchetes)
-    if (isValidIp(trimmedIp)) {
-      return trimmedIp;
-    }
+    // Fallback: o original pode já ser válido se stripPort fez algo inesperado.
+    if (isValidIp(trimmedIp)) return trimmedIp;
   }
 
   return null;

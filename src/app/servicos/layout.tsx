@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { WebsiteShell } from "@/app/website";
+import { WebsiteShell } from "@/app/website/components/layout/website-shell";
 
 export const metadata: Metadata = {
   title: "Serviços Trabalhistas | Zattar Advogados",

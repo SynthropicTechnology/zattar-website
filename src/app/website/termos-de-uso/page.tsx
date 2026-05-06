@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { FileText, AlertTriangle, Scale, Cpu, Globe, Ban } from "lucide-react";
 
-import { WebsiteShell, LegalSection } from "@/app/website";
+import { WebsiteShell } from "@/app/website/components/layout/website-shell";
+import { LegalSection } from "@/app/website/components/sections/legal-section";
 import { Heading, Text } from "@/components/ui/typography";
 
 export const metadata: Metadata = {

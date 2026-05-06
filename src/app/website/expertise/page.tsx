@@ -2,7 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Shield, Users, Search, ArrowRight, Atom, Scale } from "lucide-react";
 
-import { WebsiteShell, MarketingCard } from "@/app/website";
+import { WebsiteShell } from "@/app/website/components/layout/website-shell";
+import { MarketingCard } from "@/app/website/components/shared/marketing-card";
 import { Heading, Text } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
 import { buildWebsiteMetadata } from "../_metadata/build-metadata";

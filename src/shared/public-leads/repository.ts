@@ -11,6 +11,7 @@ import 'server-only';
 
 import { createServiceClient } from '@/lib/supabase/service-client';
 
+import { PublicLeadRowSchema } from './domain';
 import type { PublicLeadInput, PublicLeadMetadata, PublicLeadRow } from './domain';
 
 export async function insertPublicLead(
@@ -38,7 +39,10 @@ export async function insertPublicLead(
     throw new Error(`Falha ao registrar lead: ${error.message}`);
   }
 
-  return data as PublicLeadRow;
+  // Parse runtime: garante que o retorno do banco bate com o schema do domínio.
+  // Schema drift (coluna adicionada/removida na migration) falha aqui e é
+  // tratado pelo safe-action wrapper como INTERNAL_ERROR — sem vazar detalhes.
+  return PublicLeadRowSchema.parse(data);
 }
 
 /**

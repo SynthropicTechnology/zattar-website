@@ -12,6 +12,7 @@
 import 'server-only';
 
 import { getRedisClient } from '@/lib/redis/client';
+import { PublicError } from '@/lib/safe-action';
 
 import type { PublicLeadInput, PublicLeadMetadata, PublicLeadRow } from './domain';
 import { countRecentLeadsByEmail, insertPublicLead } from './repository';
@@ -19,16 +20,16 @@ import { countRecentLeadsByEmail, insertPublicLead } from './repository';
 const RATE_LIMIT_WINDOW_SEC = 60;
 const DEDUP_EMAIL_WINDOW_MIN = 5;
 
-export class RateLimitError extends Error {
+export class RateLimitError extends PublicError {
   constructor(message = 'Aguarde um momento antes de enviar outra mensagem.') {
-    super(message);
+    super(message, 'RATE_LIMIT');
     this.name = 'RateLimitError';
   }
 }
 
-export class DuplicateLeadError extends Error {
+export class DuplicateLeadError extends PublicError {
   constructor(message = 'Recebemos uma mensagem sua há pouco. Aguarde nossa resposta.') {
-    super(message);
+    super(message, 'DUPLICATE_LEAD');
     this.name = 'DuplicateLeadError';
   }
 }

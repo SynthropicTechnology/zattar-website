@@ -1,4 +1,4 @@
-import { WebsiteShell } from "@/app/website";
+import { WebsiteShell } from "@/app/website/components/layout/website-shell";
 import Link from "next/link";
 import { Search, ArrowRight } from "lucide-react";
 import { buildWebsiteMetadata } from "../../_metadata/build-metadata";

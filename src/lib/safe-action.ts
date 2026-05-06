@@ -1,5 +1,25 @@
 import { type ZodSchema, type ZodError } from 'zod';
 
+import { sanitizeForLogs } from '@/lib/utils/sanitize-logs';
+
+/**
+ * Erro com mensagem segura para exposição ao cliente.
+ *
+ * Quando uma Server Action wrapeada por `publicAction` lança um `PublicError`,
+ * sua `message` é propagada ao cliente. Qualquer outro `Error` é considerado
+ * interno e substituído por mensagem genérica, evitando vazar detalhes de
+ * SQL/Supabase/Redis nos toasts.
+ */
+export class PublicError extends Error {
+  readonly code: string;
+
+  constructor(message: string, code = 'PUBLIC_ERROR') {
+    super(message);
+    this.name = 'PublicError';
+    this.code = code;
+  }
+}
+
 export type ActionResult<T = unknown> =
   | { success: true; data: T; message?: string }
   | { success: false; error: string; errors?: Record<string, string[]>; message: string };
@@ -62,11 +82,19 @@ export function publicAction<TInput, TOutput>(
       const result = await handler(validation.data);
       return { success: true, data: result, message: 'Operação realizada com sucesso' };
     } catch (error) {
-      console.error('[SafeAction] Erro:', error);
+      if (error instanceof PublicError) {
+        return {
+          success: false,
+          error: error.code,
+          message: error.message,
+        };
+      }
+
+      console.error('[SafeAction] Erro interno:', sanitizeForLogs(error));
       return {
         success: false,
-        error: error instanceof Error ? error.message : 'Erro interno do servidor',
-        message: error instanceof Error ? error.message : 'Ocorreu um erro inesperado.',
+        error: 'INTERNAL_ERROR',
+        message: 'Ocorreu um erro inesperado. Tente novamente em alguns instantes.',
       };
     }
   };

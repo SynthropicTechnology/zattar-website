@@ -65,8 +65,11 @@ export const PublicLeadInputSchema = z.object({
     .min(10, 'Conte-nos um pouco mais (mínimo 10 caracteres)')
     .max(5000, 'Mensagem muito longa (máximo 5000 caracteres)'),
   source: LeadSourceSchema,
-  // Honeypot — bot-filter. Campo invisível no form; se vier preenchido descartamos.
-  website: z.string().max(0, 'Campo inválido').optional().or(z.literal('')),
+  // Honeypot — bot-filter. Campo invisível no form. O Zod aceita qualquer
+  // valor (limite só pra não logar payload gigante); a checagem real fica no
+  // service, que devolve sucesso silencioso pro bot — se o Zod rejeitasse
+  // aqui com erro, o bot saberia que o campo é honeypot.
+  website: z.string().max(500).optional(),
 });
 export type PublicLeadInput = z.infer<typeof PublicLeadInputSchema>;
 

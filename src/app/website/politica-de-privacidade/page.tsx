@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Shield, Lock, Eye, Database, UserCheck, Mail } from "lucide-react";
 
-import { WebsiteShell, LegalSection } from "@/app/website";
+import { WebsiteShell } from "@/app/website/components/layout/website-shell";
+import { LegalSection } from "@/app/website/components/sections/legal-section";
 import { Heading, Text } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
 
