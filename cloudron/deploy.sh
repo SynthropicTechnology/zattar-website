@@ -23,7 +23,10 @@ NEXT_PUBLIC_WEBSITE_URL="https://zattaradvogados.com"
 SUPABASE_SECRET_KEY="sb_secret_5IOk8AZQTxNs99VFDVvTIg_q7I9iY6F"
 STRAPI_URL="https://strapi.sinesys.online"
 STRAPI_API_TOKEN="e57f022e05807852bdb807b25ff6c9c08b8d122161a773a569cd0cb9e0680c43d0446382aa4c0791bd19cdc168e1996636b49fb2e0012ea5f0ac6cc4259e4d6167e017f254aec3cd4ba9adbc599622e29d248e4555e40a03951a784fe03a8c1c72af44c3f58eb20016c2d8cdbb9b8d68e63126ff0e048d606a0e47c8833b87b7"
-CSP_REPORT_ONLY="false"
+# Janela de observação inicial: começamos em report-only para coletar
+# violações em /api/csp-report sem bloquear o site. Trocar para "false"
+# (ou remover a env) APÓS validar que não há violações legítimas.
+CSP_REPORT_ONLY="true"
 ENABLE_REDIS_CACHE="false"
 
 MODE="${1:---first}"

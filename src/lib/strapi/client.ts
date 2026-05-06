@@ -5,7 +5,22 @@
  * Utilizado pelas páginas públicas de Insights (/website/insights).
  */
 
-const STRAPI_URL = process.env.STRAPI_URL ?? 'http://localhost:1337';
+/**
+ * URL do Strapi. Em produção, é obrigatório; em dev/test cai pra localhost
+ * apenas como conveniência (o erro aparece na primeira chamada se o serviço
+ * não estiver subido).
+ */
+const STRAPI_URL = (() => {
+  const url = process.env.STRAPI_URL;
+  if (url) return url;
+  if (process.env.NODE_ENV === 'production') {
+    throw new Error(
+      '[strapi] STRAPI_URL não definida. Configure a variável de ambiente em produção.',
+    );
+  }
+  return 'http://localhost:1337';
+})();
+
 const STRAPI_TOKEN = process.env.STRAPI_API_TOKEN ?? '';
 
 interface StrapiListResponse<T> {

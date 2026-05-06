@@ -7,19 +7,25 @@
  * - MITM (Man-in-the-Middle)
  * - MIME-type sniffing
  * - Information disclosure
+ * - Spectre / XS-Leaks (via COOP/CORP)
  *
- * CSP é aplicado em modo report-only por padrão para evitar quebras.
- * Configure CSP_REPORT_ONLY=false após validação em produção.
+ * Default fail-closed: a CSP entra em enforcement em qualquer ambiente que
+ * não tenha `CSP_REPORT_ONLY=true` explicitamente. Para ativar a janela de
+ * observação (report-only) em prod, setar essa env no Cloudron e remover
+ * depois de validar reports.
  */
 
 /**
- * Modo report-only para CSP
- * Em report-only, violações são reportadas mas não bloqueadas
+ * CSP só é montada em prod (ou em dev com flag explícita).
  */
 export const CSP_ENABLED =
   process.env.NODE_ENV !== "development" || process.env.ENABLE_CSP_IN_DEV === "true";
 
-export const REPORT_ONLY_MODE = process.env.CSP_REPORT_ONLY !== "false";
+/**
+ * Modo report-only para CSP. Default é false (enforcement) — fail-closed.
+ * Setar `CSP_REPORT_ONLY=true` apenas durante janela de validação inicial.
+ */
+export const REPORT_ONLY_MODE = process.env.CSP_REPORT_ONLY === "true";
 
 /**
  * URI para relatórios de violação CSP
@@ -27,32 +33,20 @@ export const REPORT_ONLY_MODE = process.env.CSP_REPORT_ONLY !== "false";
 export const CSP_REPORT_URI = process.env.CSP_REPORT_URI || "/api/csp-report";
 
 /**
- * Domínios confiáveis para cada diretiva CSP
+ * Domínios confiáveis ativamente usados pelo site público.
+ *
+ * Quando um domínio sair do código, retire-o daqui também — cada entrada
+ * extra na CSP aumenta a superfície de ataque.
  */
 const TRUSTED_DOMAINS = {
-  // Supabase - Backend/API
+  // Supabase — REST/realtime/auth
   supabase: ["https://*.supabase.co", "wss://*.supabase.co"],
-  // Backblaze B2 - Storage
-  storage: [
-    "https://*.backblazeb2.com",
-    "https://s3.us-east-005.backblazeb2.com",
-  ],
-  // Google Fonts
+  // Google Fonts (next/font carrega via inline + CSS)
   fonts: ["https://fonts.googleapis.com", "https://fonts.gstatic.com"],
-  // AI Services
-  ai: ["https://api.openai.com", "https://api.cohere.ai"],
-  // Dyte - Video Calls
-  dyte: ["https://api.dyte.io", "https://dyte.io", "https://*.dyte.io", "wss://*.dyte.io"],
-  // Images
-  images: ["https://images.unsplash.com"],
-  // Chatwoot (widget self-hosted - SDK em /packs/js/sdk.js + realtime em wss:.../cable)
+  // Chatwoot self-hosted — SDK em /packs/js/sdk.js + realtime via wss:.../cable
   chatwoot: ["https://chat.sinesys.app", "wss://chat.sinesys.app"],
-  // CopilotKit
-  copilotkit: ["https://api.cloud.copilotkit.ai", "https://cdn.copilotkit.ai"],
-  // Cloudflare Stream - Video hosting (usado no hero da landing page)
+  // Cloudflare Stream — vídeo do hero da home
   cloudflareStream: ["https://customer-lvnfk43x7eec1csc.cloudflarestream.com"],
-  // ViaCEP - Autofill de endereço a partir de CEP (client-side fetch)
-  viacep: ["https://viacep.com.br"],
 } as const;
 
 /**
@@ -77,12 +71,10 @@ const PUBLIC_ASSET_PREFIXES = [
  * Verifica se deve aplicar headers de segurança para o pathname
  */
 export function shouldApplySecurityHeaders(pathname: string): boolean {
-  // Assets públicos específicos
   if (PUBLIC_ASSETS.includes(pathname as (typeof PUBLIC_ASSETS)[number])) {
     return false;
   }
 
-  // Prefixos de assets públicos
   for (const prefix of PUBLIC_ASSET_PREFIXES) {
     if (pathname.startsWith(prefix)) {
       return false;
@@ -98,77 +90,48 @@ export function shouldApplySecurityHeaders(pathname: string): boolean {
 export function buildCSPDirectives(nonce?: string): string {
   const isProduction = process.env.NODE_ENV === "production";
 
-  // Base para script-src e style-src
-  // Chatwoot requires stricter script-src if we want to be safe, but it loads dynamic scripts.
-  // Adding trusted domain to script-src allows the initial loader to fetch the SDK.
+  // script-src: nonce + strict-dynamic (sem unsafe-eval). Chatwoot SDK é
+  // permitido como external host, mas o boot script usa nonce.
   const scriptSrc = nonce
-    ? `'self' 'nonce-${nonce}' 'strict-dynamic' 'unsafe-eval' ${TRUSTED_DOMAINS.chatwoot[0]}`
-    : `'self' 'unsafe-inline' 'unsafe-eval' ${TRUSTED_DOMAINS.chatwoot[0]}`;
+    ? `'self' 'nonce-${nonce}' 'strict-dynamic' ${TRUSTED_DOMAINS.chatwoot[0]}`
+    : `'self' 'unsafe-inline' ${TRUSTED_DOMAINS.chatwoot[0]}`;
 
   const styleSrc = nonce
     ? `'self' 'nonce-${nonce}' ${TRUSTED_DOMAINS.fonts[0]} ${TRUSTED_DOMAINS.chatwoot[0]}`
     : `'self' 'unsafe-inline' ${TRUSTED_DOMAINS.fonts[0]} ${TRUSTED_DOMAINS.chatwoot[0]}`;
 
-  // CSP3: separar <style> (elem) de style="..." (attr)
-  // Widgets de terceiros (Chatwoot, Dyte) injetam <style> sem nonce.
-  // Com nonce no CSP3, 'unsafe-inline' é ignorado, causando violações inevitáveis.
-  // Solução pragmática: usar 'unsafe-inline' para style-src-elem (risco baixo)
-  // e manter nonce apenas para script-src (risco alto - XSS).
+  // CSP3: separar <style> (elem) de style="..." (attr).
+  // Widgets de terceiros (Chatwoot) injetam <style> sem nonce. Com nonce no
+  // CSP3, 'unsafe-inline' é ignorado, causando violações inevitáveis.
+  // Solução pragmática: 'unsafe-inline' apenas para style-src-elem (risco
+  // baixo) e manter nonce no script-src (risco alto — XSS).
   const styleSrcElem = `'self' 'unsafe-inline' ${TRUSTED_DOMAINS.fonts[0]} ${TRUSTED_DOMAINS.chatwoot[0]}`;
   const styleSrcAttr = "'unsafe-inline'";
 
   const directives: Record<string, string> = {
     "default-src": "'self'",
-
     "script-src": scriptSrc,
-
     "style-src": styleSrc,
-
     "style-src-elem": styleSrcElem,
-
     "style-src-attr": styleSrcAttr,
-
     "font-src": `'self' ${TRUSTED_DOMAINS.fonts[1]} data: ${TRUSTED_DOMAINS.chatwoot[0]}`,
-
-    "img-src": `'self' data: blob: ${TRUSTED_DOMAINS.images.join(" ")} ${
-      TRUSTED_DOMAINS.supabase[0]
-    } ${TRUSTED_DOMAINS.storage.join(" ")} ${TRUSTED_DOMAINS.chatwoot[0]} ${TRUSTED_DOMAINS.cloudflareStream[0]}`,
-
-    "connect-src": `'self' ${TRUSTED_DOMAINS.supabase.join(
-      " "
-    )} ${TRUSTED_DOMAINS.storage.join(" ")} ${TRUSTED_DOMAINS.ai.join(
-      " "
-    )} ${TRUSTED_DOMAINS.dyte.join(" ")} ${TRUSTED_DOMAINS.chatwoot.join(" ")} ${TRUSTED_DOMAINS.copilotkit.join(" ")} ${TRUSTED_DOMAINS.viacep.join(" ")}`,
-
-    "frame-src": `'self' ${TRUSTED_DOMAINS.dyte.slice(1).join(" ")} ${
-      TRUSTED_DOMAINS.chatwoot[0]
-    } ${TRUSTED_DOMAINS.cloudflareStream[0]}`,
-
-    "media-src": `'self' blob: ${
-      TRUSTED_DOMAINS.supabase[0]
-    } ${TRUSTED_DOMAINS.storage.join(" ")} ${TRUSTED_DOMAINS.dyte.join(" ")} ${TRUSTED_DOMAINS.cloudflareStream[0]}`,
-
+    "img-src": `'self' data: blob: ${TRUSTED_DOMAINS.supabase[0]} ${TRUSTED_DOMAINS.chatwoot[0]} ${TRUSTED_DOMAINS.cloudflareStream[0]}`,
+    "connect-src": `'self' ${TRUSTED_DOMAINS.supabase.join(" ")} ${TRUSTED_DOMAINS.chatwoot.join(" ")}`,
+    "frame-src": `'self' ${TRUSTED_DOMAINS.chatwoot[0]} ${TRUSTED_DOMAINS.cloudflareStream[0]}`,
+    "media-src": `'self' blob: ${TRUSTED_DOMAINS.supabase[0]} ${TRUSTED_DOMAINS.cloudflareStream[0]}`,
     "worker-src": "'self' blob:",
-
     "object-src": "'none'",
-
     "base-uri": "'self'",
-
     "form-action": "'self'",
-
     "frame-ancestors": "'none'",
-
     "report-uri": CSP_REPORT_URI,
-
     "report-to": "csp-endpoint",
   };
 
-  // Upgrade insecure requests apenas em produção
   if (isProduction) {
     directives["upgrade-insecure-requests"] = "";
   }
 
-  // Construir string de diretivas
   return Object.entries(directives)
     .map(([key, value]) => (value ? `${key} ${value}` : key))
     .join("; ");
@@ -180,10 +143,9 @@ export function buildCSPDirectives(nonce?: string): string {
  */
 export function buildPermissionsPolicy(): string {
   const policies: Record<string, string> = {
-    // Geolocalização permitida para assinatura digital
-    geolocation: "(self)",
-    camera: "(self)", // Dyte precisa de acesso via getUserMedia
-    microphone: "(self)", // Dyte precisa de acesso via getUserMedia
+    geolocation: "()",
+    camera: "()",
+    microphone: "()",
     payment: "()",
     usb: "()",
     magnetometer: "()",
@@ -219,6 +181,8 @@ export interface SecurityHeaders {
   "Referrer-Policy": string;
   "Permissions-Policy": string;
   "X-DNS-Prefetch-Control": string;
+  "Cross-Origin-Opener-Policy": string;
+  "Cross-Origin-Resource-Policy": string;
   "Report-To"?: string;
 }
 
@@ -233,28 +197,38 @@ export function buildSecurityHeaders(
   const cspDirectives = buildCSPDirectives(nonce);
 
   const headers: SecurityHeaders = {
-    // HSTS - Force HTTPS (apenas em produção)
+    // HSTS — força HTTPS (apenas em produção)
     "Strict-Transport-Security": isProduction
       ? "max-age=31536000; includeSubDomains; preload"
       : "max-age=0",
 
-    // Prevent clickjacking
+    // Anti-clickjacking
     "X-Frame-Options": "DENY",
 
-    // Prevent MIME-type sniffing
+    // Anti-MIME-sniffing
     "X-Content-Type-Options": "nosniff",
 
-    // Control referrer information
+    // Referer policy
     "Referrer-Policy": "strict-origin-when-cross-origin",
 
     // Permissions Policy
     "Permissions-Policy": buildPermissionsPolicy(),
 
-    // DNS Prefetch Control
+    // DNS prefetch
     "X-DNS-Prefetch-Control": "on",
+
+    // Cross-Origin Opener Policy — isola janela de outras origens (Spectre,
+    // window.opener leaks). 'same-origin' é o nível mais seguro suportado
+    // pelos navegadores; só quebra integrações que precisam de window.opener
+    // cross-origin (não é nosso caso).
+    "Cross-Origin-Opener-Policy": "same-origin",
+
+    // Cross-Origin Resource Policy — controla quem pode embedar nossos
+    // assets. 'same-site' permite subdomínios (*.zattaradvogados.com.br) sem
+    // expor recursos a origens completamente externas.
+    "Cross-Origin-Resource-Policy": "same-site",
   };
 
-  // CSP header - report-only ou enforcement
   if (CSP_ENABLED) {
     if (reportOnly) {
       headers["Content-Security-Policy-Report-Only"] = cspDirectives;
@@ -263,7 +237,6 @@ export function buildSecurityHeaders(
     }
   }
 
-  // Report-To header para CSP reporting
   if (CSP_ENABLED && isProduction) {
     headers["Report-To"] = JSON.stringify({
       group: "csp-endpoint",
@@ -291,34 +264,28 @@ export function applySecurityHeaders(
     }
   }
 
-  // Adicionar nonce como header customizado para uso em componentes
   if (nonce) {
     headers.set("x-nonce", nonce);
   }
 }
 
 /**
- * Gera um nonce seguro para CSP
- * Usa crypto.randomUUID() disponível no Edge Runtime
+ * Gera um nonce criptograficamente seguro para CSP.
+ * Falha alto (throw) em ambientes sem `crypto` em vez de cair em fallback
+ * fraco — nonce previsível derrota a defesa contra XSS.
  */
 export function generateNonce(): string {
-  // crypto.randomUUID() é disponível no Edge Runtime do Next.js
   if (typeof crypto !== "undefined" && crypto.randomUUID) {
     return crypto.randomUUID().replace(/-/g, "");
   }
 
-  // Fallback usando getRandomValues
   if (typeof crypto !== "undefined" && crypto.getRandomValues) {
     const array = new Uint8Array(16);
     crypto.getRandomValues(array);
-    return Array.from(array, (byte) => byte.toString(16).padStart(2, "0")).join(
-      ""
-    );
+    return Array.from(array, (byte) => byte.toString(16).padStart(2, "0")).join("");
   }
 
-  // Último fallback (não deve acontecer em ambiente moderno)
-  return (
-    Math.random().toString(36).substring(2, 15) +
-    Math.random().toString(36).substring(2, 15)
+  throw new Error(
+    "[security-headers] crypto API indisponível — não é seguro gerar nonce CSP em runtime sem CSPRNG.",
   );
 }

@@ -16,35 +16,9 @@ const nextConfig: NextConfig = {
         "https://zattaradvogados.com.br",
       ],
     },
-    optimizePackageImports: [
-      "lucide-react",
-      "@radix-ui/react-accordion",
-      "@radix-ui/react-alert-dialog",
-      "@radix-ui/react-aspect-ratio",
-      "@radix-ui/react-avatar",
-      "@radix-ui/react-checkbox",
-      "@radix-ui/react-collapsible",
-      "@radix-ui/react-context-menu",
-      "@radix-ui/react-dialog",
-      "@radix-ui/react-dropdown-menu",
-      "@radix-ui/react-hover-card",
-      "@radix-ui/react-label",
-      "@radix-ui/react-menubar",
-      "@radix-ui/react-navigation-menu",
-      "@radix-ui/react-popover",
-      "@radix-ui/react-progress",
-      "@radix-ui/react-radio-group",
-      "@radix-ui/react-scroll-area",
-      "@radix-ui/react-select",
-      "@radix-ui/react-separator",
-      "@radix-ui/react-slider",
-      "@radix-ui/react-switch",
-      "@radix-ui/react-tabs",
-      "@radix-ui/react-toast",
-      "@radix-ui/react-toggle",
-      "@radix-ui/react-toolbar",
-      "@radix-ui/react-tooltip",
-    ],
+    // Apenas pacotes efetivamente importados pelo bundle. Radix-UI agregada
+    // (`from "radix-ui"`) já é tree-shaken pelo Next sem listar aqui.
+    optimizePackageImports: ["lucide-react", "@radix-ui/react-dialog"],
   },
   turbopack: {
     resolveAlias: {
@@ -61,9 +35,15 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
-      { protocol: "https", hostname: "images.unsplash.com" },
+      // Subdomínios do Zattar (CDN, future cms.* etc.)
       { protocol: "https", hostname: "*.zattaradvogados.com.br" },
-      { protocol: "http", hostname: "localhost", port: "1337" },
+      // CMS Strapi de produção (URL definida em cloudron/deploy.sh)
+      { protocol: "https", hostname: "strapi.sinesys.online" },
+      // Strapi local em dev. Em prod o Next ignora padrões http://localhost,
+      // mas explicitar via NODE_ENV deixa a intenção visível.
+      ...(process.env.NODE_ENV !== "production"
+        ? ([{ protocol: "http", hostname: "localhost", port: "1337" }] as const)
+        : []),
     ],
   },
   async rewrites() {

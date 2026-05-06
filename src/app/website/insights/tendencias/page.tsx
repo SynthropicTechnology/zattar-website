@@ -82,7 +82,7 @@ export default function InsightsTendenciasPage() {
           <MarketingCard
             variant="solid"
             padding="sm"
-            className="md:col-span-8 group overflow-hidden hover:border-primary/30 flex flex-col md:flex-row h-full !p-0"
+            className="md:col-span-8 group overflow-hidden hover:border-primary/30 flex flex-col md:flex-row h-full p-0!"
           >
             <div className="md:w-1/2 overflow-hidden bg-surface-container-highest">
               <img
@@ -160,7 +160,7 @@ export default function InsightsTendenciasPage() {
           <MarketingCard
             variant="solid"
             padding="sm"
-            className="md:col-span-8 group overflow-hidden hover:border-primary/30 flex flex-col md:flex-row h-full !p-0"
+            className="md:col-span-8 group overflow-hidden hover:border-primary/30 flex flex-col md:flex-row h-full p-0!"
           >
             <div className="md:w-1/2 p-8 lg:p-10 flex flex-col justify-between order-2 md:order-1">
               <div>
