@@ -64,8 +64,16 @@ if [[ "${MODE}" == "--first" ]]; then
     --env "CSP_REPORT_ONLY=${CSP_REPORT_ONLY}" \
     --env "ENABLE_REDIS_CACHE=${ENABLE_REDIS_CACHE}"
 else
-  echo "▶  Atualizando..."
-  cloudron --server "${CLOUDRON_SERVER}" update \
+  echo "▶  Atualizando (via repair --image)..."
+  # NOTA: usamos `repair --image` em vez de `update --image` porque o
+  # Cloudron Box atual tem um bug em `updateCommand` (apptask.js:693) que
+  # quebra com `TypeError: Cannot convert undefined or null to object`
+  # em apps instalados como customapp (sem manifest formal persistido).
+  # `repair --image` aplica a imagem nova bypassando esse caminho buggy
+  # e tem efeito funcionalmente equivalente (substitui container,
+  # mantém envs e storage). Voltar para `update` quando o bug for
+  # corrigido upstream no Cloudron Box.
+  cloudron --server "${CLOUDRON_SERVER}" repair \
     --image "${DOCKER_IMAGE}" \
     --app "${LOCATION}"
 fi

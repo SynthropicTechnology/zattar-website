@@ -1,7 +1,7 @@
 {
   "id": "br.com.zattaradvogados.website",
   "manifestVersion": 2,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "title": "Zattar Advogados Website",
   "tagline": "Website institucional e marketing do escritório Zattar Advogados",
   "description": "Website público do escritório Zattar Advogados, construído com Next.js 16.",
