@@ -60,6 +60,9 @@ const TEXT_VARIANTS = {
   body: { className: 'text-body', tag: 'p' as const },
   'body-lg': { className: 'text-body-lg', tag: 'p' as const },
   'body-sm': { className: 'text-body-sm', tag: 'p' as const },
+  // description: 14px (Tailwind text-sm) — descrições curtas em footers,
+  // sub-blocos. Diferente de caption (13px metadata) e body-sm (16px texto longo).
+  description: { className: 'text-sm leading-[1.5]', tag: 'p' as const },
   helper: { className: 'text-helper', tag: 'span' as const },
   // Marketing — apenas src/app/website/*
   'marketing-lead': { className: 'text-marketing-lead', tag: 'p' as const },

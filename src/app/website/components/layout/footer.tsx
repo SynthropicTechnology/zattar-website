@@ -130,7 +130,7 @@ export function Footer({ hideClosingCta = false }: FooterProps = {}) {
                   className="object-contain object-left hidden dark:block"
                 />
               </Link>
-              <Text variant="caption" className="mb-5 max-w-xs">
+              <Text variant="description" className="mb-5 max-w-xs">
                 Tecnologia e estratégia jurídica a favor de quem trabalha.
                 Advocacia trabalhista com precisão digital.
               </Text>
@@ -201,14 +201,15 @@ export function Footer({ hideClosingCta = false }: FooterProps = {}) {
                     <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
                       <MapPin className="w-3.5 h-3.5 text-primary" />
                     </div>
-                    <div className="leading-relaxed">
-                      <span className="text-foreground font-medium block mb-0.5">
-                        Belo Horizonte
-                      </span>
-                      Rua dos Inconfidentes, 911 — 7º andar
+                    {/* Endereço em padrão ABNT/Correios: logradouro+nº+complemento → bairro → CEP+cidade/UF.
+                          (nbsp) prende complementos compostos para evitar quebras órfãs ("andar" sozinho). */}
+                    <address className="not-italic leading-relaxed">
+                      Rua dos Inconfidentes,{" "}911,{" "}7º{" "}andar
                       <br />
-                      Savassi · CEP 30140-120
-                    </div>
+                      Savassi
+                      <br />
+                      30140-120 · Belo{" "}Horizonte/MG
+                    </address>
                   </div>
                   <div className="flex items-center gap-2.5">
                     <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
@@ -227,7 +228,7 @@ export function Footer({ hideClosingCta = false }: FooterProps = {}) {
                     </div>
                     <a
                       href="tel:+5531984382217"
-                      className="hover:text-primary transition-colors font-medium text-foreground"
+                      className="hover:text-primary transition-colors"
                     >
                       (31) 98438-2217
                     </a>
