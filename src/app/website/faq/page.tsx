@@ -60,7 +60,7 @@ export default function FAQPage() {
     <WebsiteShell hideClosingCta>
       <div className="pt-32 pb-24">
         {/* ─── Hero + Busca ─────────────────────────────────────────── */}
-        <header className="max-w-6xl mx-auto px-5 sm:px-6 md:px-10 pt-12 pb-12 mt-6">
+        <header className="container pt-12 pb-12 mt-6">
           <div className="inline-flex items-center mb-5">
             <Text
               variant="marketing-overline"
@@ -119,7 +119,7 @@ export default function FAQPage() {
         </header>
 
         {/* ─── FAQ + Sidebar ─────────────────────────────────────────── */}
-        <section className="max-w-6xl mx-auto px-5 sm:px-6 md:px-10 pb-24 grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12">
+        <section className="container pb-24 grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12">
           <div className="md:col-span-8 space-y-5 md:space-y-6">
             {faqEntries.map((entry) => (
               <MarketingCard

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Heading, Text } from "@/components/ui/typography";
 
 interface ServicosHeroProps {
   eyebrow: string;
@@ -52,20 +53,20 @@ export function ServicosHero({
           </Link>
         )}
 
-        <span className="inline-block text-primary font-headline font-bold text-xs tracking-[0.2em] uppercase mb-4">
+        <Text variant="marketing-overline" className="inline-block mb-4">
           {eyebrow}
-        </span>
+        </Text>
 
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-headline font-extrabold tracking-tighter leading-[0.95] mb-6 text-on-surface">
+        <Heading level="marketing-hero" className="mb-6">
           {title}{" "}
           <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-primary-dim">
             {titleHighlight}
           </span>
-        </h1>
+        </Heading>
 
-        <p className="text-lg sm:text-xl text-on-surface-variant font-body leading-relaxed max-w-2xl">
+        <Text variant="marketing-lead" className="max-w-2xl">
           {description}
-        </p>
+        </Text>
       </div>
     </section>
   );

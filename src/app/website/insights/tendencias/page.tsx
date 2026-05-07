@@ -1,6 +1,7 @@
 import { WebsiteShell } from "@/app/website/components/layout/website-shell";
 import { MarketingCard } from "@/app/website/components/shared/marketing-card";
 import { Button } from "@/components/ui/button";
+import { Heading, Text } from "@/components/ui/typography";
 import Image from "next/image";
 import Link from "next/link";
 import { Search, ArrowRight } from "lucide-react";
@@ -16,7 +17,7 @@ export const metadata = buildWebsiteMetadata({
 export default function InsightsTendenciasPage() {
   return (
     <WebsiteShell hideClosingCta>
-      <div className="pt-32 pb-24 max-w-6xl mx-auto px-5 sm:px-6 md:px-10">
+      <div className="pt-32 pb-24 container">
         {/* Hero Featured Section */}
         <section className="relative mb-24 rounded-[2.5rem] overflow-hidden group shadow-2xl">
           <div className="aspect-16/7 md:aspect-21/9 w-full bg-surface-container overflow-hidden relative">
@@ -35,15 +36,15 @@ export default function InsightsTendenciasPage() {
               Artigo em Destaque
             </span>
             <div className="max-w-3xl">
-              <h1 className="text-4xl md:text-6xl font-headline font-extrabold tracking-tighter mb-6 leading-tight text-on-surface drop-shadow-lg">
+              <Heading level="marketing-hero" className="mb-6 drop-shadow-lg">
                 A Ascensão da IA Generativa na <br className="hidden md:block" />
                 <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-primary-dim drop-shadow-[0_0_15px_rgb(var(--color-primary)/0.4)]">
                   Análise Jurisprudencial
                 </span>
-              </h1>
-              <p className="text-on-surface text-lg md:text-xl mb-8 font-light max-w-2xl leading-relaxed drop-shadow-md">
+              </Heading>
+              <Text variant="marketing-lead" className="mb-8 max-w-2xl drop-shadow-md">
                 Como algoritmos de processamento de linguagem natural estão transformando décadas de precedentes em insights estratégicos instantâneos para grandes firmas.
-              </p>
+              </Text>
               <a href="#artigos" className="group/btn flex items-center gap-4 text-primary font-bold hover:gap-6 transition-all duration-300">
                 LER ARTIGO COMPLETO
                 <span className="bg-primary/10 p-2 rounded-full group-hover/btn:bg-primary/20 border border-primary/20 transition-colors">
@@ -100,9 +101,9 @@ export default function InsightsTendenciasPage() {
             <div className="md:w-1/2 p-8 lg:p-10 flex flex-col justify-between">
               <div>
                 <span className="bg-primary/10 border border-primary/20 text-primary px-4 py-1.5 rounded-full text-xs font-bold mb-6 inline-block uppercase tracking-wider">Direito Digital</span>
-                <h3 className="text-2xl font-headline font-bold text-on-surface mb-4 group-hover:text-primary transition-colors leading-tight">
+                <Heading level="marketing-title" as="h3" className="mb-4 group-hover:text-primary transition-colors">
                   Privacidade de Dados em Ambientes de Metaverso Corporativo
-                </h3>
+                </Heading>
                 <p className="text-on-surface-variant text-sm leading-relaxed mb-6 line-clamp-3">
                   Analisamos os novos desafios jurídicos impostos pela LGPD em ambientes virtuais de trabalho e a responsabilidade civil no processamento de dados biométricos.
                 </p>
@@ -124,9 +125,9 @@ export default function InsightsTendenciasPage() {
           >
             <div>
               <span className="bg-primary/10 border border-primary/20 text-primary px-4 py-1.5 rounded-full text-xs font-bold mb-6 inline-block uppercase tracking-wider">IA Jurídica</span>
-              <h3 className="text-xl font-headline font-bold text-on-surface mb-4 group-hover:text-primary transition-colors leading-tight">
+              <Heading level="card" as="h3" className="mb-4 group-hover:text-primary transition-colors">
                 O Impacto do GPT-4 na Redação de Petições Iniciais
-              </h3>
+              </Heading>
               <p className="text-on-surface-variant text-sm leading-relaxed mb-6">
                 Um estudo comparativo minucioso sobre a eficácia de minutas geradas por IA vs. profissionais seniores.
               </p>
@@ -147,9 +148,9 @@ export default function InsightsTendenciasPage() {
           >
             <div>
               <span className="bg-primary/10 border border-primary/20 text-primary px-4 py-1.5 rounded-full text-xs font-bold mb-6 inline-block uppercase tracking-wider">Trabalhista</span>
-              <h3 className="text-xl font-headline font-bold text-on-surface mb-4 group-hover:text-primary transition-colors leading-tight">
+              <Heading level="card" as="h3" className="mb-4 group-hover:text-primary transition-colors">
                 Novas Decisões sobre o Vínculo Empregatício em Apps
-              </h3>
+              </Heading>
               <p className="text-on-surface-variant text-sm leading-relaxed mb-6">
                 O cenário atual do STF e as profundas implicações para a economia sob demanda (gig economy) no Brasil.
               </p>
@@ -171,9 +172,9 @@ export default function InsightsTendenciasPage() {
             <div className="md:w-1/2 p-8 lg:p-10 flex flex-col justify-between order-2 md:order-1">
               <div>
                 <span className="bg-primary/10 border border-primary/20 text-primary px-4 py-1.5 rounded-full text-xs font-bold mb-6 inline-block uppercase tracking-wider">Case Study</span>
-                <h3 className="text-2xl font-headline font-bold text-on-surface mb-4 group-hover:text-primary transition-colors leading-tight">
+                <Heading level="marketing-title" as="h3" className="mb-4 group-hover:text-primary transition-colors">
                   Como a Zattar Engine Reduziu Custos Jurídicos em 40%
-                </h3>
+                </Heading>
                 <p className="text-on-surface-variant text-sm leading-relaxed mb-6 line-clamp-3">
                   Acompanhe a implementação passo a passo de sistemas de triagem automatizada de processos em uma das maiores empresas de tecnologia corporativa da América Latina.
                 </p>
@@ -203,12 +204,12 @@ export default function InsightsTendenciasPage() {
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary-dim/10 rounded-full blur-[80px] pointer-events-none"></div>
 
           <div className="max-w-xl relative z-10">
-            <h2 className="text-3xl md:text-5xl font-headline font-extrabold mb-6 tracking-tight text-on-surface leading-tight">
+            <Heading level="marketing-section" className="mb-6">
               Assine nossa <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-primary-dim">Curadoria Jurídica</span>
-            </h2>
-            <p className="text-on-surface-variant text-lg leading-relaxed">
+            </Heading>
+            <Text variant="marketing-lead">
               Receba quinzenalmente as análises mais profundas sobre tecnologia, leis trabalhistas materiais e o futuro da jurisprudência digital diretamente no seu e-mail.
-            </p>
+            </Text>
           </div>
           <div className="flex flex-col gap-4 w-full md:w-auto relative z-10">
             <div className="flex flex-col sm:flex-row gap-4 w-full">

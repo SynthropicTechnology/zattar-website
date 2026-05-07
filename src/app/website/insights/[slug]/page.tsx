@@ -11,6 +11,8 @@ import {
   formatarDataPost,
 } from '@/lib/strapi/client';
 import { WebsiteShell } from '../../components/layout/website-shell';
+import { Container } from '@/components/layout';
+import { Heading, Text } from '@/components/ui/typography';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -75,7 +77,7 @@ export default async function InsightsArtigoPage({ params }: Props) {
     <WebsiteShell>
       <div className="pt-32">
         {/* Hero do Artigo */}
-        <section className="relative pt-16 pb-12 px-6 md:px-12 max-w-5xl mx-auto">
+        <Container as="section" size="narrow" className="relative pt-16 pb-12">
           {/* Luzes atmosféricas */}
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
           <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-primary-dim/5 rounded-full blur-[80px] pointer-events-none" />
@@ -96,15 +98,15 @@ export default async function InsightsArtigoPage({ params }: Props) {
             </span>
 
             {/* Título */}
-            <h1 className="font-headline text-4xl md:text-6xl font-extrabold tracking-tighter text-on-surface leading-[1.1] mb-6 mt-4">
+            <Heading level="marketing-hero" className="mb-6 mt-4">
               {post.title}
-            </h1>
+            </Heading>
 
             {/* Subtítulo */}
             {post.subtitle && (
-              <p className="text-on-surface-variant text-xl leading-relaxed max-w-3xl mb-8">
+              <Text variant="marketing-lead" className="max-w-3xl mb-8">
                 {post.subtitle}
-              </p>
+              </Text>
             )}
 
             {/* Metadados */}
@@ -138,11 +140,11 @@ export default async function InsightsArtigoPage({ params }: Props) {
               )}
             </div>
           </div>
-        </section>
+        </Container>
 
         {/* Cover */}
         {post.coverUrl && (
-          <div className="max-w-5xl mx-auto px-6 md:px-12 mb-12">
+          <Container size="narrow" className="mb-12">
             <div className="aspect-video rounded-3xl overflow-hidden bg-surface-container-highest border border-foreground/5 relative">
               <Image
                 src={post.coverUrl}
@@ -153,7 +155,7 @@ export default async function InsightsArtigoPage({ params }: Props) {
                 className="object-cover"
               />
             </div>
-          </div>
+          </Container>
         )}
 
         {/* Conteúdo */}
@@ -177,12 +179,12 @@ export default async function InsightsArtigoPage({ params }: Props) {
           {/* CTA de contato */}
           <div className="mt-16 p-10 bg-surface-container rounded-3xl border border-primary/20 text-center relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-primary to-transparent" />
-            <h2 className="font-headline text-2xl font-bold text-on-surface mb-3">
+            <Heading level="marketing-title" as="h2" className="mb-3">
               Precisa de assessoria jurídica?
-            </h2>
-            <p className="text-on-surface-variant mb-6 max-w-md mx-auto">
+            </Heading>
+            <Text variant="marketing-lead" className="mb-6 max-w-md mx-auto">
               Nossa equipe está pronta para analisar o seu caso e oferecer a solução mais adequada.
-            </p>
+            </Text>
             <Link
               href="/contato"
               className="inline-flex items-center gap-2 bg-primary text-on-primary-fixed px-8 py-4 rounded-full font-bold hover:bg-primary/90 transition-colors"

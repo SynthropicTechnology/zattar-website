@@ -1334,12 +1334,13 @@
   }
 
   html {
-    font-size: 18px;
+    /* shadcn/Tailwind/CSS default — NÃO ALTERAR.
+       Mudar para 18px distorce toda a escala em rem em 12.5%, quebrando
+       o contrato implícito de tokens shadcn (button h-9 = 2.25rem = 36px,
+       text-sm = 14px, etc.). Para fontes maiores no website, ajustar
+       tokens marketing-* abaixo (em px ou rem ancorados a este 16). */
+    font-size: 16px;
     @apply font-sans;
-  }
-
-  html.website-root-scale {
-    font-size: 18px;
   }
 
   body {
@@ -1516,18 +1517,25 @@
     @apply font-heading font-bold text-foreground;
   }
 
-  /* Título de card grande ou painel de detalhe */
+  /* Título de card grande ou painel de detalhe.
+     font-weight declarado direto (não @apply) para evitar cascade
+     conflict com utilities em Tailwind v4 — auditoria #5. */
   .text-card-title {
-    font-size: 18px;
+    font-size: 1.125rem;
+    /* 18px (ancorado a root 16) */
     line-height: 1.3;
-    @apply scroll-m-20 font-heading font-semibold text-foreground;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+    @apply scroll-m-20 font-heading text-foreground;
   }
 
-  /* Subseção, accordion, grupo de campos */
+  /* Subseção, accordion, grupo de campos. Idem cascade fix — auditoria #4. */
   .text-subsection-title {
-    font-size: 16px;
+    font-size: 1rem;
+    /* 16px */
     line-height: 1.35;
-    @apply scroll-m-20 font-heading font-semibold text-foreground;
+    font-weight: 600;
+    @apply scroll-m-20 font-heading text-foreground;
   }
 
   /* Título de widget/card compacto (dashboard, glass panels) */
@@ -1653,45 +1661,54 @@
    * Text variant="marketing-lead" em @/components/ui/typography.
    */
 
+  /* ====================================================================
+   * ESCALA TIPOGRÁFICA MARKETING — Modular Scale (PF + M6)
+   * --------------------------------------------------------------------
+   * Ratios harmônicos: H1/H2=1.33 (Perfect Fourth), H2/H3=1.5 (Major Sixth),
+   * H3/Lead=1.33 (PF), Lead/Body=1.125 (Major Second).
+   *
+   * Valores ancorados em root 16px (shadcn default — NÃO alterar root).
+   * font-weight declarado direto (não via @apply) para evitar cascade
+   * conflicts entre @layer components e utilities em Tailwind v4.
+   * line-height nunca abaixo de 1.15 em headings (auditoria #1).
+   * ==================================================================== */
+
   /* Hero de landing — H1 principal, ex.: "Justiça para quem trabalha.".
-     Escala calibrada em "major third" (1.25x) para proporção harmônica entre
-     os níveis de marketing. Max 64px é o padrão institucional (Apple Legal,
-     BCG, McKinsey) — preserva autoridade sem o drama de outdoor digital.
-     Nota: o website roda com html.website-root-scale (font-size 16px, idêntico ao root). */
+     Max 48px = institucional sóbrio (Apple Legal, BCG). */
   .text-marketing-hero {
-    font-size: clamp(2rem, 1.8vw + 1.5rem, 4rem);
-    /* 32px → 64px */
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-    @apply font-heading font-extrabold text-foreground;
-  }
-
-  /* Seção de landing — H2 de seção, ex.: "Soluções jurídicas de alta precisão." */
-  .text-marketing-section {
-    font-size: clamp(1.5rem, 1vw + 0.875rem, 2.5rem);
-    /* 24px → 40px */
+    font-size: clamp(2.25rem, 1.5vw + 1.5rem, 3rem);
+    /* 36px → 48px */
     line-height: 1.15;
-    letter-spacing: -0.02em;
-    @apply font-heading font-bold text-foreground;
+    letter-spacing: -0.03em;
+    font-weight: 800;
+    @apply font-heading text-foreground;
   }
 
-  /* Título de bloco dentro de seção de landing — H3 intermediário,
-     ex.: "Defesa Assertiva.", "Recuperação de Ativos." */
-  .text-marketing-title {
-    font-size: clamp(1.25rem, 0.5vw + 0.75rem, 1.75rem);
-    /* 20px → 28px */
+  /* Seção de landing — H2, ex.: "Soluções jurídicas de alta precisão." */
+  .text-marketing-section {
+    font-size: clamp(1.75rem, 1vw + 1.25rem, 2.25rem);
+    /* 28px → 36px (ratio H1/H2 = 1.33 PF) */
     line-height: 1.2;
-    letter-spacing: -0.01em;
-    @apply font-heading font-bold text-foreground;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    @apply font-heading text-foreground;
   }
 
-  /* Parágrafo lead de landing — abaixo do hero/section.
-     Tamanho calibrado para body confortável sem competir com os headings.
-     Cor em 82% do foreground: contraste AA sobre fundo escuro (~7:1) e ainda
-     diferencia hierarquicamente do heading (100%). */
+  /* Título de bloco — H3, ex.: "Defesa Assertiva.", "Recuperação de Ativos." */
+  .text-marketing-title {
+    font-size: clamp(1.25rem, 0.5vw + 0.875rem, 1.5rem);
+    /* 20px → 24px (ratio H2/H3 = 1.5 M6) */
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    font-weight: 700;
+    @apply font-heading text-foreground;
+  }
+
+  /* Parágrafo lead — abaixo do hero/section. Alinhado ao body (18px) para
+     evitar inversão de hierarquia (auditoria #7). */
   .text-marketing-lead {
-    font-size: clamp(0.9375rem, 0.2vw + 0.75rem, 1.0625rem);
-    /* 15px → 17px */
+    font-size: 1.125rem;
+    /* 18px fixo */
     line-height: 1.6;
     color: color-mix(in oklch, var(--foreground) 82%, transparent);
   }

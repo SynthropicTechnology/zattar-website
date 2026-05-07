@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Heading } from "@/components/ui/typography";
 
 interface ServicoWebCardProps {
   title: string;
@@ -57,9 +58,9 @@ export function ServicoWebCard({
         )}
       </div>
 
-      <h3 className="relative z-10 text-2xl font-headline font-extrabold tracking-tight text-on-surface mb-3">
+      <Heading level="marketing-title" as="h3" className="relative z-10 mb-3">
         {title}
-      </h3>
+      </Heading>
 
       <p className="relative z-10 text-on-surface-variant leading-relaxed mb-8 grow">
         {description}

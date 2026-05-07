@@ -7,6 +7,8 @@ import nextPlugin from "@next/eslint-plugin-next";
 import unusedImports from "eslint-plugin-unused-imports";
 import noHardcodedSecrets from "./eslint-rules/no-hardcoded-secrets.js";
 import noHslVarTokens from "./eslint-rules/no-hsl-var-tokens.js";
+import noHardcodedLayout from "./eslint-rules/no-hardcoded-layout.js";
+import noRawTextSize from "./eslint-rules/no-raw-text-size.js";
 
 const eslintConfig = defineConfig([
   {
@@ -64,12 +66,29 @@ const eslintConfig = defineConfig([
         rules: {
           "no-hardcoded-secrets": noHardcodedSecrets,
           "no-hsl-var-tokens": noHslVarTokens,
+          "no-hardcoded-layout": noHardcodedLayout,
+          "no-raw-text-size": noRawTextSize,
         },
       },
     },
     rules: {
       "custom/no-hardcoded-secrets": "error",
       "custom/no-hsl-var-tokens": "error",
+      "custom/no-hardcoded-layout": "error",
+    },
+  },
+  // Tipografia marketing: rotas /website/* e /servicos/* devem consumir
+  // sempre <Heading>/<Text> de @/components/ui/typography. Páginas demo
+  // (recrutamento) podem usar text-* direto pois são fora do escopo.
+  {
+    files: ["src/app/website/**/*.{ts,tsx}", "src/app/servicos/**/*.{ts,tsx}", "src/app/page.tsx"],
+    ignores: [
+      "**/demo/**",
+      "**/*.test.{ts,tsx}",
+      "**/*.spec.{ts,tsx}",
+    ],
+    rules: {
+      "custom/no-raw-text-size": "error",
     },
   },
   {

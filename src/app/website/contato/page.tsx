@@ -17,7 +17,7 @@ export default function ContatoPage() {
     <WebsiteShell hideClosingCta>
       <div className="pt-32 pb-24 overflow-hidden">
         {/* Hero Section */}
-        <section className="max-w-6xl mx-auto px-5 sm:px-6 md:px-10 mb-24 mt-12">
+        <section className="container mb-24 mt-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
             <div className="lg:col-span-8">
               <Text variant="marketing-overline" className="mb-4 block">
@@ -39,7 +39,7 @@ export default function ContatoPage() {
         </section>
 
         {/* Bento Contact Layout */}
-        <section className="max-w-6xl mx-auto px-5 sm:px-6 md:px-10">
+        <section className="container">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Contact Form Card */}
             <MarketingCard variant="solid" padding="lg" className="lg:col-span-2">
@@ -95,7 +95,7 @@ export default function ContatoPage() {
                   </Text>
                   <div className="flex gap-4">
                     <a
-                      className="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all"
+                      className="w-[var(--icon-container-lg)] h-[var(--icon-container-lg)] rounded-full bg-surface-container-highest flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all"
                       href="https://instagram.com/zattaradvogados"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -104,7 +104,7 @@ export default function ContatoPage() {
                       <Instagram className="w-5 h-5" />
                     </a>
                     <a
-                      className="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all"
+                      className="w-[var(--icon-container-lg)] h-[var(--icon-container-lg)] rounded-full bg-surface-container-highest flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all"
                       href="https://wa.me/5531984382217"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -113,7 +113,7 @@ export default function ContatoPage() {
                       <MessageCircle className="w-5 h-5" />
                     </a>
                     <a
-                      className="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all"
+                      className="w-[var(--icon-container-lg)] h-[var(--icon-container-lg)] rounded-full bg-surface-container-highest flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all"
                       href="https://linkedin.com/company/zattaradvogados"
                       target="_blank"
                       rel="noopener noreferrer"

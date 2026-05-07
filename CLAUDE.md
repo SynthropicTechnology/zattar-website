@@ -24,6 +24,75 @@ Website institucional e marketing do escritório Zattar Advogados. Este reposit�
 - Leads/contato salvos no Supabase (`src/lib/supabase/`)
 - Rate-limiting de formulários via Redis (`src/lib/redis/`)
 
+## Layout & Design Tokens
+
+**Princípio:** páginas e componentes **nunca** hardcodam `max-w-*`, `mx-auto px-*` ou `py-N md:py-N`. Sempre consomem primitivos ou tokens semânticos. Mexer no design system = editar em **um lugar** (`globals.css` §15).
+
+**Tokens canônicos:** `globals.css` §15 (Layout & Sizing) — `--container-{max,narrow,wide}`, `--container-px-*`, `--section-py-*`, `--card-padding-*`, `--card-radius*`, `--icon-container-*`.
+
+**Como aplicar largura + padding lateral em uma página:**
+
+- `<div className="container">` — Tailwind v4 `@utility`, default 1152px (institucional)
+- `<Container size="content|narrow|wide">` — componente em `@/components/layout`. Use `narrow` (1024px) para artigos/prosa longa, `wide` (1280px) para dashboards
+- `<Container as="section">` — preserva semântica HTML quando substituindo `<section>`
+
+**Como aplicar padding vertical de seção:**
+
+- `<Section spacing="default|compact|none">` — componente em `@/components/layout`. Não combina max-width (use junto com `<Container>`)
+
+**Anti-patterns (ESLint `custom/no-hardcoded-layout` bloqueia):**
+
+```tsx
+// ❌ ERRADO — container reinventado
+<section className="max-w-6xl mx-auto px-5 sm:px-6 md:px-10">
+
+// ✅ CERTO
+<section className="container">
+// ou
+<Container as="section">
+```
+
+**Card interno:** `MarketingCard` (`src/app/website/components/shared/marketing-card.tsx`) já consome tokens (`--card-padding-{sm,md,lg}`, `--card-radius`). Não passe `className="p-* rounded-*"` que sobrescreva o padding/radius — use `padding="sm|md|lg"`.
+
+**Icon container:** Use `w-[var(--icon-container-{sm,md,lg})] h-[var(--icon-container-{sm,md,lg})]` em vez de `w-11 h-11` ou `w-12 h-12`.
+
+## Hierarquia Tipográfica
+
+**Princípio:** páginas marketing (`/website/*` + `/servicos/*` + `/`) **nunca** usam `text-{lg,xl,2xl,...,9xl}` direto. Sempre `<Heading>` ou `<Text>` de `@/components/ui/typography` (ESLint `custom/no-raw-text-size` bloqueia).
+
+**Hierarquia canônica para landing/marketing:**
+
+| Papel semântico | Componente | Tamanho | Peso | Quando usar |
+|---|---|---|---|---|
+| H1 hero da página | `<Heading level="marketing-hero">` | 36→48px (clamp) | 800 | Topo da página, **1× por rota** |
+| H2 seção | `<Heading level="marketing-section">` | 28→36px (clamp) | 700 | Título de cada seção principal |
+| H3 título de bloco/card grande | `<Heading level="marketing-title">` | 20→24px (clamp) | 700 | Bento cards grandes, blocos |
+| H3/H4 título de card pequeno | `<Heading level="card">` | 18px fixo | 600 | Cards compactos, side cards |
+| H4/H5 subseção | `<Heading level="subsection">` | 16px fixo | 600 | Itens dentro de card |
+| H6 widget | `<Heading level="widget">` | 14px fixo | 600 | Footer, widgets compactos |
+| Body lead/intro | `<Text variant="marketing-lead">` | 18px fixo | 400 | Parágrafo abaixo do hero/section |
+| Body padrão | `<Text variant="body">` / `body-sm` | 18 / 16px | 400 | Texto longo (artigos) |
+| Caption | `<Text variant="caption">` | 13px | 400 | Descrição de card, metadata |
+| Overline (kicker) | `<Text variant="marketing-overline">` | 13px tracking-wider | 600 | Label acima de heading |
+
+**Escala modular:** Ratios harmônicos — H1/H2 = 1.33 (Perfect Fourth), H2/H3 = 1.5 (Major Sixth), H3/Lead = 1.33 (PF), Lead/Body = 1.125 (Major Second). Todos os valores ancorados em `html { font-size: 16px }` (shadcn default — **NÃO alterar root**).
+
+**Regra de ouro:** dois títulos no mesmo nível visual da página devem usar o mesmo `level=`. Se um é `marketing-section` e o outro é `section` (interno), a hierarquia quebra mesmo sendo "parecido".
+
+**Anti-pattern (ESLint bloqueia em `/website/*` e `/servicos/*`):**
+
+```tsx
+// ❌ ERRADO — bypassa o design system, escala não responde a tokens
+<h1 className="text-4xl md:text-6xl font-extrabold tracking-tighter">
+<p className="text-lg leading-relaxed">
+
+// ✅ CERTO
+<Heading level="marketing-hero">
+<Text variant="marketing-lead">
+```
+
+**Sistema "interno" vs "marketing":** o projeto tem `level="page|section|card|subsection|widget"` (px fixo, sistema dashboard) e `level="marketing-{hero,section,title}"` (clamp, sistema marketing). **Não misture os dois para o mesmo papel hierárquico** em uma página de marketing — use só os `marketing-*` para H1/H2/H3 da página, e os fixos (`card`, `subsection`, `widget`) apenas para hierarquia interna de cards.
+
 ---
 
 # Instructions for Using the shadcn/studio MCP SERVER

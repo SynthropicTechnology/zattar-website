@@ -113,7 +113,7 @@ export default function PoliticaDePrivacidadePage() {
         {/* ─── Contact DPO ─────────────────────────────────────────────── */}
         <section className="max-w-4xl mx-auto px-5 sm:px-6 md:px-10 mt-12">
           <div className="bg-primary/10 border border-primary/25 rounded-2xl md:rounded-3xl px-6 md:px-10 py-7 md:py-8 flex flex-col md:flex-row items-start md:items-center gap-6">
-            <div className="w-12 h-12 rounded-2xl bg-primary/20 ring-1 ring-primary/30 flex items-center justify-center shrink-0">
+            <div className="w-[var(--icon-container-lg)] h-[var(--icon-container-lg)] rounded-2xl bg-primary/20 ring-1 ring-primary/30 flex items-center justify-center shrink-0">
               <Mail className="w-6 h-6 text-primary" />
             </div>
             <div className="grow">

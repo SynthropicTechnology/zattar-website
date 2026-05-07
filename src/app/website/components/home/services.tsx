@@ -36,7 +36,7 @@ function OverlayCard({ icon, title, description, position }: OverlayCardProps) {
       className={`relative md:absolute ${positionClasses} max-w-70 lg:max-w-80 -mt-6 mx-4 md:mt-0 md:mx-0`}
     >
       {/* Proporção aplicada: título 16px → ícone ~24px, container ~44px, padding ~24px */}
-      <div className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-primary-dim/25 text-primary mb-3 ring-1 ring-primary/40">
+      <div className="inline-flex items-center justify-center w-[var(--icon-container-md)] h-[var(--icon-container-md)] rounded-xl bg-primary-dim/25 text-primary mb-3 ring-1 ring-primary/40">
         {icon}
       </div>
       <Heading level="card" as="h4" className="mb-1.5 text-foreground">

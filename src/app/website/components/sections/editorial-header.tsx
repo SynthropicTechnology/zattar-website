@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import { Heading, Text } from "@/components/ui/typography";
 
 interface EditorialHeaderProps {
   kicker: string;
@@ -12,11 +13,10 @@ interface EditorialHeaderProps {
 }
 
 /**
- * Portal page editorial header — kicker + display title + optional description + action buttons.
- * Used at the top of every portal page (Dashboard, Financeiro, Agendamentos, etc.).
+ * Editorial section header — kicker + title + optional description + action buttons.
+ * Consome design tokens via <Heading level="marketing-section"> e <Text>.
  *
- * `gradient` applies the signature text-gradient effect on the title.
- * `titleClassName` allows additional styling overrides on the h2.
+ * `gradient` aplica o text-gradient signature ao título.
  */
 export function EditorialHeader({
   kicker,
@@ -35,22 +35,19 @@ export function EditorialHeader({
       )}
     >
       <div className="max-w-2xl">
-        <span className="text-xs font-bold tracking-[0.2em] text-primary uppercase block mb-2">
+        <Text variant="marketing-overline" className="block mb-2">
           {kicker}
-        </span>
-        <h2
-          className={cn(
-            "text-5xl font-extrabold font-headline tracking-tighter leading-tight",
-            gradient && "text-gradient",
-            titleClassName
-          )}
+        </Text>
+        <Heading
+          level="marketing-section"
+          className={cn(gradient && "text-gradient", titleClassName)}
         >
           {title}
-        </h2>
+        </Heading>
         {description && (
-          <p className="text-on-surface-variant text-lg mt-4 max-w-lg">
+          <Text variant="marketing-lead" className="mt-4 max-w-lg">
             {description}
-          </p>
+          </Text>
         )}
       </div>
       {actions && <div className="flex gap-4 shrink-0">{actions}</div>}

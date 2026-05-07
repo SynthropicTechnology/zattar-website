@@ -38,7 +38,7 @@ export default function SolucoesPage() {
             <div className="absolute top-1/4 -right-20 w-96 h-96 bg-primary/20 rounded-full blur-[120px]" />
             <div className="absolute bottom-1/4 -left-20 w-96 h-96 bg-primary-dim/10 rounded-full blur-[100px]" />
           </div>
-          <div className="max-w-6xl mx-auto px-5 sm:px-6 md:px-10 grid grid-cols-1 lg:grid-cols-12 gap-12 relative z-10 w-full">
+          <div className="container grid grid-cols-1 lg:grid-cols-12 gap-12 relative z-10 w-full">
             <div className="lg:col-span-7 flex flex-col justify-center">
               <Text variant="marketing-overline" className="mb-5 block">
                 Infraestrutura Jurídica Next-Gen
@@ -92,7 +92,7 @@ export default function SolucoesPage() {
         </section>
 
         {/* ─── Core Solutions — Bento ───────────────────────────────── */}
-        <section className="max-w-6xl mx-auto px-5 sm:px-6 md:px-10 py-24">
+        <section className="container py-24">
           <div className="mb-10 md:mb-14">
             <Text variant="marketing-overline" className="mb-3 block">
               Ecossistema
@@ -111,10 +111,10 @@ export default function SolucoesPage() {
                 <Terminal className="text-primary w-24 h-24 opacity-10 group-hover:opacity-30 transition-opacity duration-500" />
               </div>
               <div className="relative z-10">
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary-dim/25 text-primary ring-1 ring-primary/40 mb-5">
+                <div className="inline-flex items-center justify-center w-[var(--icon-container-lg)] h-[var(--icon-container-lg)] rounded-xl bg-primary-dim/25 text-primary ring-1 ring-primary/40 mb-5">
                   <FileSearch className="w-6 h-6" />
                 </div>
-                <Heading level="section" as="h3" className="mb-3">
+                <Heading level="marketing-title" as="h3" className="mb-3">
                   Auditoria Automatizada
                 </Heading>
                 <Text variant="caption" className="text-foreground/85 max-w-lg leading-relaxed">
@@ -139,10 +139,10 @@ export default function SolucoesPage() {
 
             {/* Solution 2 */}
             <MarketingCard variant="solid" padding="lg" className="group flex flex-col">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary-dim/25 text-primary ring-1 ring-primary/40 mb-5">
+              <div className="inline-flex items-center justify-center w-[var(--icon-container-lg)] h-[var(--icon-container-lg)] rounded-xl bg-primary-dim/25 text-primary ring-1 ring-primary/40 mb-5">
                 <LineChart className="w-6 h-6" />
               </div>
-              <Heading level="section" as="h3" className="mb-3">
+              <Heading level="marketing-title" as="h3" className="mb-3">
                 Análise Preditiva de Riscos
               </Heading>
               <Text variant="caption" className="text-foreground/85 leading-relaxed">
@@ -160,10 +160,10 @@ export default function SolucoesPage() {
 
             {/* Solution 3 */}
             <MarketingCard variant="solid" padding="lg" className="group flex flex-col">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary-dim/25 text-primary ring-1 ring-primary/40 mb-5">
+              <div className="inline-flex items-center justify-center w-[var(--icon-container-lg)] h-[var(--icon-container-lg)] rounded-xl bg-primary-dim/25 text-primary ring-1 ring-primary/40 mb-5">
                 <Zap className="w-6 h-6" />
               </div>
-              <Heading level="section" as="h3" className="mb-3">
+              <Heading level="marketing-title" as="h3" className="mb-3">
                 Protocolo Acelerado
               </Heading>
               <Text variant="caption" className="text-foreground/85 leading-relaxed">
@@ -193,7 +193,7 @@ export default function SolucoesPage() {
                 </div>
               </div>
               <div>
-                <Heading level="section" as="h3" className="mb-3">
+                <Heading level="marketing-title" as="h3" className="mb-3">
                   Escudo Digital Compliance
                 </Heading>
                 <Text variant="caption" className="text-foreground/85 leading-relaxed mb-5">
@@ -216,7 +216,7 @@ export default function SolucoesPage() {
         {/* ─── Tech Stack: Zattar Engine ────────────────────────────── */}
         <section className="relative overflow-hidden border-t border-outline-variant/20">
           <div aria-hidden="true" className="absolute inset-0 bg-surface-container-low opacity-50" />
-          <div className="max-w-6xl mx-auto px-5 sm:px-6 md:px-10 py-20 md:py-24 relative z-10">
+          <div className="container py-20 md:py-24 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
               <div>
                 <Text variant="marketing-overline" className="mb-5 block">
@@ -231,7 +231,7 @@ export default function SolucoesPage() {
                 </Heading>
                 <ul className="space-y-7">
                   <li className="flex gap-6">
-                    <div className="shrink-0 w-12 h-12 bg-primary-dim/20 ring-1 ring-primary/30 rounded-xl flex items-center justify-center text-primary">
+                    <div className="shrink-0 w-[var(--icon-container-lg)] h-[var(--icon-container-lg)] bg-primary-dim/20 ring-1 ring-primary/30 rounded-xl flex items-center justify-center text-primary">
                       <Cpu className="w-6 h-6" />
                     </div>
                     <div>
@@ -245,7 +245,7 @@ export default function SolucoesPage() {
                     </div>
                   </li>
                   <li className="flex gap-6">
-                    <div className="shrink-0 w-12 h-12 bg-primary-dim/20 ring-1 ring-primary/30 rounded-xl flex items-center justify-center text-primary">
+                    <div className="shrink-0 w-[var(--icon-container-lg)] h-[var(--icon-container-lg)] bg-primary-dim/20 ring-1 ring-primary/30 rounded-xl flex items-center justify-center text-primary">
                       <Lock className="w-6 h-6" />
                     </div>
                     <div>
@@ -259,7 +259,7 @@ export default function SolucoesPage() {
                     </div>
                   </li>
                   <li className="flex gap-6">
-                    <div className="shrink-0 w-12 h-12 bg-primary-dim/20 ring-1 ring-primary/30 rounded-xl flex items-center justify-center text-primary">
+                    <div className="shrink-0 w-[var(--icon-container-lg)] h-[var(--icon-container-lg)] bg-primary-dim/20 ring-1 ring-primary/30 rounded-xl flex items-center justify-center text-primary">
                       <Network className="w-6 h-6" />
                     </div>
                     <div>

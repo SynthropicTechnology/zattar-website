@@ -41,10 +41,13 @@ export interface MarketingCardProps
   padding?: "sm" | "md" | "lg";
 }
 
+// Padding interno consome tokens semânticos (globals.css §15).
+// Os tokens já são absolutos (sem responsive escalation), garantindo
+// consistência cross-page: design system muda em @theme, propaga aqui.
 const PADDING = {
-  sm: "p-5",
-  md: "p-6 md:p-7",
-  lg: "p-7 md:p-8 lg:p-10",
+  sm: "p-[var(--card-padding-sm)]",
+  md: "p-[var(--card-padding-md)]",
+  lg: "p-[var(--card-padding-lg)]",
 } as const;
 
 const VARIANT = {
@@ -80,7 +83,7 @@ export function MarketingCard({
     <div
       {...rest}
       className={cn(
-        "rounded-2xl md:rounded-3xl transition-all duration-300",
+        "rounded-[var(--card-radius)] md:rounded-[var(--card-radius-lg)] transition-all duration-300",
         PADDING[padding],
         VARIANT[variant],
         className,

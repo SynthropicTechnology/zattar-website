@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Calculator, FileText, Stethoscope, ArrowRight } from "lucide-react";
 import { ServicosHero } from "./_components/servicos-hero";
 import { ServicoWebCard } from "./_components/servico-web-card";
+import { Heading, Text } from "@/components/ui/typography";
 
 const categories = [
   {
@@ -62,17 +63,17 @@ export default function ServicosPublicHub() {
             className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgb(var(--color-primary)/0.05)_0%,transparent_70%)] pointer-events-none"
           />
           <div className="relative z-10 max-w-2xl mx-auto">
-            <span className="inline-block text-primary font-headline font-bold text-xs tracking-[0.2em] uppercase mb-4">
+            <Text variant="marketing-overline" className="inline-block mb-4">
               Consultoria Especializada
-            </span>
-            <h2 className="text-3xl md:text-4xl font-headline font-extrabold tracking-tight text-on-surface mb-6">
+            </Text>
+            <Heading level="marketing-section" className="mb-6">
               Precisa de uma análise humana?
-            </h2>
-            <p className="text-lg text-on-surface-variant leading-relaxed mb-10">
+            </Heading>
+            <Text variant="marketing-lead" className="mb-10">
               Nossas ferramentas são um excelente ponto de partida, mas cada
               caso tem nuances. Nossa equipe pode revisar seu caso com a
               profundidade que ele merece.
-            </p>
+            </Text>
             <Link
               href="/contato"
               className="inline-flex items-center gap-3 bg-primary text-on-primary-fixed px-8 py-4 rounded-2xl font-headline font-extrabold text-base hover:brightness-110 transition-all shadow-[0_10px_30px_rgb(var(--color-primary)/0.25)] hover:shadow-[0_15px_40px_rgb(var(--color-primary)/0.4)] active:scale-95"

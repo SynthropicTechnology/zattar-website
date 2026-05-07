@@ -20,7 +20,7 @@ export default function ExpertisePage() {
     <WebsiteShell hideClosingCta>
       <div className="pt-32 pb-24">
         {/* ─── Hero ─────────────────────────────────────────────────── */}
-        <section className="max-w-6xl mx-auto px-5 sm:px-6 md:px-10 mb-24 md:mb-32 grid grid-cols-1 md:grid-cols-12 gap-8 items-center mt-12">
+        <section className="container mb-24 md:mb-32 grid grid-cols-1 md:grid-cols-12 gap-8 items-center mt-12">
           <div className="md:col-span-7">
             <Text variant="marketing-overline" className="mb-5 block">
               Inteligência Jurídica Deep Tech
@@ -55,7 +55,7 @@ export default function ExpertisePage() {
         </section>
 
         {/* ─── Specialization Areas (Bento) ─────────────────────────── */}
-        <section className="max-w-6xl mx-auto px-5 sm:px-6 md:px-10 mb-24 md:mb-32">
+        <section className="container mb-24 md:mb-32">
           <div className="flex flex-col md:flex-row justify-between items-end mb-10 md:mb-14 gap-6">
             <div className="max-w-2xl">
               <Text variant="marketing-overline" className="mb-3 block">
@@ -94,10 +94,10 @@ export default function ExpertisePage() {
                 <div className="absolute inset-0 bg-linear-to-t from-background/95 via-background/70 to-transparent" />
               </div>
               <div className="relative z-10">
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary-dim/25 text-primary ring-1 ring-primary/40 mb-5">
+                <div className="inline-flex items-center justify-center w-[var(--icon-container-lg)] h-[var(--icon-container-lg)] rounded-xl bg-primary-dim/25 text-primary ring-1 ring-primary/40 mb-5">
                   <Shield className="w-6 h-6" />
                 </div>
-                <Heading level="section" as="h3" className="mb-3">
+                <Heading level="marketing-title" as="h3" className="mb-3">
                   Direito Digital
                 </Heading>
                 <Text variant="caption" className="text-foreground/85 max-w-lg mb-6 leading-relaxed">
@@ -126,10 +126,10 @@ export default function ExpertisePage() {
               padding="lg"
               className="md:col-span-4 group flex flex-col"
             >
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary-dim/25 text-primary ring-1 ring-primary/40 mb-5">
+              <div className="inline-flex items-center justify-center w-[var(--icon-container-lg)] h-[var(--icon-container-lg)] rounded-xl bg-primary-dim/25 text-primary ring-1 ring-primary/40 mb-5">
                 <Users className="w-6 h-6" />
               </div>
-              <Heading level="section" as="h3" className="mb-3">
+              <Heading level="marketing-title" as="h3" className="mb-3">
                 Direito do Trabalho
               </Heading>
               <Text variant="caption" className="text-foreground/85 mb-6 leading-relaxed">
@@ -150,10 +150,10 @@ export default function ExpertisePage() {
             >
               {/* Ícone em glass-white é intencional aqui — o card tem fundo roxo
                   (primary-dim) próprio, então bg-foreground/15 cria contraste alto. */}
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-foreground/15 text-white ring-1 ring-white/25 mb-5">
+              <div className="inline-flex items-center justify-center w-[var(--icon-container-lg)] h-[var(--icon-container-lg)] rounded-xl bg-foreground/15 text-white ring-1 ring-white/25 mb-5">
                 <Search className="w-6 h-6" />
               </div>
-              <Heading level="section" as="h3" className="mb-3 text-white">
+              <Heading level="marketing-title" as="h3" className="mb-3 text-white">
                 Consultoria Preventiva
               </Heading>
               <Text variant="caption" className="text-white/85 mb-6 leading-relaxed">
@@ -178,10 +178,10 @@ export default function ExpertisePage() {
             >
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 h-full">
                 <div className="flex flex-col justify-center relative z-10">
-                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary-dim/25 text-primary ring-1 ring-primary/40 mb-5">
+                  <div className="inline-flex items-center justify-center w-[var(--icon-container-lg)] h-[var(--icon-container-lg)] rounded-xl bg-primary-dim/25 text-primary ring-1 ring-primary/40 mb-5">
                     <Scale className="w-6 h-6" />
                   </div>
-                  <Heading level="section" as="h3" className="mb-3">
+                  <Heading level="marketing-title" as="h3" className="mb-3">
                     Fusões &amp; Aquisições Tech
                   </Heading>
                   <Text variant="caption" className="text-foreground/85 max-w-lg mb-6 leading-relaxed">
@@ -215,7 +215,7 @@ export default function ExpertisePage() {
         </section>
 
         {/* ─── Team ─────────────────────────────────────────────────── */}
-        <section className="max-w-6xl mx-auto px-5 sm:px-6 md:px-10 mb-24 md:mb-32">
+        <section className="container mb-24 md:mb-32">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 lg:gap-20 items-center">
             <div className="order-2 md:order-1">
               <Text variant="marketing-overline" className="mb-4 block">
@@ -312,7 +312,7 @@ export default function ExpertisePage() {
         </section>
 
         {/* ─── CTA dedicado da página — substitui Zone 1 do Footer ─── */}
-        <section className="max-w-6xl mx-auto px-5 sm:px-6 md:px-10">
+        <section className="container">
           <MarketingCard
             variant="solid"
             padding="lg"

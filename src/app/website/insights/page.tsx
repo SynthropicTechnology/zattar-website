@@ -63,7 +63,7 @@ export default function InsightsPage() {
     <WebsiteShell hideClosingCta>
       <div className="pt-32 pb-24">
         {/* ─── Hero ─────────────────────────────────────────────────── */}
-        <section className="max-w-6xl mx-auto px-5 sm:px-6 md:px-10 mb-16 md:mb-24 mt-6">
+        <section className="container mb-16 md:mb-24 mt-6">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
             <div className="md:col-span-8">
               <Text variant="marketing-overline" className="mb-5 block">
@@ -90,7 +90,7 @@ export default function InsightsPage() {
         </section>
 
         {/* ─── Filter Chips ──────────────────────────────────────────── */}
-        <section className="max-w-6xl mx-auto px-5 sm:px-6 md:px-10 mb-12 md:mb-16">
+        <section className="container mb-12 md:mb-16">
           <div className="flex flex-wrap gap-3 items-center">
             <Text variant="caption" className="text-foreground/70 mr-2">
               Filtrar por:
@@ -116,7 +116,7 @@ export default function InsightsPage() {
         </section>
 
         {/* ─── Featured Bento Grid ──────────────────────────────────── */}
-        <section className="max-w-6xl mx-auto px-5 sm:px-6 md:px-10 mb-24 md:mb-32">
+        <section className="container mb-24 md:mb-32">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 *:motion-safe:hover:-translate-y-0.5 *:transition-all *:duration-300">
             {/* Main Featured Card */}
             <MarketingCard
@@ -212,7 +212,7 @@ export default function InsightsPage() {
 
         {/* ─── Editorial Archive ─────────────────────────────────────── */}
         <section className="bg-surface-container-low/50 py-20 md:py-24 border-y border-outline-variant/10">
-          <div className="max-w-6xl mx-auto px-5 sm:px-6 md:px-10">
+          <div className="container">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-14 md:mb-16 gap-6">
               <div>
                 <Text variant="marketing-overline" className="mb-3 block">
@@ -264,7 +264,7 @@ export default function InsightsPage() {
         </section>
 
         {/* ─── Newsletter ─────────────────────────────────────────────── */}
-        <section className="max-w-6xl mx-auto px-5 sm:px-6 md:px-10 pt-24">
+        <section className="container pt-24">
           <MarketingCard
             variant="solid"
             padding="lg"
