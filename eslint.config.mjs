@@ -9,6 +9,7 @@ import noHardcodedSecrets from "./eslint-rules/no-hardcoded-secrets.js";
 import noHslVarTokens from "./eslint-rules/no-hsl-var-tokens.js";
 import noHardcodedLayout from "./eslint-rules/no-hardcoded-layout.js";
 import noRawTextSize from "./eslint-rules/no-raw-text-size.js";
+import noShadcnUiMutation from "./eslint-rules/no-shadcn-ui-mutation.js";
 
 const eslintConfig = defineConfig([
   {
@@ -68,6 +69,7 @@ const eslintConfig = defineConfig([
           "no-hsl-var-tokens": noHslVarTokens,
           "no-hardcoded-layout": noHardcodedLayout,
           "no-raw-text-size": noRawTextSize,
+          "no-shadcn-ui-mutation": noShadcnUiMutation,
         },
       },
     },
@@ -75,6 +77,7 @@ const eslintConfig = defineConfig([
       "custom/no-hardcoded-secrets": "error",
       "custom/no-hsl-var-tokens": "error",
       "custom/no-hardcoded-layout": "error",
+      "custom/no-shadcn-ui-mutation": "error",
     },
   },
   // Tipografia marketing: rotas /website/* e /servicos/* devem consumir

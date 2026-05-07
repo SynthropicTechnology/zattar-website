@@ -94,7 +94,7 @@ export function Footer({ hideClosingCta = false }: FooterProps = {}) {
               </Button>
               <a
                 href="tel:+5531984382217"
-                className="group/tel inline-flex items-center gap-2 text-foreground hover:text-primary transition-colors font-bold text-base"
+                className="group/tel inline-flex items-center gap-2 py-2 text-foreground hover:text-primary transition-colors font-bold text-base"
               >
                 <span className="flex items-center justify-center w-10 h-10 rounded-full bg-primary/15 text-primary">
                   <Phone className="w-4 h-4" />

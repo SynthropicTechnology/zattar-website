@@ -66,7 +66,7 @@ export function ServicoWebCard({
         {description}
       </p>
 
-      <span className="relative z-10 inline-flex items-center gap-2 text-primary font-headline font-bold text-sm tracking-tight group-hover:gap-4 transition-all">
+      <span className="relative z-10 inline-flex items-center gap-2 py-2 text-primary font-headline font-bold text-sm tracking-tight group-hover:gap-4 transition-all">
         {cta}
         <ArrowRight className="w-4 h-4" />
       </span>

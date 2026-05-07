@@ -18,6 +18,7 @@ import { WebsiteShell } from "@/app/website/components/layout/website-shell";
 import { MarketingCard } from "@/app/website/components/shared/marketing-card";
 import { Heading, Text } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
+import { MarketingButton } from "@/components/shared/marketing-button";
 import { buildWebsiteMetadata } from "../_metadata/build-metadata";
 
 export const metadata = buildWebsiteMetadata({
@@ -66,14 +67,14 @@ export default function SolucoesPage() {
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </Button>
-                <Button
+                <MarketingButton
                   asChild
                   size="lg"
-                  variant="marketing-outline"
+                  variant="outline"
                   className="rounded-xl h-12 px-8 text-base"
                 >
                   <Link href="/contato">Ver Demonstração</Link>
-                </Button>
+                </MarketingButton>
               </div>
             </div>
             <div className="lg:col-span-5 hidden lg:block relative">
@@ -151,7 +152,7 @@ export default function SolucoesPage() {
               </Text>
               <Link
                 href="/contato"
-                className="mt-auto pt-6 inline-flex items-center gap-2 text-primary font-bold text-xs tracking-widest uppercase hover:gap-3 transition-all"
+                className="mt-auto pt-6 inline-flex items-center gap-2 py-2 text-primary font-bold text-xs tracking-widest uppercase hover:gap-3 transition-all"
               >
                 Explorar Motor
                 <ChevronRight className="w-4 h-4" />
@@ -172,7 +173,7 @@ export default function SolucoesPage() {
               </Text>
               <Link
                 href="/contato"
-                className="mt-auto pt-6 inline-flex items-center gap-2 text-primary font-bold text-xs tracking-widest uppercase hover:gap-3 transition-all"
+                className="mt-auto pt-6 inline-flex items-center gap-2 py-2 text-primary font-bold text-xs tracking-widest uppercase hover:gap-3 transition-all"
               >
                 Ver Protocolo
                 <ChevronRight className="w-4 h-4" />
@@ -203,7 +204,7 @@ export default function SolucoesPage() {
                 </Text>
                 <Link
                   href="/contato"
-                  className="inline-flex items-center gap-2 text-primary font-bold text-xs tracking-widest uppercase hover:gap-3 transition-all"
+                  className="inline-flex items-center gap-2 py-2 text-primary font-bold text-xs tracking-widest uppercase hover:gap-3 transition-all"
                 >
                   Ler documento técnico
                   <ArrowRight className="w-4 h-4" />

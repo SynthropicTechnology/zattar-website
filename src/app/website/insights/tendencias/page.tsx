@@ -218,7 +218,7 @@ export default function InsightsTendenciasPage() {
                 placeholder="seu@email.com"
                 type="email"
               />
-              <Button asChild size="2xl" className="font-headline shadow-lg shadow-primary/20">
+              <Button asChild size="lg" className="h-12 px-6 text-base font-headline shadow-lg shadow-primary/20">
                 <a href="mailto:contato@zattaradvogados.com?subject=Assinar Curadoria Jur%C3%ADdica">
                   Assinar Agora
                 </a>

@@ -6,6 +6,7 @@ import { MarketingCard } from "@/app/website/components/shared/marketing-card";
 import { TrustTicker } from "@/app/website/components/shared/trust-ticker";
 import { Heading, Text } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
+import { MarketingButton } from "@/components/shared/marketing-button";
 import { buildWebsiteMetadata } from "../_metadata/build-metadata";
 
 export const metadata = buildWebsiteMetadata({
@@ -235,14 +236,14 @@ export default function FAQPage() {
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
-              <Button
+              <MarketingButton
                 asChild
                 size="lg"
-                variant="marketing-outline"
+                variant="outline"
                 className="rounded-xl h-12 px-8 text-base"
               >
                 <Link href="/portal">Acessar Portal do Cliente</Link>
-              </Button>
+              </MarketingButton>
             </div>
           </div>
         </section>

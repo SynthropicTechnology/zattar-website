@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { MarketingButton } from "@/components/shared/marketing-button";
 import { Heading, Text } from "@/components/ui/typography";
 
 export function Hero() {
@@ -64,14 +65,14 @@ export function Hero() {
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
           </Button>
-          <Button
+          <MarketingButton
             asChild
             size="lg"
-            variant="marketing-outline"
+            variant="outline"
             className="rounded-xl h-12 px-8 text-base"
           >
             <Link href="#solucoes">Nossas Soluções</Link>
-          </Button>
+          </MarketingButton>
         </div>
       </div>
     </section>

@@ -111,7 +111,7 @@ function ServiceBlock({
         </Text>
         <Link
           href={href}
-          className="group/cta inline-flex items-center gap-2 text-primary font-bold text-sm md:text-base hover:gap-3 transition-all"
+          className="group/cta inline-flex items-center gap-2 py-2 text-primary font-bold text-sm md:text-base hover:gap-3 transition-all"
         >
           <span className="underline decoration-primary/40 underline-offset-4 group-hover/cta:decoration-primary">
             {ctaLabel}

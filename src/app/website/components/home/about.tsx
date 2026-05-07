@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { MarketingButton } from "@/components/shared/marketing-button";
 import { Heading, Text } from "@/components/ui/typography";
 import { GlowBackground } from "../effects/glow-background";
 
@@ -68,14 +69,14 @@ export function About() {
               <Button asChild size="lg" className="rounded-xl h-12 px-8 text-base">
                 <Link href="/contato">Fale com um Especialista</Link>
               </Button>
-              <Button
+              <MarketingButton
                 asChild
                 size="lg"
-                variant="marketing-outline"
+                variant="outline"
                 className="rounded-xl h-12 px-8 text-base"
               >
                 <Link href="/expertise">Conheça nossa Metodologia</Link>
-              </Button>
+              </MarketingButton>
             </div>
           </div>
         </div>
