@@ -153,7 +153,7 @@ export function Footer({ hideClosingCta = false }: FooterProps = {}) {
             {/* Links + Contato — título widget (15px) → ícone 16px em container 32px */}
             <div className="lg:col-span-8 grid grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-8">
               {/* Navegação */}
-              <div className="lg:col-span-4">
+              <div className="lg:col-span-3">
                 <Heading level="widget" as="h3" className="mb-3 md:mb-4 tracking-wide">
                   Navegação
                 </Heading>
@@ -172,7 +172,7 @@ export function Footer({ hideClosingCta = false }: FooterProps = {}) {
               </div>
 
               {/* Portal */}
-              <div className="lg:col-span-3">
+              <div className="lg:col-span-2">
                 <Heading level="widget" as="h3" className="mb-3 md:mb-4 tracking-wide">
                   Portal
                 </Heading>
@@ -191,8 +191,8 @@ export function Footer({ hideClosingCta = false }: FooterProps = {}) {
                 </ul>
               </div>
 
-              {/* Contato — visualmente destacado */}
-              <div className="col-span-2 lg:col-span-5">
+              {/* Contato — col-span maior para acomodar endereço em 2 linhas */}
+              <div className="col-span-2 lg:col-span-7">
                 <Heading level="widget" as="h3" className="mb-3 md:mb-4 tracking-wide">
                   Contato
                 </Heading>
@@ -204,11 +204,9 @@ export function Footer({ hideClosingCta = false }: FooterProps = {}) {
                     {/* Endereço em padrão ABNT/Correios: logradouro+nº+complemento → bairro → CEP+cidade/UF.
                           (nbsp) prende complementos compostos para evitar quebras órfãs ("andar" sozinho). */}
                     <address className="not-italic leading-relaxed">
-                      Rua dos Inconfidentes,{" "}911,{" "}7º{" "}andar
+                      Rua dos Inconfidentes, 911, 7º andar
                       <br />
-                      Savassi
-                      <br />
-                      30140-120 · Belo{" "}Horizonte/MG
+                      Savassi · CEP 30140-128 · Belo{" "}Horizonte/MG
                     </address>
                   </div>
                   <div className="flex items-center gap-2.5">
