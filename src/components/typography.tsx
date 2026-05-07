@@ -13,14 +13,18 @@ import { cn } from '@/lib/utils';
 const HEADING_LEVELS = {
   page: { className: 'text-page-title font-bold', tag: 'h1' as const },
   section: { className: 'text-section-title font-semibold', tag: 'h2' as const },
-  card: { className: 'text-card-title font-semibold', tag: 'h3' as const },
-  subsection: { className: 'text-subsection-title font-semibold', tag: 'h4' as const },
+  card: { className: 'text-card-title font-semibold tracking-[-0.01em]', tag: 'h3' as const },
+  subsection: { className: 'text-subsection-title font-semibold tracking-[-0.005em]', tag: 'h4' as const },
   widget: { className: 'text-widget-title font-semibold', tag: 'h3' as const },
   // Display — hero, empty states dramáticos (spec Glass Briefing)
   'display-1': { className: 'text-display-1 font-bold', tag: 'h1' as const },
   'display-2': { className: 'text-display-2 font-bold', tag: 'h1' as const },
   // Marketing — apenas src/app/website/*
+  // marketing-hero: H1 de páginas utilitárias/categoria (48px max)
+  // marketing-hero-display: H1 da Home / landings-manifesto (68px max)
+  // Critério: declaração curta com presença máxima → display; categoria/utilidade → hero
   'marketing-hero': { className: 'text-marketing-hero font-extrabold', tag: 'h1' as const },
+  'marketing-hero-display': { className: 'text-marketing-hero-display font-extrabold', tag: 'h1' as const },
   'marketing-section': { className: 'text-marketing-section font-bold', tag: 'h2' as const },
   'marketing-title': { className: 'text-marketing-title font-bold', tag: 'h3' as const },
 } as const;

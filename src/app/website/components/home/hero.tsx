@@ -42,7 +42,7 @@ export function Hero() {
 
       {/* Content */}
       <div className="container z-10 text-center relative pt-20 md:pt-0">
-        <Heading level="marketing-hero" className="mb-6 md:mb-8 mx-auto max-w-5xl">
+        <Heading level="marketing-hero-display" className="mb-6 md:mb-8 mx-auto max-w-5xl">
           Justiça para{" "}
           <span className="bg-linear-to-br from-primary to-primary-dim bg-clip-text text-transparent">
             quem trabalha.

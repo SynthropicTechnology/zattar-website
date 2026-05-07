@@ -1716,12 +1716,26 @@
    * line-height nunca abaixo de 1.15 em headings (auditoria #1).
    * ==================================================================== */
 
-  /* Hero de landing — H1 principal, ex.: "Justiça para quem trabalha.".
-     Max 68px com ratio H1/H2 = 1.89× — proporção dominante de hero
-     (Linear, Vercel, Stripe). Antes 48px gerava ratio 1.33 (apenas
-     "ligeiramente maior" que H2 — sem presença de afirmação).
-     Auditoria visual: clamp 4.44vw entrega ~57px @ 1280px e 68px @ 1531px+. */
+  /* Hero de landing PADRÃO — H1 de páginas utilitárias/categorias
+     (FAQ, /insights, /expertise, /contato, política, termos, /servicos*).
+     Max 48px = institucional sóbrio (Apple Legal, BCG). Ratio H1/H2 = 1.33.
+     Para a Home (página-manifesto), use level="marketing-hero-display" (68px). */
   .text-marketing-hero {
+    font-size: clamp(2.25rem, 1.5vw + 1.5rem, 3rem);
+    /* 36px → 48px */
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    font-weight: 800;
+    @apply font-heading text-foreground;
+  }
+
+  /* Hero de DISPLAY — apenas Home / landings-manifesto. Presença máxima
+     para frases declarativas curtas (≤30 chars). Ratio H1/H2 = 1.89× —
+     proporção dominante (Linear, Vercel, Stripe). Auditoria visual:
+     clamp 4.44vw entrega ~57px @ 1280px e 68px @ 1531px+.
+     ATENÇÃO: textos longos (≥40 chars) quebram em 2 linhas pesadas.
+     Para hero de página-categoria, use marketing-hero (48px) acima. */
+  .text-marketing-hero-display {
     font-size: clamp(2.5rem, 4.44vw, 4.25rem);
     /* 40px → 68px */
     line-height: 1.147;

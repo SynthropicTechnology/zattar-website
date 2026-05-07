@@ -3,7 +3,6 @@ import { Search, ArrowUpRight, Gavel, ArrowRight, Headset } from "lucide-react";
 
 import { WebsiteShell } from "@/app/website/components/layout/website-shell";
 import { MarketingCard } from "@/app/website/components/shared/marketing-card";
-import { TrustTicker } from "@/app/website/components/shared/trust-ticker";
 import { Heading, Text } from "@/components/typography";
 import { Button } from "@/components/ui/button";
 import { MarketingButton } from "@/components/shared/marketing-button";
@@ -179,7 +178,7 @@ export default function FAQPage() {
 
             {/* Popular Topics */}
             <MarketingCard variant="solid" padding="lg">
-              <Heading level="card" as="h4" className="mb-5">
+              <Heading level="card" as="h3" className="mb-5">
                 Tópicos Populares
               </Heading>
               <ul className="space-y-4">
@@ -224,7 +223,7 @@ export default function FAQPage() {
                 className="rounded-xl h-12 px-8 text-base gap-2 group"
               >
                 <Link href="/contato">
-                  Falar com um especialista
+                  Fale com um Especialista
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
@@ -240,10 +239,6 @@ export default function FAQPage() {
           </div>
         </section>
 
-        <TrustTicker
-          items={["PARTNER_A", "LEGAL_CLOUD", "TRUST_PROTOCOL"]}
-          heading="Parceiros de Confiança"
-        />
       </div>
     </WebsiteShell>
   );
