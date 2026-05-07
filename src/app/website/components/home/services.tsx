@@ -126,7 +126,7 @@ function ServiceBlock({
 export function Services() {
   return (
     <section id="solucoes" className="py-14 sm:py-18 md:py-24 bg-background overflow-hidden">
-      <div className="container mx-auto px-5 sm:px-6 md:px-8">
+      <div className="container">
         {/* Section header — spacing calibrado: marketing-section (48px) → mb 2x = 96px máx */}
         <div className="max-w-4xl mb-10 sm:mb-12 md:mb-16">
           <Text variant="marketing-overline">Especialidades</Text>

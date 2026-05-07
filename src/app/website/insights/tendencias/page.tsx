@@ -16,7 +16,7 @@ export const metadata = buildWebsiteMetadata({
 export default function InsightsTendenciasPage() {
   return (
     <WebsiteShell hideClosingCta>
-      <div className="pt-32 pb-24 max-w-352 mx-auto px-5 sm:px-6 md:px-10">
+      <div className="pt-32 pb-24 max-w-6xl mx-auto px-5 sm:px-6 md:px-10">
         {/* Hero Featured Section */}
         <section className="relative mb-24 rounded-[2.5rem] overflow-hidden group shadow-2xl">
           <div className="aspect-16/7 md:aspect-21/9 w-full bg-surface-container overflow-hidden relative">

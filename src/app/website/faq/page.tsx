@@ -212,7 +212,7 @@ export default function FAQPage() {
         </section>
 
         {/* ─── Footer CTA ──────────────────────────────────────────────── */}
-        <section className="bg-surface-container-low/60 py-24 md:py-32 border-y border-outline-variant/10 relative">
+        <section className="bg-surface-container-low/60 py-20 md:py-24 border-y border-outline-variant/10 relative">
           <div className="max-w-4xl mx-auto px-5 sm:px-6 md:px-10 text-center relative z-10">
             <div className="inline-flex items-center justify-center p-5 bg-primary/10 rounded-full mb-6 border border-primary/20 shadow-[0_0_30px_color-mix(in_oklch,var(--primary)_15%,transparent)]">
               <Headset className="text-primary w-8 h-8" />

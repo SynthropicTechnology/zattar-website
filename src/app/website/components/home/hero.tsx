@@ -40,7 +40,7 @@ export function Hero() {
       <div className="absolute inset-0 z-1 bg-background/60" />
 
       {/* Content */}
-      <div className="container mx-auto px-5 sm:px-6 md:px-8 z-10 text-center relative pt-20 md:pt-0">
+      <div className="container z-10 text-center relative pt-20 md:pt-0">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/25 backdrop-blur-sm mb-5 md:mb-7">
           <span className="w-1.5 h-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden="true" />
           <Text variant="marketing-overline">

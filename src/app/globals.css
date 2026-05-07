@@ -244,6 +244,99 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* ========================================================================
+   * 15. LAYOUT & SIZING TOKENS (semantic)
+   * ------------------------------------------------------------------------
+   * Tokens consumidos por:
+   *   - `@utility container` (abaixo)
+   *   - <Container> e <Section> (src/components/layout/*)
+   *   - MarketingCard (consome --card-padding-*, --card-radius)
+   *
+   * Princípio: páginas e componentes NUNCA hardcodam max-w-*, px-*, py-*.
+   * Sempre consomem desses tokens. Mexer no design system = editar aqui.
+   *
+   * Escala derivada do spacing Tailwind v4 (4px base, ratio 1.5).
+   * ======================================================================== */
+
+  /* Container max-widths */
+  --container-max: 72rem;
+  /* 1152px — landing institucional (default) */
+  --container-narrow: 64rem;
+  /* 1024px — artigos, leitura longa (insights/[slug]) */
+  --container-wide: 80rem;
+  /* 1280px — dashboards, listagens densas */
+
+  /* Container padding-inline (responsivo) */
+  --container-px-mobile: 1.5rem;
+  /* 24px */
+  --container-px-tablet: 2rem;
+  /* 32px */
+  --container-px-desktop: 3rem;
+  /* 48px — teto institucional, não cresce em wide */
+
+  /* Section padding-block (responsivo) */
+  --section-py-mobile: 3.5rem;
+  /* 56px */
+  --section-py-tablet: 5rem;
+  /* 80px */
+  --section-py-desktop: 6rem;
+  /* 96px — Vercel/Linear/Stripe standard */
+
+  /* Section padding-block compact (CTAs, footers internos) */
+  --section-py-compact-mobile: 2.5rem;
+  /* 40px */
+  --section-py-compact-tablet: 3.5rem;
+  /* 56px */
+  --section-py-compact-desktop: 4rem;
+  /* 64px */
+
+  /* Card padding interno (calibrado para fonte hero 64px reduzida) */
+  --card-padding-sm: 1.25rem;
+  /* 20px */
+  --card-padding-md: 1.5rem;
+  /* 24px — antes p-7 (28px), redução de 14% */
+  --card-padding-lg: 2rem;
+  /* 32px — antes lg:p-10 (40px), redução de 20% */
+
+  /* Card radius */
+  --card-radius-sm: 0.75rem;
+  /* 12px */
+  --card-radius: 1rem;
+  /* 16px — antes rounded-2xl (16px) — mantém */
+  --card-radius-lg: 1.25rem;
+  /* 20px — antes rounded-3xl (24px), redução de 17% */
+
+  /* Icon container (caixa quadrada que envolve ícones lucide) */
+  --icon-container-sm: 2rem;
+  /* 32px = w-8 */
+  --icon-container-md: 2.25rem;
+  /* 36px = w-9 — antes w-11 (44px), redução de 18% */
+  --icon-container-lg: 2.75rem;
+  /* 44px = w-11 — antes w-12 (48px), redução de 8% */
+}
+
+/* ============================================================================
+ * @utility container — Landing Page Institucional (Zattar)
+ * ============================================================================
+ * Consome tokens --container-* da seção 15 acima. Para custom max-width,
+ * use o componente <Container size="narrow|wide"> de src/components/layout.
+ *
+ * Uso: <div className="container"> — não precisa adicionar mx-auto nem px-*.
+ * ============================================================================ */
+@utility container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-px-mobile);
+
+  @media (min-width: 768px) {
+    padding-inline: var(--container-px-tablet);
+  }
+
+  @media (min-width: 1024px) {
+    padding-inline: var(--container-px-desktop);
+  }
 }
 
 /* --- FUNDAÇÃO DE VARIÁVEIS --- */
@@ -1562,33 +1655,33 @@
 
   /* Hero de landing — H1 principal, ex.: "Justiça para quem trabalha.".
      Escala calibrada em "major third" (1.25x) para proporção harmônica entre
-     os níveis de marketing. Max 80px é suficiente para drama sem competir com
-     o layout bento e colunas estreitas.
+     os níveis de marketing. Max 64px é o padrão institucional (Apple Legal,
+     BCG, McKinsey) — preserva autoridade sem o drama de outdoor digital.
      Nota: o website roda com html.website-root-scale (font-size 16px, idêntico ao root). */
   .text-marketing-hero {
-    font-size: clamp(2.25rem, 2.5vw + 1.75rem, 5rem);
-    /* 36px → 80px */
-    line-height: 1;
-    letter-spacing: -0.035em;
+    font-size: clamp(2rem, 1.8vw + 1.5rem, 4rem);
+    /* 32px → 64px */
+    line-height: 1.05;
+    letter-spacing: -0.03em;
     @apply font-heading font-extrabold text-foreground;
   }
 
   /* Seção de landing — H2 de seção, ex.: "Soluções jurídicas de alta precisão." */
   .text-marketing-section {
-    font-size: clamp(1.625rem, 1.5vw + 1rem, 3rem);
-    /* 26px → 48px */
-    line-height: 1.1;
-    letter-spacing: -0.025em;
+    font-size: clamp(1.5rem, 1vw + 0.875rem, 2.5rem);
+    /* 24px → 40px */
+    line-height: 1.15;
+    letter-spacing: -0.02em;
     @apply font-heading font-bold text-foreground;
   }
 
   /* Título de bloco dentro de seção de landing — H3 intermediário,
      ex.: "Defesa Assertiva.", "Recuperação de Ativos." */
   .text-marketing-title {
-    font-size: clamp(1.375rem, 0.75vw + 0.875rem, 2.125rem);
-    /* 22px → 34px */
-    line-height: 1.15;
-    letter-spacing: -0.015em;
+    font-size: clamp(1.25rem, 0.5vw + 0.75rem, 1.75rem);
+    /* 20px → 28px */
+    line-height: 1.2;
+    letter-spacing: -0.01em;
     @apply font-heading font-bold text-foreground;
   }
 
@@ -1597,8 +1690,8 @@
      Cor em 82% do foreground: contraste AA sobre fundo escuro (~7:1) e ainda
      diferencia hierarquicamente do heading (100%). */
   .text-marketing-lead {
-    font-size: clamp(0.9375rem, 0.3vw + 0.8125rem, 1.1875rem);
-    /* 15px → 19px */
+    font-size: clamp(0.9375rem, 0.2vw + 0.75rem, 1.0625rem);
+    /* 15px → 17px */
     line-height: 1.6;
     color: color-mix(in oklch, var(--foreground) 82%, transparent);
   }

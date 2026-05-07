@@ -17,7 +17,7 @@ export default function ContatoPage() {
     <WebsiteShell hideClosingCta>
       <div className="pt-32 pb-24 overflow-hidden">
         {/* Hero Section */}
-        <section className="max-w-352 mx-auto px-5 sm:px-6 md:px-10 mb-24 mt-12">
+        <section className="max-w-6xl mx-auto px-5 sm:px-6 md:px-10 mb-24 mt-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
             <div className="lg:col-span-8">
               <Text variant="marketing-overline" className="mb-4 block">
@@ -39,7 +39,7 @@ export default function ContatoPage() {
         </section>
 
         {/* Bento Contact Layout */}
-        <section className="max-w-352 mx-auto px-5 sm:px-6 md:px-10">
+        <section className="max-w-6xl mx-auto px-5 sm:px-6 md:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Contact Form Card */}
             <MarketingCard variant="solid" padding="lg" className="lg:col-span-2">

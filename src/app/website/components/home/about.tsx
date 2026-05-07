@@ -7,8 +7,8 @@ import { GlowBackground } from "../effects/glow-background";
 
 export function About() {
   return (
-    <section className="py-16 sm:py-20 md:py-32 bg-surface-container-low">
-      <div className="container mx-auto px-5 sm:px-6 md:px-8 relative z-10">
+    <section className="py-14 sm:py-20 md:py-24 bg-surface-container-low">
+      <div className="container relative z-10">
         <div className="grid md:grid-cols-2 gap-12 md:gap-16 lg:gap-20 items-center">
           <div className="relative order-2 md:order-1">
             <div className="relative aspect-square rounded-2xl md:rounded-3xl overflow-hidden z-10 shadow-2xl">

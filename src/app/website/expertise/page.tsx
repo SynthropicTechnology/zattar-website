@@ -20,7 +20,7 @@ export default function ExpertisePage() {
     <WebsiteShell hideClosingCta>
       <div className="pt-32 pb-24">
         {/* ─── Hero ─────────────────────────────────────────────────── */}
-        <section className="max-w-352 mx-auto px-5 sm:px-6 md:px-10 mb-24 md:mb-32 grid grid-cols-1 md:grid-cols-12 gap-8 items-center mt-12">
+        <section className="max-w-6xl mx-auto px-5 sm:px-6 md:px-10 mb-24 md:mb-32 grid grid-cols-1 md:grid-cols-12 gap-8 items-center mt-12">
           <div className="md:col-span-7">
             <Text variant="marketing-overline" className="mb-5 block">
               Inteligência Jurídica Deep Tech
@@ -55,7 +55,7 @@ export default function ExpertisePage() {
         </section>
 
         {/* ─── Specialization Areas (Bento) ─────────────────────────── */}
-        <section className="max-w-352 mx-auto px-5 sm:px-6 md:px-10 mb-24 md:mb-32">
+        <section className="max-w-6xl mx-auto px-5 sm:px-6 md:px-10 mb-24 md:mb-32">
           <div className="flex flex-col md:flex-row justify-between items-end mb-10 md:mb-14 gap-6">
             <div className="max-w-2xl">
               <Text variant="marketing-overline" className="mb-3 block">
@@ -215,7 +215,7 @@ export default function ExpertisePage() {
         </section>
 
         {/* ─── Team ─────────────────────────────────────────────────── */}
-        <section className="max-w-352 mx-auto px-5 sm:px-6 md:px-10 mb-24 md:mb-32">
+        <section className="max-w-6xl mx-auto px-5 sm:px-6 md:px-10 mb-24 md:mb-32">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 lg:gap-20 items-center">
             <div className="order-2 md:order-1">
               <Text variant="marketing-overline" className="mb-4 block">
@@ -312,7 +312,7 @@ export default function ExpertisePage() {
         </section>
 
         {/* ─── CTA dedicado da página — substitui Zone 1 do Footer ─── */}
-        <section className="max-w-352 mx-auto px-5 sm:px-6 md:px-10">
+        <section className="max-w-6xl mx-auto px-5 sm:px-6 md:px-10">
           <MarketingCard
             variant="solid"
             padding="lg"

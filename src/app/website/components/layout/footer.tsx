@@ -69,7 +69,7 @@ export function Footer({ hideClosingCta = false }: FooterProps = {}) {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-32 bg-primary/10 blur-[120px] rounded-full pointer-events-none" />
 
         {/* Zona 1 — CTA final: escala 1.5x do bloco interno (py 64→96px desktop) */}
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-8 py-16 sm:py-20 md:py-24 relative z-10">
+        <div className="max-w-6xl mx-auto px-5 sm:px-6 md:px-8 py-16 sm:py-20 md:py-24 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <Heading level="marketing-section" className="mb-4 md:mb-5">
               Pronto para defender{" "}
@@ -109,7 +109,7 @@ export function Footer({ hideClosingCta = false }: FooterProps = {}) {
 
       {/* ─── Zona 2: Footer Principal — escala 0.75x da Zona 1 ─── */}
       <div className="bg-surface-container-lowest border-t border-outline-variant/20">
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-8 py-10 sm:py-12 md:py-14">
+        <div className="max-w-6xl mx-auto px-5 sm:px-6 md:px-8 py-10 sm:py-12 md:py-14">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 md:gap-10 lg:gap-8">
             {/* Brand */}
             <div className="lg:col-span-4 pr-0 lg:pr-8">
@@ -241,7 +241,7 @@ export function Footer({ hideClosingCta = false }: FooterProps = {}) {
 
       {/* ─── Zona 3: Bottom Bar — escala caption (13px), harmônica com o footer principal (14px) ─── */}
       <div className="border-t border-outline-variant/20 bg-surface-container-lowest">
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-8 py-5 md:py-6 flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4">
+        <div className="max-w-6xl mx-auto px-5 sm:px-6 md:px-8 py-5 md:py-6 flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4">
           <Text
             variant="caption"
             as="p"
