@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MarketingButton } from "@/components/shared/marketing-button";
-import { Heading, Text } from "@/components/ui/typography";
+import { Heading, Text } from "@/components/typography";
 
 export function Hero() {
   return (

@@ -1,7 +1,7 @@
 import { WebsiteShell } from "@/app/website/components/layout/website-shell";
 import { MarketingCard } from "@/app/website/components/shared/marketing-card";
 import { MapPin, Mail, Smartphone, Send, Instagram, Linkedin, MessageCircle } from "lucide-react";
-import { Heading, Text } from "@/components/ui/typography";
+import { Heading, Text } from "@/components/typography";
 import { buildWebsiteMetadata } from "../_metadata/build-metadata";
 import { ContactForm } from "./_components/contact-form";
 

@@ -4,7 +4,7 @@ import { Search, ArrowUpRight, Gavel, ArrowRight, Headset } from "lucide-react";
 import { WebsiteShell } from "@/app/website/components/layout/website-shell";
 import { MarketingCard } from "@/app/website/components/shared/marketing-card";
 import { TrustTicker } from "@/app/website/components/shared/trust-ticker";
-import { Heading, Text } from "@/components/ui/typography";
+import { Heading, Text } from "@/components/typography";
 import { Button } from "@/components/ui/button";
 import { MarketingButton } from "@/components/shared/marketing-button";
 import { buildWebsiteMetadata } from "../_metadata/build-metadata";

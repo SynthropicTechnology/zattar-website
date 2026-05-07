@@ -1,7 +1,7 @@
 import type { LucideIcon } from "lucide-react";
 
 import { MarketingCard } from "../shared/marketing-card";
-import { Heading } from "@/components/ui/typography";
+import { Heading } from "@/components/typography";
 
 interface LegalSectionProps {
   icon: LucideIcon;

@@ -13,7 +13,7 @@ import {
   HeartPulse,
 } from "lucide-react";
 import { MarketingCard } from "../shared/marketing-card";
-import { Heading, Text } from "@/components/ui/typography";
+import { Heading, Text } from "@/components/typography";
 
 interface OverlayCardProps {
   icon: React.ReactNode;

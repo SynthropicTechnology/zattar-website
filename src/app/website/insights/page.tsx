@@ -4,7 +4,7 @@ import { ArrowRight, Bookmark, ExternalLink } from "lucide-react";
 
 import { WebsiteShell } from "@/app/website/components/layout/website-shell";
 import { MarketingCard } from "@/app/website/components/shared/marketing-card";
-import { Heading, Text } from "@/components/ui/typography";
+import { Heading, Text } from "@/components/typography";
 import { Button } from "@/components/ui/button";
 import { buildWebsiteMetadata } from "../_metadata/build-metadata";
 

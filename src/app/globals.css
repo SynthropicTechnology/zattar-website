@@ -24,7 +24,46 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ============================================================================
+ * @theme inline — DESIGN TOKENS
+ * ============================================================================
+ *
+ * ┌─────────────────────────────────────────────────────────────────────┐
+ * │ ÍNDICE DE SEÇÕES                                                    │
+ * ├─────────────────────────────────────────────────────────────────────┤
+ * │ §1-3   shadcn CORE — cores semânticas + sidebar + charts            │
+ * │        (NÃO renomear chaves; valores podem ser customizados via     │
+ * │         :root logo abaixo. Compatível com `npx shadcn add` futuro)  │
+ * ├─────────────────────────────────────────────────────────────────────┤
+ * │ §4-13  ZATTAR EXTENSIONS — extensões custom legítimas:              │
+ * │   §4    Brand tokens (Zattar Purple, Action Orange)                 │
+ * │   §5    Status colors (success, warning, info)                      │
+ * │   §6    Surface tokens (layering Zattar)                            │
+ * │   §7    Chat tokens                                                 │
+ * │   §7b   Video call tokens (sempre dark)                             │
+ * │   §8    Tipografia (font-* aliases)                                 │
+ * │   §9    Magistrate AI / MD3 surface hierarchy                       │
+ * │   §10   Portal do Cliente                                           │
+ * │   §11   Dim & tint variants                                         │
+ * │   §12   User-selectable palette (tags, labels)                      │
+ * │   §13   Event colors (calendar)                                     │
+ * │   §14   Density axis (compact / comfortable)                        │
+ * │   §15   Layout & sizing tokens (container, section, card, icon)     │
+ * └─────────────────────────────────────────────────────────────────────┘
+ *
+ * REGRA: shadcn não opina sobre tipografia, layout, spacing, densidade —
+ * tudo isso é extensão legítima Zattar. O que shadcn padroniza está em §1-3
+ * + bloco @utility container abaixo + escala de --radius derivada via calc.
+ *
+ * Veja CLAUDE.md → "shadcn — Processo de Atualização e Extensão" para
+ * convenções de manutenção (wrappers, drift prevention, ESLint rules).
+ * ============================================================================ */
+
 @theme inline {
+  /* ════════════════════════════════════════════════════════════════════
+   * shadcn CORE TOKENS (§1-3) — não alterar nomes
+   * ════════════════════════════════════════════════════════════════════ */
+
   /* --- 1. Mapeamento de Cores Semânticas (Shadcn Standard) --- */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -70,6 +109,10 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
+
+  /* ════════════════════════════════════════════════════════════════════
+   * ZATTAR EXTENSIONS (§4-15) — shadcn não opina aqui
+   * ════════════════════════════════════════════════════════════════════ */
 
   /* --- 4. Zattar Custom Tokens --- */
   --color-brand: var(--brand);

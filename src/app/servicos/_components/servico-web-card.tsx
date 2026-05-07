@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Heading } from "@/components/ui/typography";
+import { Heading } from "@/components/typography";
 
 interface ServicoWebCardProps {
   title: string;

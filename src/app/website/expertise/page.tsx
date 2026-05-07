@@ -4,7 +4,7 @@ import { Shield, Users, Search, ArrowRight, Atom, Scale } from "lucide-react";
 
 import { WebsiteShell } from "@/app/website/components/layout/website-shell";
 import { MarketingCard } from "@/app/website/components/shared/marketing-card";
-import { Heading, Text } from "@/components/ui/typography";
+import { Heading, Text } from "@/components/typography";
 import { Button } from "@/components/ui/button";
 import { MarketingButton } from "@/components/shared/marketing-button";
 import { buildWebsiteMetadata } from "../_metadata/build-metadata";
@@ -95,7 +95,7 @@ export default function ExpertisePage() {
                 <div className="absolute inset-0 bg-linear-to-t from-background/95 via-background/70 to-transparent" />
               </div>
               <div className="relative z-10">
-                <div className="inline-flex items-center justify-center w-[var(--icon-container-lg)] h-[var(--icon-container-lg)] rounded-xl bg-primary-dim/25 text-primary ring-1 ring-primary/40 mb-5">
+                <div className="inline-flex items-center justify-center w-(--icon-container-lg) h-(--icon-container-lg) rounded-xl bg-primary-dim/25 text-primary ring-1 ring-primary/40 mb-5">
                   <Shield className="w-6 h-6" />
                 </div>
                 <Heading level="marketing-title" as="h3" className="mb-3">
@@ -127,7 +127,7 @@ export default function ExpertisePage() {
               padding="lg"
               className="md:col-span-4 group flex flex-col"
             >
-              <div className="inline-flex items-center justify-center w-[var(--icon-container-lg)] h-[var(--icon-container-lg)] rounded-xl bg-primary-dim/25 text-primary ring-1 ring-primary/40 mb-5">
+              <div className="inline-flex items-center justify-center w-(--icon-container-lg)ah-(--icon-container-lg)ded-xl bg-primary-dim/25 text-primary ring-1 ring-primary/40 mb-5">
                 <Users className="w-6 h-6" />
               </div>
               <Heading level="marketing-title" as="h3" className="mb-3">
@@ -151,7 +151,7 @@ export default function ExpertisePage() {
             >
               {/* Ícone em glass-white é intencional aqui — o card tem fundo roxo
                   (primary-dim) próprio, então bg-foreground/15 cria contraste alto. */}
-              <div className="inline-flex items-center justify-center w-[var(--icon-container-lg)] h-[var(--icon-container-lg)] rounded-xl bg-foreground/15 text-white ring-1 ring-white/25 mb-5">
+              <div className="inline-flex items-center justify-center w-(--icon-container-lg)-icon-container-lg) rounded-xl bg-foreground/15 text-white ring-1 ring-white/25 mb-5">
                 <Search className="w-6 h-6" />
               </div>
               <Heading level="marketing-title" as="h3" className="mb-3 text-white">
@@ -179,7 +179,7 @@ export default function ExpertisePage() {
             >
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 h-full">
                 <div className="flex flex-col justify-center relative z-10">
-                  <div className="inline-flex items-center justify-center w-[var(--icon-container-lg)] h-[var(--icon-container-lg)] rounded-xl bg-primary-dim/25 text-primary ring-1 ring-primary/40 mb-5">
+                <div className="inline-flex items-center justify-center w-(--icon-container-lg) h-(--icon-container-lg) rounded-xl bg-primary-dim/25 text-primary ring-1 ring-primary/40 mb-5">
                     <Scale className="w-6 h-6" />
                   </div>
                   <Heading level="marketing-title" as="h3" className="mb-3">

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MarketingButton } from "@/components/shared/marketing-button";
-import { Heading, Text } from "@/components/ui/typography";
+import { Heading, Text } from "@/components/typography";
 import { GlowBackground } from "../effects/glow-background";
 
 export function About() {

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Calculator, FileText, Stethoscope, ArrowRight } from "lucide-react";
 import { ServicosHero } from "./_components/servicos-hero";
 import { ServicoWebCard } from "./_components/servico-web-card";
-import { Heading, Text } from "@/components/ui/typography";
+import { Heading, Text } from "@/components/typography";
 
 const categories = [
   {

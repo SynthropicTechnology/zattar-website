@@ -16,7 +16,7 @@ import {
 
 import { WebsiteShell } from "@/app/website/components/layout/website-shell";
 import { MarketingCard } from "@/app/website/components/shared/marketing-card";
-import { Heading, Text } from "@/components/ui/typography";
+import { Heading, Text } from "@/components/typography";
 import { Button } from "@/components/ui/button";
 import { MarketingButton } from "@/components/shared/marketing-button";
 import { buildWebsiteMetadata } from "../_metadata/build-metadata";
@@ -112,7 +112,7 @@ export default function SolucoesPage() {
                 <Terminal className="text-primary w-24 h-24 opacity-10 group-hover:opacity-30 transition-opacity duration-500" />
               </div>
               <div className="relative z-10">
-                <div className="inline-flex items-center justify-center w-[var(--icon-container-lg)] h-[var(--icon-container-lg)] rounded-xl bg-primary-dim/25 text-primary ring-1 ring-primary/40 mb-5">
+                <div className="inline-flex items-center justify-center w-(--icon-container-lg) h-(--icon-container-lg) rounded-xl bg-primary-dim/25 text-primary ring-1 ring-primary/40 mb-5">
                   <FileSearch className="w-6 h-6" />
                 </div>
                 <Heading level="marketing-title" as="h3" className="mb-3">
@@ -140,7 +140,7 @@ export default function SolucoesPage() {
 
             {/* Solution 2 */}
             <MarketingCard variant="solid" padding="lg" className="group flex flex-col">
-              <div className="inline-flex items-center justify-center w-[var(--icon-container-lg)] h-[var(--icon-container-lg)] rounded-xl bg-primary-dim/25 text-primary ring-1 ring-primary/40 mb-5">
+              <div className="inline-flex items-center justify-center w-(--icon-container-lg) h-(--icon-container-lg) rounded-xl bg-primary-dim/25 text-primary ring-1 ring-primary/40 mb-5">
                 <LineChart className="w-6 h-6" />
               </div>
               <Heading level="marketing-title" as="h3" className="mb-3">
@@ -161,7 +161,7 @@ export default function SolucoesPage() {
 
             {/* Solution 3 */}
             <MarketingCard variant="solid" padding="lg" className="group flex flex-col">
-              <div className="inline-flex items-center justify-center w-[var(--icon-container-lg)] h-[var(--icon-container-lg)] rounded-xl bg-primary-dim/25 text-primary ring-1 ring-primary/40 mb-5">
+              <div className="inline-flex items-center justify-center w-(--icon-container-lg) h-(--icon-container-lg) rounded-xl bg-primary-dim/25 text-primary ring-1 ring-primary/40 mb-5">
                 <Zap className="w-6 h-6" />
               </div>
               <Heading level="marketing-title" as="h3" className="mb-3">
@@ -232,7 +232,7 @@ export default function SolucoesPage() {
                 </Heading>
                 <ul className="space-y-7">
                   <li className="flex gap-6">
-                    <div className="shrink-0 w-[var(--icon-container-lg)] h-[var(--icon-container-lg)] bg-primary-dim/20 ring-1 ring-primary/30 rounded-xl flex items-center justify-center text-primary">
+                    <div className="shrink-0 w-(--icon-container-lg) h-(--icon-container-lg) bg-primary-dim/20 ring-1 ring-primary/30 rounded-xl flex items-center justify-center text-primary">
                       <Cpu className="w-6 h-6" />
                     </div>
                     <div>
@@ -246,7 +246,7 @@ export default function SolucoesPage() {
                     </div>
                   </li>
                   <li className="flex gap-6">
-                    <div className="shrink-0 w-[var(--icon-container-lg)] h-[var(--icon-container-lg)] bg-primary-dim/20 ring-1 ring-primary/30 rounded-xl flex items-center justify-center text-primary">
+                    <div className="shrink-0 w-(--icon-container-lg) h-[vah-(--icon-container-lg)rimary-dim/20 ring-1 ring-primary/30 rounded-xl flex items-center justify-center text-primary">
                       <Lock className="w-6 h-6" />
                     </div>
                     <div>
@@ -260,7 +260,7 @@ export default function SolucoesPage() {
                     </div>
                   </li>
                   <li className="flex gap-6">
-                    <div className="shrink-0 w-[var(--icon-container-lg)] h-[var(--icon-container-lg)] bg-primary-dim/20 ring-1 ring-primary/30 rounded-xl flex items-center justify-center text-primary">
+                    <div className="shrink-0 w-(--icon-container-lg) h-[vah-(--icon-container-lg)rimary-dim/20 ring-1 ring-primary/30 rounded-xl flex items-center justify-center text-primary">
                       <Network className="w-6 h-6" />
                     </div>
                     <div>

@@ -12,7 +12,7 @@ import {
 } from '@/lib/strapi/client';
 import { WebsiteShell } from '../../components/layout/website-shell';
 import { Container } from '@/components/layout';
-import { Heading, Text } from '@/components/ui/typography';
+import { Heading, Text } from '@/components/typography';
 
 interface Props {
   params: Promise<{ slug: string }>;

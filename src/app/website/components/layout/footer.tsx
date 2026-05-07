@@ -11,7 +11,7 @@ import {
   Heart,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Heading, Text } from "@/components/ui/typography";
+import { Heading, Text } from "@/components/typography";
 
 const siteLinks = [
   { href: "#solucoes", label: "Soluções" },

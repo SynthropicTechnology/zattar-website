@@ -3,7 +3,7 @@ import { Shield, Lock, Eye, Database, UserCheck, Mail } from "lucide-react";
 
 import { WebsiteShell } from "@/app/website/components/layout/website-shell";
 import { LegalSection } from "@/app/website/components/sections/legal-section";
-import { Heading, Text } from "@/components/ui/typography";
+import { Heading, Text } from "@/components/typography";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
