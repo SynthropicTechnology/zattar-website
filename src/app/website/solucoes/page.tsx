@@ -41,9 +41,6 @@ export default function SolucoesPage() {
           </div>
           <div className="container grid grid-cols-1 lg:grid-cols-12 gap-12 relative z-10 w-full">
             <div className="lg:col-span-7 flex flex-col justify-center">
-              <Text variant="marketing-overline" className="mb-5 block">
-                Infraestrutura Jurídica Next-Gen
-              </Text>
               <Heading level="marketing-hero" className="mb-7">
                 Soluções Jurídicas Digitais.{" "}
                 <br />
@@ -95,9 +92,6 @@ export default function SolucoesPage() {
         {/* ─── Core Solutions — Bento ───────────────────────────────── */}
         <section className="container py-24">
           <div className="mb-10 md:mb-14">
-            <Text variant="marketing-overline" className="mb-3 block">
-              Ecossistema
-            </Text>
             <Heading level="marketing-section">Soluções Principais</Heading>
           </div>
 
@@ -220,9 +214,6 @@ export default function SolucoesPage() {
           <div className="container py-20 md:py-24 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
               <div>
-                <Text variant="marketing-overline" className="mb-5 block">
-                  A Infraestrutura
-                </Text>
                 <Heading level="marketing-section" className="mb-8">
                   Zattar Engine:{" "}
                   <br />

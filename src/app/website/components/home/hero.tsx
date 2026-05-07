@@ -42,12 +42,6 @@ export function Hero() {
 
       {/* Content */}
       <div className="container z-10 text-center relative pt-20 md:pt-0">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/25 backdrop-blur-sm mb-5 md:mb-7">
-          <span className="w-1.5 h-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden="true" />
-          <Text variant="marketing-overline">
-            A Nova Era da Advocacia Trabalhista
-          </Text>
-        </div>
         <Heading level="marketing-hero" className="mb-6 md:mb-8 mx-auto max-w-5xl">
           Justiça para{" "}
           <span className="bg-linear-to-br from-primary to-primary-dim bg-clip-text text-transparent">

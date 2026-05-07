@@ -66,9 +66,6 @@ export default function InsightsPage() {
         <section className="container mb-16 md:mb-24 mt-6">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
             <div className="md:col-span-8">
-              <Text variant="marketing-overline" className="mb-5 block">
-                Inteligência Editorial
-              </Text>
               <Heading level="marketing-hero" className="mb-7">
                 Insights e Tendências do{" "}
                 <span className="bg-linear-to-br from-primary to-primary-dim bg-clip-text text-transparent">
@@ -143,7 +140,7 @@ export default function InsightsPage() {
                     Leitura de 12 min
                   </Text>
                 </div>
-                <Heading level="marketing-title" as="h2" className="mb-4 group-hover:text-primary transition-colors">
+                <Heading level="marketing-title" as="h3" className="mb-4 group-hover:text-primary transition-colors">
                   O Impacto da IA Generativa em Processos Trabalhistas
                 </Heading>
                 <Text variant="marketing-lead" className="max-w-xl mb-7 line-clamp-2">
@@ -215,9 +212,6 @@ export default function InsightsPage() {
           <div className="container">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-14 md:mb-16 gap-6">
               <div>
-                <Text variant="marketing-overline" className="mb-3 block">
-                  Análises Profundas
-                </Text>
                 <Heading level="marketing-section">Arquivos da Zattar</Heading>
               </div>
               <Link

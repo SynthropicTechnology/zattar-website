@@ -44,7 +44,6 @@ export default function DiagnosticosPublicIndex() {
   return (
     <>
       <ServicosHero
-        eyebrow="Ferramentas de Análise"
         title="Diagnósticos"
         titleHighlight="Trabalhistas."
         description="Ferramentas interativas para analisar sua situação trabalhista. Identifique direitos, prazos e oportunidades."

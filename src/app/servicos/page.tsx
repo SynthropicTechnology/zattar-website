@@ -35,7 +35,6 @@ export default function ServicosPublicHub() {
   return (
     <>
       <ServicosHero
-        eyebrow="Ferramentas Gratuitas"
         title="Serviços"
         titleHighlight="Trabalhistas."
         description="Calculadoras, geradores de documentos e diagnósticos trabalhistas com inteligência artificial. Todas as ferramentas atualizadas com a legislação CLT 2026."
@@ -63,9 +62,6 @@ export default function ServicosPublicHub() {
             className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgb(var(--color-primary)/0.05)_0%,transparent_70%)] pointer-events-none"
           />
           <div className="relative z-10 max-w-2xl mx-auto">
-            <Text variant="marketing-overline" className="inline-block mb-4">
-              Consultoria Especializada
-            </Text>
             <Heading level="marketing-section" className="mb-6">
               Precisa de uma análise humana?
             </Heading>

@@ -4,11 +4,13 @@ import { cn } from "@/lib/utils";
 import { Heading, Text } from "@/components/typography";
 
 interface ServicosHeroProps {
-  eyebrow: string;
+  /** Eyebrow opcional acima do título. Mantido como prop para compat,
+   *  mas não passado nas páginas (decisão de design: hero sem kicker). */
+  eyebrow?: string;
   title: string;
   titleHighlight: string;
   description: string;
-  /** Optional back-link above the kicker (e.g. "Voltar para Serviços"). */
+  /** Optional back-link above the title. */
   backHref?: string;
   backLabel?: string;
   className?: string;
@@ -53,9 +55,11 @@ export function ServicosHero({
           </Link>
         )}
 
-        <Text variant="marketing-overline" className="inline-block mb-4">
-          {eyebrow}
-        </Text>
+        {eyebrow && (
+          <Text variant="marketing-overline" className="inline-block mb-4">
+            {eyebrow}
+          </Text>
+        )}
 
         <Heading level="marketing-hero" className="mb-6">
           {title}{" "}

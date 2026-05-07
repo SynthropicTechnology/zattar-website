@@ -76,12 +76,6 @@ export default function TermosDeUsoPage() {
       <div className="pt-32 pb-24">
         {/* ─── Hero ─────────────────────────────────────────────────── */}
         <section className="max-w-4xl mx-auto px-5 sm:px-6 md:px-10 mb-16 mt-8">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
-              <FileText className="w-5 h-5 text-primary" />
-            </div>
-            <Text variant="marketing-overline">Termos &amp; Condições</Text>
-          </div>
           <Heading level="marketing-hero" className="mb-6">
             Termos de{" "}
             <span className="bg-linear-to-br from-primary to-primary-dim bg-clip-text text-transparent">

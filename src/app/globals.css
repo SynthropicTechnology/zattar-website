@@ -1717,11 +1717,14 @@
    * ==================================================================== */
 
   /* Hero de landing — H1 principal, ex.: "Justiça para quem trabalha.".
-     Max 48px = institucional sóbrio (Apple Legal, BCG). */
+     Max 68px com ratio H1/H2 = 1.89× — proporção dominante de hero
+     (Linear, Vercel, Stripe). Antes 48px gerava ratio 1.33 (apenas
+     "ligeiramente maior" que H2 — sem presença de afirmação).
+     Auditoria visual: clamp 4.44vw entrega ~57px @ 1280px e 68px @ 1531px+. */
   .text-marketing-hero {
-    font-size: clamp(2.25rem, 1.5vw + 1.5rem, 3rem);
-    /* 36px → 48px */
-    line-height: 1.15;
+    font-size: clamp(2.5rem, 4.44vw, 4.25rem);
+    /* 40px → 68px */
+    line-height: 1.147;
     letter-spacing: -0.03em;
     font-weight: 800;
     @apply font-heading text-foreground;

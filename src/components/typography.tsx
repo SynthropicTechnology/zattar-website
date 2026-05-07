@@ -6,19 +6,23 @@ import { cn } from '@/lib/utils';
 // Padrão canônico do projeto — seguindo a filosofia shadcn/ui de tokens inline.
 // =============================================================================
 
+// font-weight é incluído como utility class (ganha cascade sobre @apply em
+// @layer components — Tailwind preflight reseta h1-h6 weight para inherit, e
+// o reset h1-h6 customizado em globals.css §base só aplica font-heading,
+// deixando weight herdar de body=400. Forçar via utility resolve definitivamente.
 const HEADING_LEVELS = {
-  page: { className: 'text-page-title', tag: 'h1' as const },
-  section: { className: 'text-section-title', tag: 'h2' as const },
-  card: { className: 'text-card-title', tag: 'h3' as const },
-  subsection: { className: 'text-subsection-title', tag: 'h4' as const },
-  widget: { className: 'text-widget-title', tag: 'h3' as const },
+  page: { className: 'text-page-title font-bold', tag: 'h1' as const },
+  section: { className: 'text-section-title font-semibold', tag: 'h2' as const },
+  card: { className: 'text-card-title font-semibold', tag: 'h3' as const },
+  subsection: { className: 'text-subsection-title font-semibold', tag: 'h4' as const },
+  widget: { className: 'text-widget-title font-semibold', tag: 'h3' as const },
   // Display — hero, empty states dramáticos (spec Glass Briefing)
-  'display-1': { className: 'text-display-1', tag: 'h1' as const },
-  'display-2': { className: 'text-display-2', tag: 'h1' as const },
+  'display-1': { className: 'text-display-1 font-bold', tag: 'h1' as const },
+  'display-2': { className: 'text-display-2 font-bold', tag: 'h1' as const },
   // Marketing — apenas src/app/website/*
-  'marketing-hero': { className: 'text-marketing-hero', tag: 'h1' as const },
-  'marketing-section': { className: 'text-marketing-section', tag: 'h2' as const },
-  'marketing-title': { className: 'text-marketing-title', tag: 'h3' as const },
+  'marketing-hero': { className: 'text-marketing-hero font-extrabold', tag: 'h1' as const },
+  'marketing-section': { className: 'text-marketing-section font-bold', tag: 'h2' as const },
+  'marketing-title': { className: 'text-marketing-title font-bold', tag: 'h3' as const },
 } as const;
 
 type HeadingLevel = keyof typeof HEADING_LEVELS;

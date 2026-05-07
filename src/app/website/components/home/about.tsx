@@ -25,7 +25,6 @@ export function About() {
           </div>
 
           <div className="order-1 md:order-2">
-            <Text variant="marketing-overline">A Revolução Jurídica</Text>
             <Heading level="marketing-section" className="mt-4 md:mt-6 mb-6 md:mb-8">
               O Direito do Trabalho <br />
               <span className="bg-linear-to-br from-primary to-primary-dim bg-clip-text text-transparent">

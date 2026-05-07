@@ -31,10 +31,6 @@ export default function InsightsTendenciasPage() {
             />
           </div>
           <div className="absolute inset-0 bg-linear-to-t from-surface via-surface/60 to-transparent flex flex-col justify-end p-8 md:p-16">
-            <span className="text-marketing-overline text-primary mb-4 flex items-center gap-2 drop-shadow-md">
-              <span className="w-8 h-px bg-primary shadow-[0_0_10px_rgb(var(--color-primary)/0.8)]"></span>
-              Artigo em Destaque
-            </span>
             <div className="max-w-3xl">
               <Heading level="marketing-hero" className="mb-6 drop-shadow-lg">
                 A Ascensão da IA Generativa na <br className="hidden md:block" />
@@ -101,7 +97,7 @@ export default function InsightsTendenciasPage() {
             <div className="md:w-1/2 p-8 lg:p-10 flex flex-col justify-between">
               <div>
                 <span className="bg-primary/10 border border-primary/20 text-primary px-4 py-1.5 rounded-full text-xs font-bold mb-6 inline-block uppercase tracking-wider">Direito Digital</span>
-                <Heading level="marketing-title" as="h3" className="mb-4 group-hover:text-primary transition-colors">
+                <Heading level="card" as="h3" className="mb-4 group-hover:text-primary transition-colors">
                   Privacidade de Dados em Ambientes de Metaverso Corporativo
                 </Heading>
                 <p className="text-on-surface-variant text-sm leading-relaxed mb-6 line-clamp-3">
@@ -172,7 +168,7 @@ export default function InsightsTendenciasPage() {
             <div className="md:w-1/2 p-8 lg:p-10 flex flex-col justify-between order-2 md:order-1">
               <div>
                 <span className="bg-primary/10 border border-primary/20 text-primary px-4 py-1.5 rounded-full text-xs font-bold mb-6 inline-block uppercase tracking-wider">Case Study</span>
-                <Heading level="marketing-title" as="h3" className="mb-4 group-hover:text-primary transition-colors">
+                <Heading level="card" as="h3" className="mb-4 group-hover:text-primary transition-colors">
                   Como a Zattar Engine Reduziu Custos Jurídicos em 40%
                 </Heading>
                 <p className="text-on-surface-variant text-sm leading-relaxed mb-6 line-clamp-3">

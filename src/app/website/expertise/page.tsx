@@ -23,9 +23,6 @@ export default function ExpertisePage() {
         {/* ─── Hero ─────────────────────────────────────────────────── */}
         <section className="container mb-24 md:mb-32 grid grid-cols-1 md:grid-cols-12 gap-8 items-center mt-12">
           <div className="md:col-span-7">
-            <Text variant="marketing-overline" className="mb-5 block">
-              Inteligência Jurídica Deep Tech
-            </Text>
             <Heading level="marketing-hero" className="mb-7">
               Expertise Jurídica de{" "}
               <span className="bg-linear-to-br from-primary to-primary-dim bg-clip-text text-transparent">
@@ -59,9 +56,6 @@ export default function ExpertisePage() {
         <section className="container mb-24 md:mb-32">
           <div className="flex flex-col md:flex-row justify-between items-end mb-10 md:mb-14 gap-6">
             <div className="max-w-2xl">
-              <Text variant="marketing-overline" className="mb-3 block">
-                Áreas de atuação
-              </Text>
               <Heading level="marketing-section">Áreas de Especialização</Heading>
               <Text variant="marketing-lead" className="mt-4">
                 Arquitetura jurídica desenhada para o ecossistema digital contemporâneo.
@@ -219,9 +213,6 @@ export default function ExpertisePage() {
         <section className="container mb-24 md:mb-32">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 lg:gap-20 items-center">
             <div className="order-2 md:order-1">
-              <Text variant="marketing-overline" className="mb-4 block">
-                Nossa célula de elite
-              </Text>
               <Heading level="marketing-section" className="mb-6">
                 Advogados que codificam.
                 <br />

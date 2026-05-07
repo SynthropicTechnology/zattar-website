@@ -62,14 +62,6 @@ export default function FAQPage() {
       <div className="pt-32 pb-24">
         {/* ─── Hero + Busca ─────────────────────────────────────────── */}
         <header className="container pt-12 pb-12 mt-6">
-          <div className="inline-flex items-center mb-5">
-            <Text
-              variant="marketing-overline"
-              className="bg-primary/10 border border-primary/20 rounded-full px-3 py-1"
-            >
-              Central de Ajuda
-            </Text>
-          </div>
           <Heading level="marketing-hero" className="mb-6">
             Como podemos{" "}
             <span className="bg-linear-to-br from-primary to-primary-dim bg-clip-text text-transparent">

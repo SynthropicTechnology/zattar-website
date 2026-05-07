@@ -89,7 +89,6 @@ export default function CalculadorasPublicIndex() {
   return (
     <>
       <ServicosHero
-        eyebrow="Ferramentas Jurídicas"
         title="Calculadoras"
         titleHighlight="Trabalhistas."
         description="Selecione a ferramenta de cálculo desejada. Todas atualizadas com a legislação CLT 2026 e tabelas progressivas de INSS/IRRF."

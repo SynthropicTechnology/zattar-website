@@ -55,7 +55,6 @@ interface ServiceBlockProps {
   imageSrc: string;
   imageAlt: string;
   overlayCard: React.ReactNode;
-  label?: string;
   title: string;
   description: string;
   href: string;
@@ -67,7 +66,6 @@ function ServiceBlock({
   imageSrc,
   imageAlt,
   overlayCard,
-  label,
   title,
   description,
   href,
@@ -98,11 +96,6 @@ function ServiceBlock({
       <div
         className={`md:col-span-5 ${isImageLeft ? "md:order-2 md:pl-6 lg:pl-10" : "md:order-1 md:pr-6 lg:pr-10"}`}
       >
-        {label && (
-          <Text variant="marketing-overline" className="mb-3 block">
-            {label}
-          </Text>
-        )}
         <Heading level="marketing-title" className="mb-4 md:mb-5">
           {title}
         </Heading>
@@ -129,8 +122,7 @@ export function Services() {
       <div className="container">
         {/* Section header — spacing calibrado: marketing-section (48px) → mb 2x = 96px máx */}
         <div className="max-w-4xl mb-10 sm:mb-12 md:mb-16">
-          <Text variant="marketing-overline">Especialidades</Text>
-          <Heading level="marketing-section" className="mt-3 md:mt-4">
+          <Heading level="marketing-section">
             Soluções jurídicas de{" "}
             <br className="hidden sm:block" />
             <span className="bg-linear-to-br from-primary to-primary-dim bg-clip-text text-transparent">
@@ -144,7 +136,6 @@ export function Services() {
           {/* Block 1 — Image Left (Demissão sem justa causa) */}
           <ServiceBlock
             layout="image-left"
-            label="Principal"
             imageSrc="/website/home/services-demissao.jpg"
             imageAlt="Interface de dados de alta tecnologia com símbolos jurídicos e linhas brilhantes roxas"
             overlayCard={

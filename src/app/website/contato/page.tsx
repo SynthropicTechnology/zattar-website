@@ -20,9 +20,6 @@ export default function ContatoPage() {
         <section className="container mb-24 mt-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
             <div className="lg:col-span-8">
-              <Text variant="marketing-overline" className="mb-4 block">
-                Contato
-              </Text>
               <Heading level="marketing-hero">
                 Conecte-se com o <br/>
                 <span className="bg-linear-to-r from-primary to-primary-dim bg-clip-text text-transparent">
@@ -43,7 +40,7 @@ export default function ContatoPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Contact Form Card */}
             <MarketingCard variant="solid" padding="lg" className="lg:col-span-2">
-              <Heading level="card" as="h2" className="mb-8 flex items-center gap-3">
+              <Heading level="marketing-title" as="h2" className="mb-8 flex items-center gap-3">
                 <Send className="text-primary w-6 h-6" />
                 Enviar Mensagem
               </Heading>

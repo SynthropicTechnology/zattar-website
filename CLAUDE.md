@@ -64,7 +64,7 @@ Website institucional e marketing do escritório Zattar Advogados. Este reposit�
 
 | Papel semântico | Componente | Tamanho | Peso | Quando usar |
 |---|---|---|---|---|
-| H1 hero da página | `<Heading level="marketing-hero">` | 36→48px (clamp) | 800 | Topo da página, **1× por rota** |
+| H1 hero da página | `<Heading level="marketing-hero">` | 40→68px (clamp 4.44vw) | 800 | Topo da página, **1× por rota** |
 | H2 seção | `<Heading level="marketing-section">` | 28→36px (clamp) | 700 | Título de cada seção principal |
 | H3 título de bloco/card grande | `<Heading level="marketing-title">` | 20→24px (clamp) | 700 | Bento cards grandes, blocos |
 | H3/H4 título de card pequeno | `<Heading level="card">` | 18px fixo | 600 | Cards compactos, side cards |
@@ -75,7 +75,7 @@ Website institucional e marketing do escritório Zattar Advogados. Este reposit�
 | Caption | `<Text variant="caption">` | 13px | 400 | Descrição de card, metadata |
 | Overline (kicker) | `<Text variant="marketing-overline">` | 13px tracking-wider | 600 | Label acima de heading |
 
-**Escala modular:** Ratios harmônicos — H1/H2 = 1.33 (Perfect Fourth), H2/H3 = 1.5 (Major Sixth), H3/Lead = 1.33 (PF), Lead/Body = 1.125 (Major Second). Todos os valores ancorados em `html { font-size: 16px }` (shadcn default — **NÃO alterar root**).
+**Escala modular:** H1/H2 = 1.89× (Hero dominante — escala Major Third³ ≈ Linear/Vercel/Stripe), H2/H3 = 1.5 (Major Sixth), H3/Lead = 1.33 (PF), Lead/Body = 1.125 (Major Second). Hero usa `clamp(40px, 4.44vw, 68px)` em vez de rem — auditoria visual confirmou que 4.44vw entrega proporção ideal entre 1280px (~57px) e 1531px+ (68px). Todos os outros valores ancorados em `html { font-size: 16px }` (shadcn default — **NÃO alterar root**).
 
 **Regra de ouro:** dois títulos no mesmo nível visual da página devem usar o mesmo `level=`. Se um é `marketing-section` e o outro é `section` (interno), a hierarquia quebra mesmo sendo "parecido".
 

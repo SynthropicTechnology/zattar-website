@@ -179,7 +179,7 @@ export default async function InsightsArtigoPage({ params }: Props) {
           {/* CTA de contato */}
           <div className="mt-16 p-10 bg-surface-container rounded-3xl border border-primary/20 text-center relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-primary to-transparent" />
-            <Heading level="marketing-title" as="h2" className="mb-3">
+            <Heading level="marketing-title" as="h3" className="mb-3">
               Precisa de assessoria jurídica?
             </Heading>
             <Text variant="marketing-lead" className="mb-6 max-w-md mx-auto">

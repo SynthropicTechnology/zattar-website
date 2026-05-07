@@ -21,7 +21,7 @@ export function LegalSection({ icon: Icon, title, items }: LegalSectionProps) {
         <div className="w-[var(--icon-container-md)] h-[var(--icon-container-md)] rounded-xl bg-primary-dim/20 border border-primary/25 ring-1 ring-primary/20 flex items-center justify-center shrink-0">
           <Icon className="w-5 h-5 text-primary" />
         </div>
-        <Heading level="card" as="h2">
+        <Heading level="marketing-title" as="h2">
           {title}
         </Heading>
       </div>

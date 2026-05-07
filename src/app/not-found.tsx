@@ -2,6 +2,7 @@ import { FileQuestion } from 'lucide-react';
 import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
+import { Heading, Text } from '@/components/typography';
 
 export default function NotFound() {
   return (
@@ -11,15 +12,15 @@ export default function NotFound() {
           <FileQuestion className="h-10 w-10 text-muted-foreground" />
         </div>
         <div className="space-y-2">
-          <h1 className="font-heading text-3xl font-bold tracking-tight">
+          <Heading level="marketing-section" as="h1">
             Página Não Encontrada
-          </h1>
-          <p className="max-w-md text-muted-foreground">
+          </Heading>
+          <Text variant="marketing-lead" className="max-w-md text-muted-foreground">
             A página que você está procurando não existe ou foi movida. Verifique o endereço ou volte para o início.
-          </p>
+          </Text>
         </div>
         <Button asChild>
-          <Link href="/app/dashboard">Voltar para o Início</Link>
+          <Link href="/">Voltar para o Início</Link>
         </Button>
       </div>
     </div>

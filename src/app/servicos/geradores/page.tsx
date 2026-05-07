@@ -44,7 +44,6 @@ export default function GeradoresPublicIndex() {
   return (
     <>
       <ServicosHero
-        eyebrow="Documentos com IA"
         title="Geradores de"
         titleHighlight="Documentos."
         description="Gere documentos trabalhistas prontos para uso. Todos os modelos seguem as melhores práticas jurídicas e podem ser baixados em PDF."
